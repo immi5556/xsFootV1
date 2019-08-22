@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">Sorry!</h1>
+    <p class="lead">we couldn't find that page</p>
+    <hr class="my-4">
+    <p>The link is broken or the page has been moved. try these pages instead</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="~/Dashboard/Index" role="button">@Resources.Resources.Home</a>
+        <a class="btn btn-link" data-toggle="collapse" href="#error-detail" role="button" aria-expanded="false" aria-controls="error-detail">
+            @Resources.Resources.OtherDetails
+        </a>
+    </p>
+</div>
+<div class="collapse" id="error-detail">
+    <div class="card">
+        <div class="card-title p-5">@Model.Message</div>
+        <div class="card-body">
+            @Model.StackTrace
+        </div>
+    </div>
+</div>

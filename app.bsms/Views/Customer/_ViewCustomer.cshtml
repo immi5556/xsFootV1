@@ -1,0 +1,225 @@
+﻿@model app.bsms.Models.Manage.Customer.Register
+
+<h5 class="mb-0">
+    @Resources.Resources.PersonalDetails
+</h5>
+<hr />
+<div class="row">
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.joinedDate)</h6>
+                @Model.joinedDate
+            </div>
+            <div class="col-md-6">                
+                <h6>@Html.LabelFor(m => m.referenceCode)</h6>
+                @Model.referenceCode
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.customerName)</h6>
+                @Model.customerName
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.email)</h6>
+                @Model.email
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.nric)</h6>
+                @Model.nric
+            </div>
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.nationality)</h6>
+                @Model.nationality
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">                
+                <h6>@Html.LabelFor(m => m.customerClass)</h6>
+                    @Model.customerClass
+            </div>
+            <div class="col-md-6">                
+                <h6>@Html.LabelFor(m => m.gender)</h6>
+                @Model.gender
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">                
+                <h6>@Html.LabelFor(m => m.mobile1)</h6>
+                @Model.mobile1
+            </div>
+            <div class="col-md-6">                
+                <h6>@Html.LabelFor(m => m.phoneNumber)</h6>
+                @Model.phoneNumber
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.dateOfBirth)</h6>
+                @Convert.ToDateTime(Model.dateOfBirth).ToString("dd MMM yyyy")
+            </div>
+            <div class="col-md-6">                
+                <h6>@Html.LabelFor(m => m.source)</h6>
+                @Model.source
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>
+<h5 class="mb-0">
+    @Resources.Resources.InformationDetails
+</h5>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.accountCode)</h6>
+        @Model.accountCode
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.customerType)</h6>
+        @Model.customerType
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.location)</h6>
+        @Model.location
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.group1)</h6>
+        @Model.group1
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.group2)</h6>
+        @Model.group2
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.group3)</h6>
+        @Model.group3
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.skinType)</h6>
+        @Model.skinType
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.weight)</h6>
+        @Model.weight
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.height)</h6>
+        @Model.height
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.consultant)</h6>
+        @Model.consultant
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.therapist)</h6>
+        @Model.therapist
+    </div>
+</div>
+<h5 class="mb-0">
+    @Resources.Resources.OtherDetails
+</h5>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.address1)</h6>
+        @Model.address1
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.address2)</h6>
+        @Model.address2
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.address3)</h6>
+        @Model.address3
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.address4)</h6>
+                @Model.address4
+            </div>
+            <div class="col-md-6">
+                <h6>@Html.LabelFor(m => m.zip)</h6>
+                @Model.zip
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.city)</h6>
+        @Model.city
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.state)</h6>
+        @Model.state
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.country)</h6>
+        @Model.country
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.mobile2)</h6>
+        @Model.mobile2
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.ageGroup)</h6>
+        @Model.ageGroup
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.race)</h6>
+        @Model.race
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.religion)</h6>
+        @Model.religion
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.occupation)</h6>
+        @Model.occupation
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.salaryRange)</h6>
+        @Model.salaryRange
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.phoneOffice)</h6>
+        @Model.phoneOffice
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.maritalStatus)</h6>
+        @Model.maritalStatus
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.anniversary)</h6>
+        @Model.anniversary
+    </div>
+    <div class="col-md-6">
+        <h6>@Html.LabelFor(m => m.language)</h6>
+        @Model.language
+    </div>
+</div>

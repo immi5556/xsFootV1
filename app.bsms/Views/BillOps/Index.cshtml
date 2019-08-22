@@ -1,0 +1,305 @@
+﻿@model app.bsms.Models.Sales.BillOps
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Billing</li>
+    </ol>
+</nav>
+@using (Html.BeginForm("Index", "BillOps", FormMethod.Post, new {@id = "frmVoid"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.Raw(@TempData["Message"])
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="hdSearch">
+                <h5 class="mb-0">
+                    <a class="btn btn-link" href="" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true" aria-controls="collapseSearch">
+                        @Resources.Resources.SearchFilter
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseSearch" class="collapse show" aria-labelledby="hdSearch" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            @foreach (var rb in Model.lstOptions)
+                            {
+                                <div class="custom-control custom-radio custom-control-inline small">
+                                    @Html.RadioButton("option", rb.itemCode, new { @class = "custom-control-input", id = rb.itemCode })
+                                    <label class="custom-control-label" for="@rb.itemCode">@rb.itemDesc</label>
+                                </div>
+                            }
+                            @Html.ValidationMessageFor(m => m.option)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.TransactionNumber</label>
+                                @Html.TextBoxFor(m => m.referenceNumber, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.referenceNumber)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.CustNo</label>
+                                @Html.TextBoxFor(m => m.customerNo, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.customerNo)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.CustName</label>
+                                @Html.TextBoxFor(m => m.customerName, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.customerName)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.FromDate</label>
+                                <div class="input-group">
+                                   @Html.TextBoxFor(m => m.fromDate, new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.fromDate)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.ToDate</label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.toDate, new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.toDate)
+                        </div>
+                    </div>
+                    <div class="h-25">&nbsp;</div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-lg mb-2">@Resources.Resources.Apply</button>
+                            <a role="button" class="btn btn-primary btn-lg mb-2" href="~/BillOps/Index">@Resources.Resources.Clear</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="clearfix">&nbsp;</div>
+@if (Model.option == "Pending")
+{
+    <h4>Pending Transactions</h4>
+    <hr />
+    <div class="clearfix">&nbsp;</div>
+
+    if (Model.lstPendingCarts != null)
+    {
+        foreach (var item in Model.lstPendingCarts)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="custom-control custom-checkbox align-self-start mr-3">
+                            @Html.CheckBox("check-item", new { @class = "custom-control-input", id = ("check-item_" + item.userID) })
+                            <label for="check-item_@item.userID" class="custom-control-label">&nbsp;</label>
+                        </div>
+                        <div class="media-body">
+                            <div class="card-title">
+                                <strong>@item.customerName</strong>
+                                <div class="pull-right">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="ddl_@item.userID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Options
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="ddl_@item.userID">
+                                            <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.CheckOut</a>
+                                            <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.Delete All</a>
+                                            <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.Suspend</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">@item.customerCode</h6>
+                        </div>
+                    </div>
+                    @foreach (var trans in item.transactionDetails)
+                    {
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row">
+                            <div class="col-3 text-left"><b>@Resources.Resources.ItemName</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.Quantity</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.UnitPrice</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.Deposit</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.Discount</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.TotalAmount</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.FOC</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.StaffName</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 text-left">@trans.itemName</div>
+                            <div class="col text-center">@trans.itemQty</div>
+                            <div class="col text-center">@trans.unitPrice</div>
+                            <div class="col text-center">@trans.depositAmount</div>
+                            <div class="col text-center">@trans.unitDiscount</div>
+                            <div class="col text-center">
+                                @if (trans.unitDiscount != 0)
+                                {
+                                    if (trans.lineType == "COURSE")
+                                    {
+                                        if (trans.courseDetails != null)
+                                        {
+                                            if (trans.courseDetails.Count > 0)
+                                            {
+                                                if (trans.courseDetails.FirstOrDefault().courseType == "N")
+                                                {
+                                                    <del class="form-text text-muted">@(trans.courseDetails.Count * trans.unitPrice)</del>
+                                                }
+                                                else
+                                                {
+                                                    <del class="form-text text-muted">@(trans.itemQty * trans.unitPrice)</del>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <del class="form-text text-muted">@(trans.itemQty * trans.unitPrice)</del>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <del class="form-text text-muted">@(trans.itemQty * trans.unitPrice)</del>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <del class="form-text text-muted">@(trans.itemQty * trans.unitPrice)</del>
+                                    }
+                                    <span>@trans.itemAmount</span>
+                                }
+                                else
+                                {
+                                    <span>@trans.itemAmount</span>
+                                }
+                            </div>
+                            <div class="col text-center">@(trans.isFOC == false ? string.Empty : "FOC")</div>
+                            <div class="col text-center">
+                                @if (trans.salesStaffDetails != null)
+                                {
+                                    foreach (var stf in trans.salesStaffDetails)
+                                    {
+                                        <p>@stf.staffName</p>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+        }
+    }
+}
+else if (Model.option == "Transaction")
+{
+    <h4>Transactions</h4>
+    <hr />
+    <div class="clearfix">&nbsp;</div>
+
+    if (Model.lstInvoices != null)
+    {
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-2">@Resources.Resources.TransactionDate</div>
+                <div class="col-3">@Resources.Resources.Invoice</div>
+                <div class="col-1">@Resources.Resources.Staff</div>
+                <div class="col-1 text-center">@Resources.Resources.Amount</div>
+                <div class="col-1 text-center">Amount Paid</div>
+                <div class="col-1 text-center">Customer</div>
+            </div>
+        </div>
+        foreach (var item in Model.lstInvoices)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-2">@item.transactionDate.ToString("dd-MMM-yyyy") @item.transactionTime.ToString("hh:mm:ss")</div>
+                    <div class="col-3">
+                        <a class="btn btn-link btn-lg" href="~/Payment/Invoice/@item.transactionNumber/@item.invoiceNumber">@item.invoiceNumber</a><br />
+                        @if (@item.isVoid && @item.transctionStatus =="SA")
+                        {
+                            <b>This transaction is void</b><br />
+                        }
+                        @if (@item.isVoid && @item.transctionStatus == "VT")
+                        {
+                            <b>Void transaction</b><br />
+                        }
+                        @item.transactionNumber | @item.transctionType | @item.transctionStatus
+                    </div>
+                    <div class="col-1">@item.transctionStaff</div>
+                    <div class="col-1 text-center">@item.transactionAmount</div>
+                    <div class="col-1 text-center">@item.transactionPaid</div>
+                    <div class="col-1 text-center">@item.customerName</div>
+                    @if (!@item.isVoid && @item.transctionStatus == "SA")
+                    {
+                        <a role="button" class="btn btn-lg btn-primary" href="~/BillOps/Invoice/@item.transactionNumber/@item.invoiceNumber">@Resources.Resources.Void</a>
+                    }
+                    <!--<a class="btn btn-link btn-lg" href="~/BillOps/Invoice/@item.transactionNumber/@item.invoiceNumber">Void</a><br />-->
+                    <!--<button type="button" data-line-status="VT" data-transaction="@item.transactionNumber" data-invoice="@item.invoiceNumber" data-customer="@item.customerCode" 
+                            class="btn btn-lg btn-primary btn-void">Void</button>-->
+                </div>
+            </div>
+        }
+    }
+}
+else if (Model.option == "Suspend")
+{
+    <h4>Suspended Transactions</h4>
+    <hr />
+    <div class="clearfix">&nbsp;</div>
+
+    if (Model.lstSuspendedCarts != null)
+    {
+        foreach (var item in Model.lstSuspendedCarts)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="custom-control custom-checkbox align-self-start mr-3">
+                            @Html.CheckBox("check-item", new { @class = "custom-control-input", id = ("check-item_" + item.cartToken) })
+                            <label for="check-item_@item.cartToken" class="custom-control-label">&nbsp;</label>
+                        </div>
+                        <div class="media-body">
+                            <div class="card-title">
+                                <strong>@item.cartToken</strong>
+                                <div class="pull-right">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="ddl_@item.cartToken" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Options
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="ddl_@item.cartToken">
+                                            <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.CheckOut</a>
+                                            <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+        }
+    }
+}

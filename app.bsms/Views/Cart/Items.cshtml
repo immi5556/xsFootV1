@@ -1,0 +1,228 @@
+﻿@model app.bsms.Models.Sales.Cart
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Service/Index">Catalog</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Cart</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { name = "frmCart", id = "frmCart", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    @Html.HiddenFor(m => m.userID)
+    @Html.HiddenFor(m => m.siteCode)
+    @Html.HiddenFor(m => m.salesStatus)
+    @Html.HiddenFor(m => m.salesType)
+    @Html.HiddenFor(m => m.customerCode)
+    @Html.HiddenFor(m => m.staffCode)
+    @Html.HiddenFor(m => m.transactionNumber)
+    @Html.HiddenFor(m => m.invoiceNumber)
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.customerName)
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.customerName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
+                    <div class="input-group-append">
+                        <button id="btnSearchCustomer" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                    </div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(m => m.customerName)
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.staffName)
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.staffName, new { @class = "form-control form-control-lg no-right-radius", @readonly = "readonly" })
+                    <div class="input-group-append">
+                        <button id="btnSearchStaff" class="btn btn-lg btn-primary" type="button"><i class="fa fa-search">&nbsp;</i>@Resources.Resources.Search</button>
+                    </div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(m => m.staffName)
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="row">
+        <div class="col">
+            @if (Model.transactionDetails != null)
+            {
+                <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                    <div class="row">
+                        <div class="col-0-5 text-center">
+                            <div class="custom-control custom-checkbox">
+                                @Html.CheckBox("check-all-item", new { @class = "custom-control-input" })
+                                <label for="check-all-item" class="custom-control-label">&nbsp;</label>
+                            </div>
+                        </div>
+                        <div class="col-3">@Resources.Resources.ItemName</div>
+                        <div class="col-0-5 text-center">@Resources.Resources.Quantity</div>
+                        <div class="col-1 text-center">@Resources.Resources.ItemPrice</div>
+                        <div class="col-1 text-center">@Resources.Resources.Deposit</div>
+                        <div class="col-1 text-center">@Resources.Resources.Discount</div>
+                        <div class="col-1 text-center">@Resources.Resources.TotalAmount</div>
+                        <div class="col-0-5 text-center">@Resources.Resources.FOC</div>
+                        <div class="col-1-5 text-center">@Resources.Resources.StaffName</div>
+                        <div class="col-1 text-center"></div>
+                    </div>
+                </div>
+
+                foreach (var x in Model.transactionDetails)
+                {
+                    <div class="media">
+                        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                            <div class="row">
+                                <div class="col-0-5 justify-content-center align-items-center">
+                                    <div class="custom-control custom-checkbox">
+                                        @Html.CheckBox("check-item", new { @class = "custom-control-input", id = ("check-item_" + x.itemCode) })
+                                        <label for="check-item_@x.itemCode" class="custom-control-label">&nbsp;</label>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    @x.itemName
+                                    <small class="form-text text-muted">@x.itemCode</small>
+                                </div>
+                                <div class="col-0-5 text-center">
+                                    @x.itemQty
+                                </div>
+                                <div class="col-1 text-center">@x.unitPrice</div>
+                                <div class="col-1 text-center">
+                                    @x.depositAmount
+                                </div>
+                                <div class="col-1 text-center">
+                                    @x.unitDiscount
+                                </div>
+                                <div class="col-1 text-center">@(x.isFOC == false ? (x.itemQty * x.unitPrice) : 0)</div>
+                                <div class="col-0-5 text-center">
+                                    @(x.isFOC == false ? string.Empty : "FOC")
+                                </div>
+                                <div class="col-1-5 text-center">@x.staffName</div>
+                                <div class="col-1 justify-content-center align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-flat" data-toggle="modal" data-target="#mdlTransaction" data-url="/Cart/GetItem" data-value="" data-code="@x.itemCode">
+                                            <i class="fa fa-pencil fa-2x"></i>
+                                        </button>
+                                        <button type="button" data-url="/Cart/Delete" data-mode="deleteCart" data-code="@x.itemCode" class="btn btn-flat"><i class="fa fa-trash fa-2x"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="row">
+        <div class="col-10">
+            <div class="btn-group fluid btn-group-lg" role="group" aria-label="">
+                <button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">Pay</button>
+                <button type="submit" class="btn btn-primary fluid btn-lg" value="Hold" name="Hold">Hold</button>
+                <button type="submit" class="btn btn-primary fluid btn-lg" value="Void" name="Void">Void</button>
+            </div>
+        </div>
+        <div class="col-2">
+            <a role="button" class="btn btn-primary btn-block btn-lg" href="~/Cart/Empty">Clear</a>
+        </div>
+    </div>
+}
+<div class="modal fade" id="mdlTransaction" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width:75%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Update", "Cart", FormMethod.Post, new { name = "frmTrans", id = "frmTrans", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.Raw(@TempData["Message"])
+                <div id="alert-message"></div>
+                <div class="modal-body">
+                    <div id="divContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-flat btn-lg" data-dismiss="modal" data-mode="cancel"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-lg" data-mode="save"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="mdlCustomer" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txtsearchCustomer">@Resources.Resources.CustName</label>
+                    <input type="text" class="form-control live-search-box" id="txtsearchCustomer">
+                </div>
+                <ul class="list-group list-group-flush live-search-list">
+                    @foreach (var x in Model.lstCustomer)
+                    {
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-9">
+                                    @x.customerName
+                                    <small class="form-text text-muted">@x.customerCode</small>
+                                </div>
+                                <div class="col-3 justify-content-center align-items-center">
+                                    <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@x.customerName" data-name-target="customerName" data-value="@x.customerCode" data-value-target="customerCode" id="btnCustomer">
+                                        @Resources.Resources.Apply
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="mdlStaff" tabindex="-1" role="dialog" aria-labelledby="mdlStaff" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txtsearchStaff">@Resources.Resources.StaffName</label>
+                    <input type="text" class="form-control live-search-box" id="txtsearchStaff">
+                </div>
+                <ul class="list-group list-group-flush live-search-list">
+                    @foreach (var x in Model.lstStaff)
+                    {
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-9">
+                                    @x.staffName
+                                    <small class="form-text text-muted">@x.staffCode</small>
+                                </div>
+                                <div class="col-3 justify-content-center align-items-center">
+                                    <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@x.staffName" data-name-target="staffName" data-value="@x.staffCode" data-value-target="staffCode" id="btnStaff">
+                                        @Resources.Resources.Apply
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

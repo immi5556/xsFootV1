@@ -1,0 +1,566 @@
+﻿@model app.bsms.Models.Sales.Cart
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Service/Index">Catalog</a></li>
+        <li class="breadcrumb-item"><a href="~/Cart/Index/@Model.cart.cartToken">@Resources.Resources.Cart</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.cartDetails.itemName</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    @Html.HiddenFor(m => m.cart.cartToken)
+    @Html.HiddenFor(m => m.cartDetails.lineStatus)
+    @Html.HiddenFor(m => m.cartDetails.lineType)
+    @Html.HiddenFor(m => m.cartDetails.referenceTreatmentCode)
+    <section>
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.itemCode)
+                    @Html.TextBoxFor(m => m.cartDetails.itemCode, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.itemCode)
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.itemName)
+                    @Html.TextBoxFor(m => m.cartDetails.itemName, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.itemName)
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.unitPrice)
+                    @Html.TextBoxFor(m => m.cartDetails.unitPrice, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.unitPrice)
+                </div>
+            </div>
+            <div class="col-2">
+            @if (Model.cartDetails.lineType == "COURSE")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.itemAmount)
+                    @Html.TextBoxFor(m => m.cartDetails.itemAmount, new { @class = "form-control form-control-lg" })
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        @Html.CheckBoxFor(m => m.isAmountChanged, new { @class = "custom-control-input" })&nbsp;
+                        @Html.LabelFor(m => m.isAmountChanged, new { @class = "custom-control-label" })
+                    </div>         
+                </div>
+                @Html.ValidationMessageFor(m => m.cartDetails.itemAmount)
+                @Html.ValidationMessageFor(m => m.isAmountChanged)
+            }
+            else
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.itemAmount)
+                    @Html.TextBoxFor(m => m.cartDetails.itemAmount, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                </div>
+            }
+            </div>
+            @if (Model.cartDetails.lineType != "COURSE" && Model.cartDetails.lineType != "PACKAGE" && (Model.cartDetails.referenceTreatmentCode == string.Empty || Model.cartDetails.referenceTreatmentCode == null))
+            {
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.itemQty)
+                    <div class="input-group input-group-lg">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-unit" data-fun="decrease" data-target="cartDetails.itemQty" data-param="cartDetails.unitPrice,cartDetails.itemAmount" data-zero="false"><i class="fa fa-minus"></i></button>
+                        </div>
+                        @Html.TextBoxFor(m => m.cartDetails.itemQty, new { @class = "form-control text-center no-right-radius no-left-radius" })
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-unit" data-fun="increase" data-target="cartDetails.itemQty" data-param="cartDetails.unitPrice,cartDetails.itemAmount"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.cartDetails.itemQty)
+                </div>
+            </div>
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.cartDetails.itemQty)
+            }
+        </div>
+    </section>
+    if (Model.cartDetails.lineType == "PACKAGE")
+    {
+    <div class="table-responsive small p-5">
+        <table class="table table-striped">
+            <thead>
+                <tr class="row">
+                    <th class="col-2" scope="col">#</th>
+                    <th class="col-3" scope="col">Item Code</th>
+                    <th class="col-3" scope="col">Item Name</th>
+                    <th class="col-2" scope="col">Quantity</th>
+                    <th class="col-2" scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.lstPackages != null)
+                {
+                    foreach (var item in Model.lstPackages)
+                    {
+                        <tr class="row">
+                            <td class="col-2">@item.lineNumber</td>
+                            <td class="col-3">@item.contentItemCode</td>
+                            <td class="col-3">@item.contentItemName</td>
+                            <td class="col-2">@item.quantity</td>
+                            <td class="col-2">@item.price</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+    <div class="clearfix">&nbsp;</div>
+    if (Model.cartDetails.lineType == "COURSE")
+    {
+        <h4>@Resources.Resources.CourseType</h4>
+        <hr />
+        <section>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.courseType)<br />
+                        @foreach (var rb in Model.lstCourse_Settings)
+                        {
+                            <div class="custom-control custom-radio custom-control-inline small">
+                                @Html.RadioButton("courseType", rb.courseTypeCode, new { @class = "custom-control-input", id = rb.courseType })
+                                <label class="custom-control-label" for="@rb.courseType">@rb.courseType</label>
+                            </div>
+                        }
+                        @Html.ValidationMessageFor(m => m.courseType)
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.treatmentDate)
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.treatmentDate, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.treatmentDate)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.totalTreatments)
+                        @Html.TextBoxFor(m => m.totalTreatments, new { @class = "form-control form-control-lg" })
+                        @Html.ValidationMessageFor(m => m.totalTreatments)
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.interval)
+                        @Html.TextBoxFor(m => m.interval, new { @class = "form-control form-control-lg" })
+                        @Html.ValidationMessageFor(m => m.interval)
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="divCourseExpiryLimit">
+                <div class="col-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.expiryDate)
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.expiryDate, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.expiryDate)
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.treatmentLimit)
+                        @Html.TextBoxFor(m => m.treatmentLimit, new { @class = "form-control form-control-lg" })
+                        <span class="text-muted small">0 is unlimited</span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.treatmentLimit)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            @Html.CheckBoxFor(m => m.cartDetails.isFirstTreatmentDone, new { @class = "custom-control-input" })&nbsp;
+                            @Html.LabelFor(m => m.cartDetails.isFirstTreatmentDone, new { @class = "custom-control-label" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.cartDetails.isFirstTreatmentDone)
+                    </div>
+                </div>
+                <div class="col-9" id="divFlexiItems">
+                    <h4>@Resources.Resources.Services</h4>
+                    <hr />
+                    @if (Model.lstFlexiDetails != null)
+                    {
+                        foreach (var f in Model.lstFlexiDetails)
+                        {
+                            <div class="custom-control custom-radio custom-control-inline">
+                                @Html.RadioButton("cartDetails.subItemCode", f.subItemCode, new { @class = "custom-control-input", id = "rb_" + f.subItemCode })
+                                <label class="custom-control-label" for="rb_@f.subItemCode">@f.subItemDescription</label>
+                            </div>
+                        }
+                        <br />
+                        @Html.ValidationMessageFor(m => m.cartDetails.subItemCode)
+                        @Html.HiddenFor(m => m.cartDetails.parent.courseType) // hidden mock
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cartDetails.firstTreatmentStaffCode)
+                                @Html.DropDownListFor(m => m.cartDetails.firstTreatmentStaffCode, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                                @Html.ValidationMessageFor(m => m.cartDetails.firstTreatmentStaffCode)
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddTreatmentStaff">@Resources.Resources.Save</button>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="table-responsive small p-5">
+                                <table class="table table-striped" id="tbltreatmentStaffs">
+                                    <thead>
+                                        <tr class="row">
+                                            <th class="col-4" scope="col">Staff code</th>
+                                            <th class="col-6" scope="col">Staff Name</th>
+                                            <th class="col-2" scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.cartDetails.courseDetails != null)
+                                        {
+                                            foreach (var item in Model.cartDetails.courseDetails)
+                                            {
+                                                if (item.treatmentStaffDetails != null)
+                                                {
+                                                    foreach (var s in item.treatmentStaffDetails)
+                                                    {
+                                                    <tr class="row">
+                                                        <td class="col-4" scope="col">@s.staffCode</td>
+                                                        <td class="col-7">@s.staffName</td>
+                                                        <td class="col-1">
+                                                            <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            @Html.HiddenFor(m => m.cartDetails.strTreatmentStaffs)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox custom-control-inline mt-5">
+                            @Html.CheckBoxFor(m => m.cartDetails.autoProportionate, new { @class = "custom-control-input" })&nbsp;
+                            @Html.LabelFor(m => m.cartDetails.autoProportionate, new { @class = "custom-control-label" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.cartDetails.autoProportionate)
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else if (Model.cartDetails.lineType != "PREPAID" && Model.cartDetails.lineType != "VOUCHER" && Model.cartDetails.lineType != "PRODUCT")
+    {
+        <div class="row">
+            <div class="col-3">
+                <section>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox custom-control-inline mt-5">
+                                    @Html.CheckBoxFor(m => m.cartDetails.isFirstTreatmentDone, new { @class = "custom-control-input" })&nbsp;
+                                    @Html.LabelFor(m => m.cartDetails.isFirstTreatmentDone, Resources.Resources.IsCompleted, new { @class = "custom-control-label" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.cartDetails.isFirstTreatmentDone)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cartDetails.firstTreatmentStaffCode)
+                                @Html.DropDownListFor(m => m.cartDetails.firstTreatmentStaffCode, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                                @Html.ValidationMessageFor(m => m.cartDetails.firstTreatmentStaffCode)
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddTreatmentStaff">@Resources.Resources.Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-9">
+                <div class="table-responsive small p-5">
+                    <table class="table table-striped" id="tbltreatmentStaffs">
+                        <thead>
+                            <tr class="row">
+                                <th class="col-4" scope="col">Staff code</th>
+                                <th class="col-6" scope="col">Staff Name</th>
+                                <th class="col-2" scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.cartDetails.courseDetails != null)
+                            {
+                                foreach (var item in Model.cartDetails.courseDetails)
+                                {
+                                    if (item.treatmentStaffDetails != null)
+                                    {
+                                        foreach (var s in item.treatmentStaffDetails)
+                                        {
+                                            <tr class="row">
+                                                <td class="col-4" scope="col">@s.staffCode</td>
+                                                <td class="col-6">@s.staffName</td>
+                                                <td class="col-2">
+                                                    <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @Html.HiddenFor(m => m.cartDetails.strTreatmentStaffs)
+            </div>
+        </div>
+    }
+
+    if ((Model.cartDetails.referenceTreatmentCode == string.Empty || Model.cartDetails.referenceTreatmentCode == null) && (Model.cartDetails.lineType != "PREPAID" && Model.cartDetails.lineType != "VOUCHER"))
+    {
+    <div class="clearfix">&nbsp;</div>
+    <h4>@Resources.Resources.FOC</h4>
+    <hr />
+    <section>
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox custom-control-inline mt-5">
+                        @Html.CheckBoxFor(m => m.cartDetails.isFOC, new { @class = "custom-control-input" })&nbsp;
+                        @Html.LabelFor(m => m.cartDetails.isFOC, new { @class = "custom-control-label" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.cartDetails.isFOC)
+                </div>
+            </div>
+            <div class="col-10">
+                <div id="divFOC">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cartDetails.FOCReason)
+                                @Html.DropDownListFor(m => m.cartDetails.FOCReason, new SelectList(Model.lstFOCs, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                @Html.ValidationMessageFor(m => m.cartDetails.FOCReason)
+                            </div>
+                        </div>
+                        @if (Model.cartDetails.lineType == "COURSE")
+                        {
+                            <div class="col-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cartDetails.FOCQuantity)
+                                    <div class="input-group input-group-lg">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-unit" data-fun="decrease" data-target="cartDetails.FOCQuantity" data-param="" data-zero="true"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.cartDetails.FOCQuantity, new { @class = "form-control text-center no-right-radius no-left-radius" })
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-unit" data-fun="increase" data-target="cartDetails.FOCQuantity" data-param=""><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.cartDetails.FOCQuantity)
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+    <div class="clearfix">&nbsp;</div>
+    <h4>@Resources.Resources.OtherDetails</h4>
+    <hr />
+    <section>
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.depositAmount)
+                    @Html.TextBoxFor(m => m.cartDetails.depositAmount, new { @class = "form-control form-control-lg text-center" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.depositAmount)
+                </div>
+            </div>
+            <div class="col-9">&nbsp;</div>
+        </div>
+    </section>
+    <div class="clearfix">&nbsp;</div>
+    <h4>@Resources.Resources.Discount</h4>
+    <hr />
+    <div class="row">
+        <div class="col-4">
+            <section>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.discountUser)
+                    @Html.DropDownListFor(m => m.cartDetails.discountUser, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.discountUser)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.discType)<br />
+                    <div class="custom-control custom-radio custom-control-inline">
+                        @Html.RadioButton("discType", "%", new { @class = "custom-control-input custom-control-input-lg", id = "discPercentage" })
+                        <label class="custom-control-label" for="discPercentage">%</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        @Html.RadioButton("discType", "$", new { @class = "custom-control-input custom-control-input-lg", id = "discPrice" })
+                        <label class="custom-control-label" for="discPrice">$</label>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.discType)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.discountPrice)
+                    @Html.TextBoxFor(m => m.discountPrice, new { @class = "form-control form-control-lg text-right" })
+                    @Html.ValidationMessageFor(m => m.discountPrice)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.discountDescription)
+                    @Html.DropDownListFor(m => m.cartDetails.discountDescription, new SelectList(Model.lstDiscountReason, "reasonCode", "reasonDesc"), new { @class = "custom-select form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.discountDescription)
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddDiscount">@Resources.Resources.Save</button>
+                </div>
+            </section>
+        </div>
+        <div class="col-8">
+            <div class="table-responsive small p-5">
+                <table class="table table-striped" id="tblDiscounts">
+                    <thead>
+                        <tr class="row">
+                            <th class="col-1" scope="col">#</th>
+                            <th class="col-2" scope="col">Discount %</th>
+                            <th class="col-3" scope="col">Discount Price</th>
+                            <th class="col-5" scope="col">Discount Reason</th>
+                            <th class="col-1" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.cartDetails.discountDetails != null)
+                        {
+                            foreach (var item in Model.cartDetails.discountDetails)
+                            {
+                                <tr class="row">
+                                    <td class="col-1" scope="col">@item.discountLineNumber</td>
+                                    <td class="col-2">@item.discountPercentage</td>
+                                    <td class="col-3">@item.discountAmount</td>
+                                    <td class="col-5">@item.discountReason</td>
+                                    <td class="col-1">
+                                        <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @Html.HiddenFor(m => m.cartDetails.strDiscounts)
+        </div>
+    </div>
+    }
+    <div class="clearfix">&nbsp;</div>
+    <h4>@Resources.Resources.Staff</h4>
+    <hr />
+    <div class="row">
+        <div class="col-4">
+            <section>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cartDetails.staffcode)
+                            @Html.DropDownListFor(m => m.cartDetails.staffcode, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                            @Html.ValidationMessageFor(m => m.cartDetails.staffcode)
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cartDetails.ratio)
+                            @Html.TextBoxFor(m => m.cartDetails.ratio, new { @class = "form-control form-control-lg text-right" })
+                            @Html.ValidationMessageFor(m => m.cartDetails.ratio)
+                        </div>
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddStaff">@Resources.Resources.Save</button>
+                </div>
+            </section>
+        </div>
+        <div class="col-8">
+            <div class="table-responsive small p-5">
+                <table class="table table-striped" id="tblStaffs">
+                    <thead>
+                        <tr class="row">
+                            <th class="col-3" scope="col">Staff code</th>
+                            <th class="col-5" scope="col">Staff Name</th>
+                            <th class="col-2" scope="col">Ratio</th>
+                            <th class="col-2" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.cartDetails.salesStaffDetails != null)
+                        {
+                            foreach (var item in Model.cartDetails.salesStaffDetails)
+                            {
+                                <tr class="row">
+                                    <td class="col-3" scope="col">@item.staffCode</td>
+                                    <td class="col-5">@item.staffName</td>
+                                    <td class="col-2">@item.ratio</td>
+                                    <td class="col-2">
+                                        <button type="button" class="btn btn-flat" data-mode="delete"><i class="fa fa-trash fa-2x"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @Html.HiddenFor(m => m.cartDetails.strStaffs)
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="row">
+        <div class="col">
+            <section>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.cartDetails.itemRemarks)
+                    @Html.TextAreaFor(m => m.cartDetails.itemRemarks, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.cartDetails.itemRemarks)
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <button type="submit" class="btn btn-primary btn-lg pull-right"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+    <a role="button" class="btn btn-flat btn-lg pull-right" href="~/Cart/Index/@Model.cart.cartToken"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</a>
+}

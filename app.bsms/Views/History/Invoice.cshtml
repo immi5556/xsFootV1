@@ -1,0 +1,45 @@
+﻿@model IEnumerable<app.bsms.Models.Sales.History.Invoice>
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/History/Treatment/@ViewBag.customerCode">@Resources.Resources.TreatmentHistory</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.InvoiceHistory</li>
+    </ol>
+</nav>
+
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        @if (Model != null)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-3">Transaction Date & Time</div>
+                    <div class="col-4">Invoice</div>
+                    <div class="col-2">Staff</div>
+                    <div class="col-1 text-center">Amount</div>
+                    <div class="col-1 text-center">Amount Paid</div>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+                <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                    <div class="row">
+                        <div class="col-3">@item.transactionDate.ToString("dd-MMM-yyyy") @item.transactionTime.ToString("hh:mm:ss")</div>
+                        <div class="col-4">
+                            <a class="btn btn-link btn-lg" href="~/Payment/Invoice/@item.transactionNumber/@item.invoiceNumber">@item.invoiceNumber</a><br/>
+                            @item.transactionNumber | @item.transctionType | @item.transctionStatus
+                        </div>
+                        <div class="col-2">@item.transctionStaff</div>
+                        <div class="col-1 text-center">@item.transactionAmount</div>
+                        <div class="col-1 text-center">@item.transactionPaid</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

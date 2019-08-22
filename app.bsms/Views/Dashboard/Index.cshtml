@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <a href="~/Customer/Search" title="Customer"><img src="~/images/Octagon Customer.png" data-src="~/images/Octagon Customer.png" data-hover="~/images/Octagon Customer Press.png" alt="customer" class="img-fluid rotatingimg" id="imagecus" /></a></div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <a href="~/Service/Index" title="Catalog"><img src="~/images/Octagon Catalog.png" alt="catalog" class="img-fluid rotatingimg" /></a></div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Center.png" class="img-fluid rotatingimg" /></div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <a href="~/BillOps/Index" title="Bill Ops"><img src="~/images/Octagon Bill Ops.png" alt="Bill Operations" class="img-fluid rotatingimg" /></a> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <a href="http://103.253.14.203/appt" title="Appointment" target="_blank"><img src="~/images/Octagon Appt.png" class="img-fluid rotatingimg" /></a></div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Empty.png" class="img-fluid rotatingimg" /></div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Empty.png" class="img-fluid rotatingimg" /></div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+            <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        </div>
+@*
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <a href="~/Customer/Search" title="Customer"><img src="~/images/Octagon Customer.png" data-src="~/images/Octagon Customer.png" data-hover="~/images/Octagon Customer Press.png" alt="customer" class="img-fluid" id="imagecus" /></a></div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Staff.png" class="img-fluid" /></div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <a href="~/Service/Index" title="Catalog"><img src="~/images/Octagon Catalog.png" alt="catalog" class="img-fluid" /></a></div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Center.png" class="img-fluid" /></div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Empty.png" class="img-fluid" /></div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Empty.png" class="img-fluid" /></div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> </div>
+        <div class="col-md-1-8 col-sm-auto" style="padding:0"> <img src="~/images/Octagon Empty.png" class="img-fluid" /></div>
+    </div>
+*@
+
+        </div>
+    </div>
+</div>

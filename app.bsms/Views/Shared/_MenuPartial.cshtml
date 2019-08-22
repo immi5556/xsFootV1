@@ -1,0 +1,17 @@
+﻿@model IEnumerable<app.bsms.Models.Sales.Suspend_Cart>
+
+@if (Model != null)
+{
+    if(Model.Count() > 0)
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="ddlSuspendCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.Count()&nbsp;Suspended Cart(s)</a>
+            <div class="dropdown-menu mr-5" aria-labelledby="ddlSuspendCart">
+                @foreach (var item in Model)
+                {
+                    <a class="dropdown-item dropdown-item-lg" href="~/Cart/Index/@item.cartToken">@item.cartToken</a>
+                }
+            </div>
+        </li>
+    }
+}

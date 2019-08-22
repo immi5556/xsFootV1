@@ -1,0 +1,171 @@
+﻿@model app.bsms.Models.Sales.Cart_Details
+
+@Html.HiddenFor(m => m.strDiscounts)
+@Html.HiddenFor(m => m.lineStatus)
+@Html.HiddenFor(m => m.lineType)
+<div class="row">
+    <div class="col-4">
+        <div class="form-group row">
+                @Html.LabelFor(m => m.itemCode, new { @class = "col-4 col-form-label" })
+            <div class="col-8">
+                @Html.TextBoxFor(m => m.itemCode, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                @Html.ValidationMessageFor(m => m.itemCode)
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.itemName, new { @class = "col-2 text-right col-form-label" })
+            <div class="col-10">
+                @Html.TextBoxFor(m => m.itemName, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                @Html.ValidationMessageFor(m => m.itemName)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.itemQty, new { @class = "col-4 col-form-label" })
+            <div class="col-8">
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-unit" data-fun="decrease" data-target="itemQty" data-param="unitPrice,itemAmount"><i class="fa fa-minus"></i></button>
+                    </div>
+                    @Html.TextBoxFor(m => m.itemQty, new { @class = "form-control text-center no-right-radius no-left-radius" })
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-unit" data-fun="increase" data-target="itemQty" data-param="unitPrice,itemAmount"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.itemQty)
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.unitPrice, new { @class = "col-4 text-right col-form-label" })
+            <div class="col-8">
+                @Html.TextBoxFor(m => m.unitPrice, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                @Html.ValidationMessageFor(m => m.unitPrice)
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.itemAmount, new { @class = "col-4 text-right col-form-label" })
+            <div class="col-8">
+                @Html.TextBoxFor(m => m.itemAmount, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                @Html.ValidationMessageFor(m => m.itemAmount)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <h4>@Resources.Resources.Staff</h4>
+        <hr />
+    </div>
+    <div class="col-2">
+        <h4>@Resources.Resources.FOC</h4>
+        <hr />
+    </div>
+    <div class="col-4">
+        <h4>@Resources.Resources.OtherDetails</h4>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.staffcode, new { @class = "col-3 col-form-label" })
+            <div class="col-9">
+                @Html.DropDownListFor(m => m.staffcode, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                @Html.ValidationMessageFor(m => m.staffcode)
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="form-group row">
+            <div class="col">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    @Html.CheckBoxFor(m => m.isFOC, new { @class = "custom-control-input" })&nbsp;
+                    @Html.LabelFor(m => m.isFOC, new { @class = "custom-control-label" })
+                </div>
+                @Html.ValidationMessageFor(m => m.isFOC)
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.depositAmount, new { @class = "col-3 col-form-label" })
+            <div class="col-9">
+                @Html.TextBoxFor(m => m.depositAmount, new { @class = "form-control form-control-lg text-center" })
+                @Html.ValidationMessageFor(m => m.depositAmount)
+            </div>
+        </div>
+
+    </div>
+</div>
+<h4>@Resources.Resources.Discount</h4>
+<hr />
+<div class="row">
+    <div class="col-3">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.discountPercent, new { @class = "col-6 col-form-label" })
+            <div class="col-6">
+                @Html.TextBoxFor(m => m.discountPercent, new { @class = "form-control form-control-lg text-center" })
+                @Html.ValidationMessageFor(m => m.discountPercent)
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.unitDiscount, new { @class = "col-6 col-form-label text-right" })
+            <div class="col-6">
+                @Html.TextBoxFor(m => m.unitDiscount, new { @class = "form-control form-control-lg text-right" })
+                @Html.ValidationMessageFor(m => m.unitDiscount)
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.discountDescription, new { @class = "col-5 col-form-label" })
+            <div class="col-7">
+                @Html.DropDownListFor(m => m.discountDescription, new SelectList(Model.lstDiscountReason, "reasonCode", "reasonDesc"), new { @class = "custom-select form-control-lg" })
+                @Html.ValidationMessageFor(m => m.discountDescription)
+            </div>
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="form-group row">
+            <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddDiscount">@Resources.Resources.Save</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 table-responsive">
+        <table class="table" id="tblDiscounts">
+            <thead>
+                <tr class="row">
+                    <th class="col-1" scope="col">#</th>
+                    <th class="col-2" scope="col">Discount %</th>
+                    <th class="col-3" scope="col">Discount Price</th>
+                    <th class="col-5" scope="col">Discount Reason</th>
+                    <th class="col-1" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.discountUser, new { @class = "col-5 col-form-label" })
+            <div class="col-7">
+                @Html.DropDownListFor(m => m.discountUser, new SelectList(Model.lstDiscountUser, "staffCode", "staffName"), new { @class = "custom-select form-control-lg" })
+                @Html.ValidationMessageFor(m => m.discountUser)
+            </div>
+        </div>
+    </div>
+</div>

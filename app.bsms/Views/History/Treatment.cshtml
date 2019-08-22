@@ -1,0 +1,65 @@
+﻿@model IEnumerable<app.bsms.Models.Sales.Transaction>
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.TreatmentHistory</li>
+    </ol>
+</nav>
+
+<div class="clearfix">&nbsp;</div>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="~/Redemption/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Service Redemption.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Service Redemption.png" width="120" height="120"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="~/History/Treatment/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Treatment History.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Treatment History.png" width="120" height="120"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item" style="display:none">
+        <a class="nav-link" href="~/Diagnosis/Index/@ViewBag.customerCode">
+            <img src="~/img/MenuButton/otc2/Octagon Diagnosis.png" width="200" height="200"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        @if (Model != null)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-2 flex-nowrap">Transaction Date</div>
+                    <div class="col-2 flex-nowrap">Transaction#</div>
+                    <div class="col-2 flex-nowrap">Treatment Parent#</div>
+                    <div class="col-4">Description</div>
+                    <div class="col-1 text-center">Treatment Type</div>
+                    <div class="col-1 text-center">Remaining Session(s)</div>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+                <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                    <div class="row">
+                        <div class="col-2">@item.transactionDate.ToString("dd-MMM-yyyy")</div>
+                        <div class="col-2">@item.treatmentParentCode</div>
+                        <div class="col-2">@item.transactionNumber</div>
+                        <div class="col-4">@item.treatmentDescription</div>
+                        <div class="col-1 text-center">@item.treatmentType</div>
+                        <div class="col-1 text-center">@item.treatmentStatus</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<a role="button" class="btn btn-primary" href="/History/Invoice/@ViewBag.customerCode">@Resources.Resources.InvoiceHistory</a>

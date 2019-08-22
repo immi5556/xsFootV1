@@ -1,0 +1,82 @@
+﻿@model IEnumerable<app.bsms.Models.Manage.Service.Prepaid>
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Accounts/Index/@ViewBag.customerCode">@Resources.Resources.Accounts</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Prepaid</li>
+    </ol>
+</nav>
+<div class="clearfix">&nbsp;</div>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="~/Accounts/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon-Account.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon-Account.png" width="120" height="120" class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/Products/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Product.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Product.png" width="120" height="120" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="~/Prepaid/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Prepaid.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Prepaid.png" width="120" height="120"  class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="~/CreditNote/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Credit Note.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Credit Note.png" width="120" height="120" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="~/Voucher/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Voucher.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Voucher.png" width="120" height="120"  class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        @if (Model != null)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-2 text-left">@Resources.Resources.ItemName</div>
+                    <div class="col-2 text-left">@Resources.Resources.TransactionNumber</div>
+                    <div class="col-0-5 text-left">@Resources.Resources.ItemCode</div>
+                    <div class="col-2 text-left">@Resources.Resources.PrepaidItemType</div>
+                    <div class="col-1 text-left">@Resources.Resources.PrepaidBrand</div>
+                    <div class="col-1 text-left">@Resources.Resources.PrepaidCondition</div>
+                    <div class="col-1 text-right">@Resources.Resources.PrepaidValue</div>
+                    <div class="col-1 text-right">@Resources.Resources.Used</div>
+                    <div class="col-1 text-right">@Resources.Resources.Balance</div>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+                <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                    <div class="row">
+                        <div class="col-2 text-left">@item.prepaidCategory</div>
+                        <div class="col-2 text-left">@item.prepaidCode</div>
+                        <div class="col-0-5 text-left">@item.prepaidType</div>
+                        <div class="col-2 text-left">@item.prepaidItemType</div>
+                        <div class="col-1 text-left">@item.conditionType1</div>
+                        <div class="col-1 text-left">@item.conditionType2</div>
+                        <div class="col-1 text-right">@item.prepaidAmount</div>
+                        <div class="col-1 text-right">@item.usedAmount</div>
+                        <div class="col-1 text-right">@item.availablePrepaidAmount</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

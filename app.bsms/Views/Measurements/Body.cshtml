@@ -1,0 +1,181 @@
+﻿@model app.bsms.Models.Manage.Measurements.Diagnosis
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Diagnosis/Index/@ViewBag.customerCode">@Resources.Resources.Measurements</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Body</li>
+    </ol>
+</nav>
+<div class="card-body card-block">
+    <form action="" method="post" class="form-horizontal">
+        <div class="row form-group">
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Date</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="DD/MM" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Weight</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Fat%</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Upper Bust</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> Bust</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> Middle</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Waist</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Tumy</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Hipp</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Upper Thigh(R)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> (L)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> Middle Thigh (R)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> Lower Thighs</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">(R)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Calves (L)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">(R)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> Upper Arms(R)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label"> (L)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Lower Arms(L)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">(R)</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Attend</label>
+            </div>
+            <div class="col-lg-1">
+                <select data-placeholder="Choose a Country..." class="standardSelect" tabindex="1" style="border-radius: 20px;height:30px">
+                    <option value="">Select One</option>
+                    <option value="United States">United States</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">BMI</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">BMR</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">VF A Level</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <label for="hf-email" class="form-control-label">Height</label>
+            </div>
+            <div class="col-lg-1">
+                <input type="email" id="hf-email" name="hf-email" placeholder="0.00" class="form-control">
+            </div>
+        </div>
+    </form>
+</div>

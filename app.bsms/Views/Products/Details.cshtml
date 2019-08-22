@@ -1,0 +1,62 @@
+﻿@model app.bsms.Models.Manage.Service.Products
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Accounts/Index/@ViewBag.customerCode">@Resources.Resources.Accounts</a></li>
+        <li class="breadcrumb-item"><a href="~/Products/Index/@Model.customerCode">@Resources.Resources.Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Details - @Model.treatmentCode</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col">
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-6 text-center">@Resources.Resources.Balance</div>
+                <div class="col-6 text-center">@Resources.Resources.Outstanding</div>
+            </div>
+        </div>
+        @foreach (var item in Model.info)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-6 text-center">@item.balance</div>
+                    <div class="col-6 text-center">@item.outstanding</div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-2">@Resources.Resources.TransactionDate</div>
+                <div class="col-2">@Resources.Resources.TreatmentCode</div>
+                <div class="col-3">@Resources.Resources.Description</div>
+                <div class="col-1 text-center">@Resources.Resources.Type</div>
+                <div class="col-1 text-center">@Resources.Resources.TreatmentAmount</div>
+                <div class="col-1 text-center">@Resources.Resources.Balance</div>
+                <div class="col-1 text-center">@Resources.Resources.Outstanding</div>
+            </div>
+        </div>
+        @foreach (var item in Model.details)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-2">@item.transactionDate.ToString("dd-MMM-yyyy")</div>
+                    <div class="col-2">@item.treatCode</div>
+                    <div class="col-3">@item.description</div>
+                    <div class="col-1 text-center">@item.type</div>
+                    <div class="col-1 text-center">@item.amount</div>
+                    <div class="col-1 text-center">@item.balance</div>
+                    <div class="col-1 text-center">@item.outstanding</div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

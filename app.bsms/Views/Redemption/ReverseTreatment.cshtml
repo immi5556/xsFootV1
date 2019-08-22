@@ -1,0 +1,125 @@
+﻿@model app.bsms.Models.Manage.Service.ReverseTreatment
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Redemption/Index/@Model.reverse.customerCode">@Resources.Resources.ServiceRedemption</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.ReverseTreatment - @Model.reverse.treatmentParentCode</li>
+    </ol>
+</nav>
+@Html.Raw(@TempData["Message"])
+<div class="row">
+    <div class="col-8">
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-3 text-center">@Resources.Resources.CreditBalance</div>
+                <div class="col-3 text-center">@Resources.Resources.Outstanding</div>
+                <div class="col-3 text-center">@Resources.Resources.TotalAmountPaid</div>
+                <div class="col-3 text-center">@Resources.Resources.TreatmentAmount</div>
+            </div>
+        </div>
+        @foreach (var item in Model.treatment_trans)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-3 text-center">@item.creditBalance</div>
+                    <div class="col-3 text-center">@item.outstanding</div>
+                    <div class="col-3 text-center">@item.totalPaid</div>
+                    <div class="col-3 text-center">@item.treatmentAmount</div>
+                </div>
+            </div>
+        }
+        <div class="clearfix">&nbsp;</div>
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-1">&nbsp;</div>
+                <div class="col-1">@Resources.Resources.Times</div>
+                <div class="col-3">@Resources.Resources.TreatmentCode</div>
+                <div class="col-4">@Resources.Resources.Description</div>
+                <div class="col-1 text-center">@Resources.Resources.Status</div>
+                <div class="col-2 text-center">@Resources.Resources.TreatmentAmount</div>
+            </div>
+        </div>
+        @foreach (var item in Model.treatments)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom" id="tblReverse">
+                <div class="row">
+                    <div class="col-1 text-center">
+                        <div class="custom-control custom-checkbox align-middle mr-3">
+                            @Html.CheckBox("check-reverse-item", new { @class = "custom-control-input", id = ("check-reverse-item_" + item.treatmentCode), value = item.treatmentCode })
+                            <label for="check-reverse-item_@item.treatmentCode" class="custom-control-label">&nbsp;</label>
+                        </div>
+                    </div>
+                    <div class="col-1">@item.treatmentTimes</div>
+                    <div class="col-3">@item.treatmentCode</div>
+                    <div class="col-4">@item.treatmentDescription</div>
+                    <div class="col-1 text-center">@item.treatmentStatus</div>
+                    <div class="col-2 text-center">@item.treatmentAmount</div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-4">
+        <section>
+            <h5>Adjustments</h5>
+            <hr />
+            @using (Html.BeginForm("ReverseTreatment", "Redemption", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.Raw(@TempData["Message"])
+
+                @Html.HiddenFor(m => m.reverse.treatmentParentCode)
+                @Html.HiddenFor(m => m.reverse.customerCode)
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.adjustmentType)<span class="mandatory-text">&nbsp;(Required)</span>
+                        @Html.DropDownListFor(m => m.adjustmentType, new SelectList(Model.types, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.adjustmentType)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.reverse.reason)
+                        @Html.DropDownListFor(m => m.reverse.reason, new SelectList(Model.reverseReasons, "reverseNumber", "reverseDescription"), new { @class = "custom-select form-control-lg" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.reverse.reason)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.reverse.adjustedAmount)<span class="mandatory-text">&nbsp;(Required)</span>
+                        @Html.TextBoxFor(m => m.reverse.adjustedAmount, new { @class = "form-control form-control-lg" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.reverse.adjustedAmount)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.reverse.remarks)<span class="mandatory-text">&nbsp;(Required)</span>
+                        @Html.TextAreaFor(m => m.reverse.remarks, new { @class = "form-control form-control-lg" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.reverse.remarks)
+                </div>
+            </div>
+            @Html.TextBoxFor(m => m.strReversalItems, new { @class = "invisible" })<br/>
+            @Html.ValidationMessageFor(m => m.strReversalItems)
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg mb-2">@Resources.Resources.Save</button>
+                    <button type="button" class="btn btn-primary btn-lg mb-2">@Resources.Resources.Clear</button>
+                </div>
+            </div>
+            }
+        </section>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+﻿@model app.bsms.Models.Treatment.BodyTreatment
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Diagnosis/Index/@ViewBag.customerCode">@Resources.Resources.Diagnosis</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Body</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("BodyTreatment", "ManageCustomerController", FormMethod.Post))
+{
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="myheader2"> <i class="fa fa-tag"></i>Skin Texture</h4>
+            <table class="table table-responsive table-bordered table-condensed">
+                <tr class="myheader1">
+                    <td class="fr"></td>
+                    <td>F</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>
+                        Fair
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Fair_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Fair_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Medium
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Medium_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Medium_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Dark
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Dark_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Dark_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tanned
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Tanned_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.skinTextire.Tanned_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4 class="myheader2"><i class="fa fa-tag"></i>Body Problem</h4>
+            <table class="table table-responsive table-bordered table-condensed">
+                <tr class="myheader1">
+                    <td class="fr"></td>
+                    <td>F</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>
+                        Sun Burn
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.SubBurn_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.SubBurn_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Scar
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Scar_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Scar_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Fat
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Fat_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Fat_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Scratch Mark
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.ScratchMark_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.ScratchMark_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pimple
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Pimple_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Pimple_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Dehydrated
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Dehydarted_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.bodyProblem.Dehydarted_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4 class="myheader2"><i class="fa fa-tag"></i>Hair</h4>
+            <table class="table table-responsive table-bordered table-condensed">
+                <tr class="myheader1" >
+                    <td class="fr"></td>
+                    <td>F</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>
+                        Less
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.Less_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.Less_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Moderate
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.Moderate_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.Moderate_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Hairy
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.Hairy_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.Hairy_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrown Hair
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.InGrownHair_F, new { @class = "textbox form-control" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.hair.InGrownHair_B, new { @class = "textbox form-control" })
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="myheader1">Others:</h4> @Html.TextAreaFor(x => x.Others, 5, 10, new { @class = "textbox form-control" })
+        </div>
+        <div class="col-md-6">
+            <img src="~/img/bodyTreatment.png" alt="Body Treatment" class="img img-responsive img-bordered" />
+        </div>
+    </div>
+</div>
+<div class="form-group VsDiv">
+    <div class="row">
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-sm mybtn">
+                <i class="fa fa-save"></i> Save
+            </button>
+            <button type="reset" class="btn btn-sm mybtn">
+                <i class="fa fa-crosshairs"></i> Clear
+            </button>
+            <button type="button" class="btn btn-sm mybtn">
+                <i class="fa fa-close"></i> Close
+            </button>
+        </div>
+    </div>
+</div>
+}

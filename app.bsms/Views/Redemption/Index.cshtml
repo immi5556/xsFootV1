@@ -1,0 +1,191 @@
+﻿@model IEnumerable<app.bsms.Models.Manage.Service.Redemption>
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.ServiceRedemption</li>
+    </ol>
+</nav>
+
+<div class="clearfix">&nbsp;</div>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link active" href="~/Redemption/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Service Redemption.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Service Redemption.png" width="120" height="120"  class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/History/Treatment/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Treatment History.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Treatment History.png" width="120" height="120"  class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+    <li class="nav-item" style="display:none">
+        @*Yoonus deactivate diagnosis*@
+        <a class="nav-link" href="~/Diagnosis/Index/@ViewBag.customerCode">
+            <img src="~/img/MenuButton/otc2/Octagon Diagnosis.png" width="200" height="200" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    
+    <div class="col">
+        @if (Model != null)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-0-5 text-center">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBox("check-all-item", new { @class = "custom-control-input" })
+                            <label for="check-all-item" class="custom-control-label">&nbsp;</label>
+                        </div>
+                    </div>
+                    <div class="col-2 text-center">@Resources.Resources.TreatmentCode</div>
+                    <div class="col-4">@Resources.Resources.Description</div>
+                    <div class="col-2 text-center">@Resources.Resources.NextAppointment</div>
+                    <div class="col-1 text-center">@Resources.Resources.Amount</div>
+                    <div class="col-2 text-center">@Resources.Resources.RemainingSessions</div>
+                </div>
+            </div>
+
+            foreach (var item in Model)
+            {
+              
+                <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                    <div class="row">
+                        <div class="col-0-5 text-center">
+                            <div class="custom-control custom-checkbox">
+                                @Html.CheckBox("check-item", new { @class = "custom-control-input", id = "chk-" + item.treatmentParentCode })
+                                <label for="chk-@item.treatmentParentCode" class="custom-control-label">&nbsp;</label>
+                            </div>
+                        </div>
+                        <div class="col-2">@item.treatmentParentCode</div>
+                        <div><input type="text" id="txtinvoicenumber" hidden value="@item.invoiceNumber" /></div>
+                      
+                        <div class="col-4">
+                            @item.treatmentDescription<br />
+                            @item.invoiceNumber  | <label for="@item.transactionNumber" id="btninvoicenumber" value="@item.transactionNumber"  data-transnumber="@item.transactionNumber" data-invnumber="@item.invoiceNumber" data-custname="@item.customerName"  data-invamount="@item.treatmentAmount"  data-phone="@item.phoneNumber" >@item.transactionNumber</label>
+
+                            @*<a href="#mdlinvoicenumber" data-toggle="modal" value="@item.transactionNumber" data-id="@item.transactionNumber"> @item.transactionNumber </a>
+                            <script type="text/javascript">
+                                $('#mdlinvoicenumber').on('show.bs.modal', function (e) {
+
+
+                                    var transnumber1 = $(e.relatedTarget).data('id');
+
+                                    alert(transnumber1);
+                                    $(e.currentTarget).find('input[name="transnumber1"]').val(transnumber1);
+                                });
+                            </script>*@
+                            | @item.transactionDate.ToString("dd-MMM-yyyy") | @item.treatmentType | @item.treatmentStatus
+                        </div>
+                        <div class="col-2 text-center">@item.treatmentNextAppt.ToString("dd-MMM-yyyy")</div>
+                        <div class="col-1 text-center">@item.treatmentAmount</div>
+                        <div class="col-2 text-center">@item.sessionLeft</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="modal fade"   id="mdlinvoicenumber"  tabindex="-1" role="dialog" aria-labelledby="mdlinvoicenumber" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               
+            </div>
+            <div class="modal-body">
+                <div class="alert-heading">Invoice details</div>
+
+              <div class="modal-body">
+                    <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>Invoice Number</td>
+                                    <td> -> </td>
+                                    <td><input type="text" border="0" name="invnumber" id="invnumber" readonly /></td>
+                                </tr>
+                                <tr>
+                                    <td>Transaction Number</td>
+                                    <td> -> </td>
+                                    <td><input type="text" border="0" name="transnumber" id="transnumber" readonly /></td>
+                                </tr>
+                              
+                                <tr>
+                                    <td>Customer Name</td>
+                                    <td> -> </td>
+                                    <td><input type="text" border="0" name="custname" id="custname" readonly /></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td> -> </td>
+                                    <td><input type="text" border="0" name="phone" id="phone" readonly /></td>
+                                </tr>
+                                @*<tr>
+                                    <td>Amount</td>
+                                    <td> : </td>
+                                    <td><input type="text" border="0" name="transnumber" id="transnumber" readonly /></td>
+                                </tr>*@
+                            </table>
+                            @*<div class="col-2 text-center">@Resources.Resources.InvoiceNumber </div>
+                            <div class="col-2 text-center">@Resources.Resources.CustName</div>
+                            <div class="col-2 text-center">@Resources.Resources.PhoneNumber</div>
+                            <div class="col-4">@Resources.Resources.InvoiceAmount</div>*@
+                        </div>
+                    </div>
+                </div>
+                    @*<div class="modal-body">
+                        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                            <div class="row">
+                              <div class="col-2 text-center"> <input type="text" class="form-control-lg" name="bookId" id="bookId" readonly  /></div>  
+                        </div>
+                    </div>*@
+
+               
+
+
+                @*@if (Model != null)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-2 text-center">@Resources.Resources.InvoiceNumber</div>
+                    <div class="col-2 text-center">@Resources.Resources.CustName</div>
+                    <div class="col-2 text-center">@Resources.Resources.PhoneNumber</div>
+                    <div class="col-4">@Resources.Resources.InvoiceAmount</div>
+                </div>
+            </div>
+
+        foreach (var item in Model)
+        {
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-2 text-center">@item.invoiceNumber</div>
+                <div class="col-2 text-center">@item.customerName</div>
+                <div class="col-2 text-center">@item.phoneNumber</div>
+                <div class="col-4">@item.treatmentAmount</div>
+            </div>
+        </div>
+        }
+
+        }*@
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="btn-group btn-group-lg" role="group">
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="reverse">@Resources.Resources.ReverseTreatment</button>
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="details">@Resources.Resources.Details</button>
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="exchange">@Resources.Resources.Exchange</button>
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="appointment">@Resources.Resources.NextAppointment</button>
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="accounts">@Resources.Resources.Accounts</button>
+</div>

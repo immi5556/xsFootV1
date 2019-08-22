@@ -1,0 +1,111 @@
+﻿@model app.bsms.Models.Reports.DayEnd.Index
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Cart</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-5">
+        <section>
+            <h4>Sales</h4>
+            <hr />
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">Description</div>
+                        <div class="col-3 text-center">Quantity</div>
+                        <div class="col-3 text-right">Amount</div>
+                    </div>
+                </li>
+                @foreach (var item in Model.Sales)
+                {
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-6">@item.itemDescription</div>
+                            <div class="col-3 text-center">@item.quantity</div>
+                            <div class="col-3 text-right">@item.amount</div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </section>
+        <div class="clearfix">&nbsp;</div>
+        <section>
+            <h4>Non-Sales</h4>
+            <hr />
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">Description</div>
+                        <div class="col-3 text-center">Quantity</div>
+                        <div class="col-3 text-right">Amount</div>
+                    </div>
+                </li>
+                @foreach (var item in Model.NonSales)
+                {
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-6">@item.itemDescription</div>
+                            <div class="col-3 text-center">@item.quantity</div>
+                            <div class="col-3 text-right">@item.amount</div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </section>
+    </div>
+    <div class="col-7">
+        <section>
+            <h4>Department Sales</h4>
+            <hr />
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-4">Report Type</div>
+                        <div class="col-3">Description</div>
+                        <div class="col-2 text-center">Quantity</div>
+                        <div class="col-1 text-center">Target</div>
+                        <div class="col-2 text-right">Amount</div>
+                    </div>
+                </li>
+                @foreach (var item in Model.DepartmentSales)
+                {
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">@item.reportType</div>
+                            <div class="col-3">@item.itemDescription</div>
+                            <div class="col-2 text-center">@item.quantity</div>
+                            <div class="col-1 text-right">@item.targetAmount</div>
+                            <div class="col-2 text-right">@item.amount</div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </section>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        <section>
+            <h4>Department Sales</h4>
+            <hr />
+            <th style="color:#7B7A4A">STAFF NAME</th>
+            <th style="color:#7B7A4A">WORK IN</th>
+            <th style="color:#7B7A4A">WORK OUT</th>
+            <th style="color:#7B7A4A">PRODUCT</th>
+            <th style="color:#7B7A4A">TP PRODUCT</th>
+            <th style="color:#7B7A4A">SERVICE</th>
+            <th style="color:#7B7A4A">TP SERVICE</th>
+            <th style="color:#7B7A4A">PREPAID</th>
+            <th style="color:#7B7A4A">TP PREPAID</th>
+            <th style="color:#7B7A4A">SALES TOTAL</th>
+            <th style="color:#7B7A4A">TD CITY</th>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,913 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C649D94-85CF-408C-A77C-687A1C3E3BD3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>app.bsms</RootNamespace>
+    <AssemblyName>app.bsms</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExpressiveAnnotations">
+      <HintPath>lib\ExpressiveAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressiveAnnotations.MvcUnobtrusive">
+      <HintPath>lib\ExpressiveAnnotations.MvcUnobtrusive.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Resources">
+      <HintPath>lib\Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\Service.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterAttribute.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NoCacheAttribute.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SubmitButtonSelector.cs" />
+    <Compile Include="Common\Alerts.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Controllers\Administration\DepartmentController.cs" />
+    <Compile Include="Controllers\Administration\MenuController.cs" />
+    <Compile Include="Controllers\Administration\RoleAccessController.cs" />
+    <Compile Include="Controllers\Administration\RoleGroupController.cs" />
+    <Compile Include="Controllers\Administration\UserGroupController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageCustomerController.cs" />
+    <Compile Include="Controllers\Manage\AccountsController.cs" />
+    <Compile Include="Controllers\Manage\CreditNoteController.cs" />
+    <Compile Include="Controllers\Manage\CustomerController.cs" />
+    <Compile Include="Controllers\Manage\DiagnosisController.cs" />
+    <Compile Include="Controllers\Manage\HistoryController.cs" />
+    <Compile Include="Controllers\Manage\MeasurementsController.cs" />
+    <Compile Include="Controllers\Manage\PrepaidController.cs" />
+    <Compile Include="Controllers\Manage\ProductsController.cs" />
+    <Compile Include="Controllers\Manage\RedemptionController.cs" />
+    <Compile Include="Controllers\Manage\VoucherController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\Sales\BillOpsController.cs" />
+    <Compile Include="Controllers\Sales\PaymentController.cs" />
+    <Compile Include="Controllers\Sales\ServiceController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\NullToEmptyStringResolver.cs" />
+    <Compile Include="Helpers\NullToEmptyStringValueProvider.cs" />
+    <Compile Include="Helpers\Trimmer.cs" />
+    <Compile Include="Models\AccountModel\ImageInfoModel.cs" />
+    <Compile Include="Models\AccountModel\LoginModelOpen.cs" />
+    <Compile Include="Models\AccountModel\UserChangePass.cs" />
+    <Compile Include="Models\AccountModel\UserInfoModel.cs" />
+    <Compile Include="Models\Account\Customer.cs" />
+    <Compile Include="Models\Account\LoginData.cs" />
+    <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
+    <Compile Include="Models\Account\SearchCustomer.cs" />
+    <Compile Include="Models\Account\Settings.cs" />
+    <Compile Include="Models\Account\TokenInfo.cs" />
+    <Compile Include="Models\Account\User.cs" />
+    <Compile Include="Models\AddCartTypeItem.cs" />
+    <Compile Include="Models\Administration\Department.cs" />
+    <Compile Include="Models\Administration\Menu.cs" />
+    <Compile Include="Models\Administration\RoleAccess.cs" />
+    <Compile Include="Models\Administration\RoleGroup.cs" />
+    <Compile Include="Models\Administration\RolePrivileges.cs" />
+    <Compile Include="Models\Administration\UserGroup.cs" />
+    <Compile Include="Models\Admin\MGM.cs" />
+    <Compile Include="Models\Appointment\Appointment.cs" />
+    <Compile Include="Models\Appointment\Staff.cs" />
+    <Compile Include="Models\BSMSCategory.cs" />
+    <Compile Include="Models\BSMSCategory1.cs" />
+    <Compile Include="Models\Catelogue\Brand.cs" />
+    <Compile Include="Models\Catelogue\Catelogue.cs" />
+    <Compile Include="Models\Catelogue\Item.cs" />
+    <Compile Include="Models\Catelogue\ItemType.cs" />
+    <Compile Include="Models\Catelogue\Range.cs" />
+    <Compile Include="Models\Catelogue\Service.cs" />
+    <Compile Include="Models\Catelogue\ServiceType.cs" />
+    <Compile Include="Models\Catelogue\ServiceTypeItem.cs" />
+    <Compile Include="Models\CustomerDetails.cs" />
+    <Compile Include="Models\DepartmentDetailss.cs" />
+    <Compile Include="Models\EmployeeDetails.cs" />
+    <Compile Include="Models\ForgetPasswordModel.cs" />
+    <Compile Include="Models\General\Course_Settings.cs" />
+    <Compile Include="Models\General\Discount_Details.cs" />
+    <Compile Include="Models\General\GetResponseList_T_.cs" />
+    <Compile Include="Models\General\GetResponse_T_.cs" />
+    <Compile Include="Models\General\ListItems.cs" />
+    <Compile Include="Models\General\PostResponse.cs" />
+    <Compile Include="Models\General\PostResponse_T_.cs" />
+    <Compile Include="Models\General\ReasonCodes.cs" />
+    <Compile Include="Models\General\ReverseReason.cs" />
+    <Compile Include="Models\General\Staffs.cs" />
+    <Compile Include="Models\ListItems.cs" />
+    <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Manage\Customer\Hierarchy.cs" />
+    <Compile Include="Models\Manage\Customer\Register.cs" />
+    <Compile Include="Models\Manage\Customer\Search.cs" />
+    <Compile Include="Models\Manage\Measurements\Diagnosis.cs" />
+    <Compile Include="Models\Manage\Post\Customer.cs" />
+    <Compile Include="Models\Manage\Post\ReverseItems.cs" />
+    <Compile Include="Models\Manage\Post\ReverseTreatment.cs" />
+    <Compile Include="Models\Manage\Post\Supplimentary_Member.cs" />
+    <Compile Include="Models\Manage\Service\Accounts.cs" />
+    <Compile Include="Models\Manage\Service\CreditNote.cs" />
+    <Compile Include="Models\Manage\Service\Prepaid.cs" />
+    <Compile Include="Models\Manage\Service\Products.cs" />
+    <Compile Include="Models\Manage\Service\Product_Details.cs" />
+    <Compile Include="Models\Manage\Service\Redemption.cs" />
+    <Compile Include="Models\Manage\Service\ReverseTreatment.cs" />
+    <Compile Include="Models\Manage\Service\Treatment.cs" />
+    <Compile Include="Models\Manage\Service\TreatmentTransaction.cs" />
+    <Compile Include="Models\Manage\Service\Voucher.cs" />
+    <Compile Include="Models\Mobiles.cs" />
+    <Compile Include="Models\ModelPaymentType.cs" />
+    <Compile Include="Models\PreCartTypeItem.cs" />
+    <Compile Include="Models\ProductBrandCategory.cs" />
+    <Compile Include="Models\ProductBrandItemtypeCategory.cs" />
+    <Compile Include="Models\ProductBrandtypeCategory.cs" />
+    <Compile Include="Models\ProductDetails1.cs" />
+    <Compile Include="Models\productDetails2.cs" />
+    <Compile Include="Models\Reminder\Details.cs" />
+    <Compile Include="Models\Reminder\Reminder.cs" />
+    <Compile Include="Models\Reports\DayEnd\Attendance.cs" />
+    <Compile Include="Models\Reports\DayEnd\DepartmentSales.cs" />
+    <Compile Include="Models\Reports\DayEnd\EmployeePerformance.cs" />
+    <Compile Include="Models\Reports\DayEnd\Index.cs" />
+    <Compile Include="Models\Reports\DayEnd\Sales.cs" />
+    <Compile Include="Models\Reports\DayEnd\StaffSales.cs" />
+    <Compile Include="Models\Sales\BillOps.cs" />
+    <Compile Include="Models\Sales\Cart.cs" />
+    <Compile Include="Models\Sales\GST.cs" />
+    <Compile Include="Models\Sales\History\Invoice.cs" />
+    <Compile Include="Models\Sales\History\Transaction.cs" />
+    <Compile Include="Models\Sales\Invoice.cs" />
+    <Compile Include="Models\Sales\Invoice_Details.cs" />
+    <Compile Include="Models\Sales\PackageDetails.cs" />
+    <Compile Include="Models\Sales\PaymentType.cs" />
+    <Compile Include="Models\Sales\Payment_Details.cs" />
+    <Compile Include="Models\Sales\Post\Cart.cs" />
+    <Compile Include="Models\Sales\Post\Cart_Details.cs" />
+    <Compile Include="Models\Sales\Post\Course_Details.cs" />
+    <Compile Include="Models\Sales\Post\Discounts.cs" />
+    <Compile Include="Models\Sales\Post\PaymentSplit.cs" />
+    <Compile Include="Models\Sales\Post\Payment_Details.cs" />
+    <Compile Include="Models\Sales\Post\Prepaid.cs" />
+    <Compile Include="Models\Sales\Post\SalesStaff.cs" />
+    <Compile Include="Models\Sales\Post\TreatmentStaff.cs" />
+    <Compile Include="Models\Sales\Post\VoidTransact.cs" />
+    <Compile Include="Models\Sales\Service.cs" />
+    <Compile Include="Models\Sales\Suspend_Cart.cs" />
+    <Compile Include="Models\Sales\Temp_Cart.cs" />
+    <Compile Include="Models\Sales\Transaction.cs" />
+    <Compile Include="Models\ServiceCategory.cs" />
+    <Compile Include="Models\ServiceType.cs" />
+    <Compile Include="Models\ServiceTypeItem.cs" />
+    <Compile Include="Models\Treatment\BodyProblem.cs" />
+    <Compile Include="Models\Treatment\BodyTreatment.cs" />
+    <Compile Include="Models\Treatment\Elasticity.cs" />
+    <Compile Include="Models\Treatment\ExpressionLines.cs" />
+    <Compile Include="Models\Treatment\Hair.cs" />
+    <Compile Include="Models\Treatment\SebumLevel.cs" />
+    <Compile Include="Models\Treatment\SkinBloodCirculation.cs" />
+    <Compile Include="Models\Treatment\SkinCommon.cs" />
+    <Compile Include="Models\Treatment\SkinMoistureContent.cs" />
+    <Compile Include="Models\Treatment\SkinPores.cs" />
+    <Compile Include="Models\Treatment\SkinProblem.cs" />
+    <Compile Include="Models\Treatment\SkinSensitivity.cs" />
+    <Compile Include="Models\Treatment\SkinTex.cs" />
+    <Compile Include="Models\Treatment\SkinTexture.cs" />
+    <Compile Include="Models\Treatment\SkinTextureType.cs" />
+    <Compile Include="Models\Treatment\SkinTone.cs" />
+    <Compile Include="Models\Treatment\SkinTreatment.cs" />
+    <Compile Include="Models\Treatment\SuperficialHair.cs" />
+    <Compile Include="Models\Treatment\SuperficialLine.cs" />
+    <Compile Include="Models\Treatment\Wrinkles.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+    <Content Include="css\bootstrap\bootstrap-datepicker.css" />
+    <Content Include="css\bootstrap\bootstrap-grid.css" />
+    <Content Include="css\bootstrap\bootstrap-grid.min.css" />
+    <Content Include="css\bootstrap\bootstrap-reboot.css" />
+    <Content Include="css\bootstrap\bootstrap-reboot.min.css" />
+    <Content Include="css\bootstrap\bootstrap-select.min.css" />
+    <Content Include="css\bootstrap\bootstrap.css" />
+    <Content Include="css\bootstrap\bootstrap.min.css" />
+    <Content Include="css\font-awesome\font-awesome.css" />
+    <Content Include="css\open-iconic\open-iconic-bootstrap.css" />
+    <Content Include="css\open-iconic\open-iconic-bootstrap.min.css" />
+    <Content Include="css\site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\open-iconic.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\CatalogueEmpty.png" />
+    <Content Include="images\course.png" />
+    <Content Include="images\emptycart.png" />
+    <Content Include="images\flexi.png" />
+    <Content Include="images\holdproduct.png" />
+    <Content Include="images\landinglogo.png" />
+    <Content Include="images\loginlogo.jpg" />
+    <Content Include="images\no-image.png" />
+    <Content Include="images\Octagon Account.png" />
+    <Content Include="images\Octagon Add Cust.png" />
+    <Content Include="images\Octagon admin.png" />
+    <Content Include="images\Octagon appt.png" />
+    <Content Include="images\Octagon Bill Ops.png" />
+    <Content Include="images\Octagon Catalog.png" />
+    <Content Include="images\Octagon Center.png" />
+    <Content Include="images\Octagon Credit Note.png" />
+    <Content Include="images\Octagon Customer Press.png" />
+    <Content Include="images\Octagon Customer.png" />
+    <Content Include="images\Octagon Empty.png" />
+    <Content Include="images\Octagon Issue Product History.png" />
+    <Content Include="images\Octagon Issue Product.png" />
+    <Content Include="images\Octagon Prepaid.png" />
+    <Content Include="images\Octagon Product.png" />
+    <Content Include="images\Octagon Promo.png" />
+    <Content Include="images\Octagon Redemption.png" />
+    <Content Include="images\Octagon Reports.png" />
+    <Content Include="images\Octagon Retail Services.png" />
+    <Content Include="images\Octagon Rewards.png" />
+    <Content Include="images\Octagon Services.png" />
+    <Content Include="images\Octagon Staff.png" />
+    <Content Include="images\Octagon Trans History.png" />
+    <Content Include="images\Octagon Treatment History.png" />
+    <Content Include="images\Octagon Used Product.png" />
+    <Content Include="images\Octagon Voucher.png" />
+    <Content Include="images\Octagon-Account.png" />
+    <Content Include="images\Octagon-Bill-Ops.png" />
+    <Content Include="images\Octagon-Catalog.png" />
+    <Content Include="images\Octagon-center.png" />
+    <Content Include="images\Octagon-Customer.png" />
+    <Content Include="images\Octagon-empty.png" />
+    <Content Include="images\Octagon-Promo.png" />
+    <Content Include="images\Octagon-Reports.png" />
+    <Content Include="images\Octagon-Staff.png" />
+    <Content Include="images\package.png" />
+    <Content Include="images\product.png" />
+    <Content Include="images\sequoiabeautesoftlogo.jpg" />
+    <Content Include="images\service.png" />
+    <Content Include="images\td.png" />
+    <Content Include="img\bluunis.png" />
+    <Content Include="img\body.jpg" />
+    <Content Include="img\bootstrapmodal.min.js" />
+    <Content Include="img\breadcrumb.png" />
+    <Content Include="img\cap.PNG" />
+    <Content Include="img\cash.png" />
+    <Content Include="img\chrome.png" />
+    <Content Include="img\collapse.jpg" />
+    <Content Include="img\companylogo.png" />
+    <Content Include="img\Delete.png" />
+    <Content Include="img\demo\envelope.png" />
+    <Content Include="img\edit_data.png" />
+    <Content Include="img\facial.jpg" />
+    <Content Include="img\FB.png" />
+    <Content Include="img\foot.jpg" />
+    <Content Include="img\gallery\imgbox1.jpg" />
+    <Content Include="img\gallery\imgbox2.jpg" />
+    <Content Include="img\gallery\imgbox3.jpg" />
+    <Content Include="img\gallery\imgbox4.jpg" />
+    <Content Include="img\gallery\imgbox5.jpg" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\hue.png" />
+    <Content Include="img\icons\16\book.png" />
+    <Content Include="img\icons\16\cabinet.png" />
+    <Content Include="img\icons\16\calendar.png" />
+    <Content Include="img\icons\16\client.png" />
+    <Content Include="img\icons\16\database.png" />
+    <Content Include="img\icons\16\download.png" />
+    <Content Include="img\icons\16\graph.png" />
+    <Content Include="img\icons\16\home.png" />
+    <Content Include="img\icons\16\lock.png" />
+    <Content Include="img\icons\16\mail.png" />
+    <Content Include="img\icons\16\pdf.png" />
+    <Content Include="img\icons\16\people.png" />
+    <Content Include="img\icons\16\piechart.png" />
+    <Content Include="img\icons\16\search.png" />
+    <Content Include="img\icons\16\shopping-bag.png" />
+    <Content Include="img\icons\16\survey.png" />
+    <Content Include="img\icons\16\tag.png" />
+    <Content Include="img\icons\16\user.png" />
+    <Content Include="img\icons\16\wallet.png" />
+    <Content Include="img\icons\16\web.png" />
+    <Content Include="img\icons\32\book.png" />
+    <Content Include="img\icons\32\cabinet.png" />
+    <Content Include="img\icons\32\calendar.png" />
+    <Content Include="img\icons\32\client.png" />
+    <Content Include="img\icons\32\dashboard.png" />
+    <Content Include="img\icons\32\database.png" />
+    <Content Include="img\icons\32\download.png" />
+    <Content Include="img\icons\32\graph.png" />
+    <Content Include="img\icons\32\home.png" />
+    <Content Include="img\icons\32\lock.png" />
+    <Content Include="img\icons\32\mail.png" />
+    <Content Include="img\icons\32\pdf.png" />
+    <Content Include="img\icons\32\people.png" />
+    <Content Include="img\icons\32\piechart.png" />
+    <Content Include="img\icons\32\search.png" />
+    <Content Include="img\icons\32\shopping-bag.png" />
+    <Content Include="img\icons\32\survey.png" />
+    <Content Include="img\icons\32\tag.png" />
+    <Content Include="img\icons\32\user.png" />
+    <Content Include="img\icons\32\wallet.png" />
+    <Content Include="img\icons\32\web.png" />
+    <Content Include="img\img_menubutton\img_menubutton_Otc2\DEPT_T1_41.jpg" />
+    <Content Include="img\img_menubutton\img_menubutton_Otc2\DEPT_T1_42.jpg" />
+    <Content Include="img\img_menubutton\img_menubutton_Otc2\DEPT_T1_46.jpg" />
+    <Content Include="img\img_menubutton\img_menubutton_Otc2\DEPT_T1_48.jpg" />
+    <Content Include="img\img_menubutton\img_menubutton_Otc2\DEPT_T1_53.jpg" />
+    <Content Include="img\img_menubutton\MenuButton\oct.jpg" />
+    <Content Include="img\img_menubutton\MenuButton\oct.png" />
+    <Content Include="img\img_menubutton\MenuButton\oct\ZoomImages\transaction.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\CatalogueEmpty.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\facial.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Account.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Add Cust.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon admin.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon appt.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Bill Ops.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Catalog.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Consultation.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Credit Note.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Customer.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Diagnosis.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Feedback.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Issue Product.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Original empty.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Prepaid.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Product.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Promo.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Redemption.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Reports.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Retail Services.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Rewards.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Services.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon SMSMail.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Staff.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Treatment History.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon Voucher.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Account.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-admin.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-appt.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Bill-Ops.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Catalog.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-center.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Consultation.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Customer.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Diagnosis.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-empty.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Feedback.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Promo.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Reports.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-SMSMail.png" />
+    <Content Include="img\img_menubutton\MenuButton\otc2\Octagon-Staff.png" />
+    <Content Include="img\img_menubutton_Otc2\DEPT_T1_41.jpg" />
+    <Content Include="img\img_menubutton_Otc2\DEPT_T1_42.jpg" />
+    <Content Include="img\img_menubutton_Otc2\DEPT_T1_46.jpg" />
+    <Content Include="img\img_menubutton_Otc2\DEPT_T1_48.jpg" />
+    <Content Include="img\img_menubutton_Otc2\DEPT_T1_53.jpg" />
+    <Content Include="img\Invoice.PNG" />
+    <Content Include="img\landinglogo.jpg" />
+    <Content Include="img\larrow.png" />
+    <Content Include="img\line.png" />
+    <Content Include="img\loginlogo.jpg" />
+    <Content Include="img\menu-active.png" />
+    <Content Include="img\MenuButton\oct.jpg" />
+    <Content Include="img\MenuButton\oct.png" />
+    <Content Include="img\MenuButton\Octagon Add Cust.png" />
+    <Content Include="img\MenuButton\Octagon Retail Services.png" />
+    <Content Include="img\MenuButton\oct\account.png" />
+    <Content Include="img\MenuButton\oct\admin.png" />
+    <Content Include="img\MenuButton\oct\appoiment.png" />
+    <Content Include="img\MenuButton\oct\catalog.png" />
+    <Content Include="img\MenuButton\oct\consulting.png" />
+    <Content Include="img\MenuButton\oct\cust.png" />
+    <Content Include="img\MenuButton\oct\diagnosis.png" />
+    <Content Include="img\MenuButton\oct\empty.png" />
+    <Content Include="img\MenuButton\oct\feedback.png" />
+    <Content Include="img\MenuButton\oct\mail.png" />
+    <Content Include="img\MenuButton\oct\promo.png" />
+    <Content Include="img\MenuButton\oct\report.png" />
+    <Content Include="img\MenuButton\oct\staft.png" />
+    <Content Include="img\MenuButton\oct\transaction.png" />
+    <Content Include="img\MenuButton\oct\ZoomImages\transaction.png" />
+    <Content Include="img\MenuButton\otc2\CatalogueEmpty.png" />
+    <Content Include="img\MenuButton\otc2\DEPT_T1_41.jpg" />
+    <Content Include="img\MenuButton\otc2\DEPT_T1_42.jpg" />
+    <Content Include="img\MenuButton\otc2\DEPT_T1_46.jpg" />
+    <Content Include="img\MenuButton\otc2\DEPT_T1_48.jpg" />
+    <Content Include="img\MenuButton\otc2\DEPT_T1_53.jpg" />
+    <Content Include="img\MenuButton\otc2\facial.png" />
+    <Content Include="img\MenuButton\otc2\facial1.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Account.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Add Cust.png" />
+    <Content Include="img\MenuButton\otc2\Octagon admin.png" />
+    <Content Include="img\MenuButton\otc2\Octagon appt.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Bill Ops.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Catalog.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Consultation.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Credit Note.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Customer.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Diagnosis.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Feedback.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Issue Product History.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Issue Product.png" />
+    <Content Include="img\MenuButton\otc2\Octagon MGM.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Prepaid.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Product.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Promo.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Redemption.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Reports.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Retail Services.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Rewards.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Service Redemption.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Services.png" />
+    <Content Include="img\MenuButton\otc2\Octagon SMSMail.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Staff.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Treatment History.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Used Product.png" />
+    <Content Include="img\MenuButton\otc2\Octagon Voucher.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Account.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-admin.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-appt.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Bill-Ops.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Catalog.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-center.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Consultation.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Customer.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Diagnosis.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-empty.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Feedback.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Promo.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Reports.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-SMSMail.png" />
+    <Content Include="img\MenuButton\otc2\Octagon-Staff.png" />
+    <Content Include="img\Octagon Issue Product History.png" />
+    <Content Include="img\Octagon Issue Product.png" />
+    <Content Include="img\Octagon Redemption.png" />
+    <Content Include="img\Octagon Rewards.png" />
+    <Content Include="img\Octagon Trans History.png" />
+    <Content Include="img\Octagon Used Product.png" />
+    <Content Include="img\paypal.png" />
+    <Content Include="img\rarrow.png" />
+    <Content Include="img\saturation.png" />
+    <Content Include="img\spinner.gif" />
+    <Content Include="img\twitter.png" />
+    <Content Include="img\UploadPhoto.png" />
+    <Content Include="img\visamaster.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js.map" />
+    <Content Include="Scripts\expressive.annotations.validate.js" />
+    <Content Include="Scripts\expressive.annotations.validate.min.js" />
+    <Content Include="Scripts\jpeg_camera\shutter.ogg" />
+    <Content Include="img\demo\Thumbs.db" />
+    <Content Include="img\gallery\Thumbs.db" />
+    <Content Include="img\icons\32\Thumbs.db" />
+    <Content Include="css\bootstrap\bootstrap-grid.css.map" />
+    <Content Include="css\bootstrap\bootstrap-grid.min.css.map" />
+    <Content Include="css\bootstrap\bootstrap-reboot.css.map" />
+    <Content Include="css\bootstrap\bootstrap-reboot.min.css.map" />
+    <Content Include="css\bootstrap\bootstrap.css.map" />
+    <Content Include="css\bootstrap\bootstrap.min.css.map" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\open-iconic.eot" />
+    <Content Include="fonts\open-iconic.otf" />
+    <Content Include="fonts\open-iconic.ttf" />
+    <Content Include="fonts\open-iconic.woff" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-select.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap\popper.min.js" />
+    <Content Include="Scripts\camera\app.js" />
+    <Content Include="Scripts\camera\custom.js" />
+    <Content Include="Scripts\camera\layouts.js" />
+    <Content Include="Scripts\jpeg_camera\canvas-to-blob.js" />
+    <Content Include="Scripts\jpeg_camera\canvas-to-blob.min.js" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera.js" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera.min.js" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera.swf" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera_no_flash.js" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera_no_flash.min.js" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera_with_dependencies.min.js" />
+    <Content Include="Scripts\jpeg_camera\shutter.mp3" />
+    <Content Include="Scripts\jpeg_camera\swfobject.js" />
+    <Content Include="Scripts\jpeg_camera\swfobject.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jQuery\jquery-1.10.2.js" />
+    <Content Include="Scripts\jQuery\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jQuery\jquery-1.12.1.min.js" />
+    <Content Include="Scripts\jQuery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jQuery\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jQuery\jquery.validate.js" />
+    <Content Include="Scripts\jQuery\jquery.validate.min.js" />
+    <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\others\cropper.min.js" />
+    <Content Include="Scripts\others\image-cropper.js" />
+    <Content Include="Scripts\others\jquery-1.10.2.js" />
+    <Content Include="Scripts\others\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\others\jquery-1.12.1.min.js" />
+    <Content Include="Scripts\others\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\others\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\others\jquery.validate.js" />
+    <Content Include="Scripts\others\jquery.validate.min.js" />
+    <Content Include="Scripts\others\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\others\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\others\masking-input.js" />
+    <Content Include="Scripts\others\modernizr-2.6.2.js" />
+    <Content Include="Scripts\others\printThis.js" />
+    <Content Include="Scripts\others\respond.js" />
+    <Content Include="Scripts\others\respond.min.js" />
+    <Content Include="Scripts\portal.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="ViewsScript\Account\AdminLogin.js" />
+    <Content Include="ViewsScript\Account\Register.js" />
+    <Content Include="ViewsScript\Admin\UserAccess.js" />
+    <Content Include="ViewsScript\Admin\UserGroup.js" />
+    <Content Include="ViewsScript\Admin\UserRolePriviledges.js" />
+    <Content Include="ViewsScript\Sales\AddCart.js" />
+    <Content Include="ViewsScript\Sales\Service.js" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\BillOps\Index.cshtml" />
+    <Content Include="Views\BillOps\Invoice.cshtml" />
+    <Content Include="Views\Cart\Empty.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Item.cshtml" />
+    <Content Include="Views\Cart\Items.cshtml" />
+    <Content Include="Views\Cart\Myorder.cshtml" />
+    <Content Include="Views\Cart\Presetcourse.cshtml" />
+    <Content Include="Views\Cart\Presetprepaid.cshtml" />
+    <Content Include="Views\Cart\_PartialHold.cshtml" />
+    <Content Include="Views\Cart\_SelectCustomerModal.cshtml" />
+    <Content Include="Views\Cart\_SelectSalesPersonModal.cshtml" />
+    <Content Include="Views\Cart\_Transaction.cshtml" />
+    <Content Include="Views\CreditNote\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\MGM.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\Customer\Search.cshtml" />
+    <Content Include="Views\Customer\_ViewCustomer.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\RedeemptionScreenThree.cshtml" />
+    <Content Include="Views\Dashboard\RedeemtionScreenTwo.cshtml" />
+    <Content Include="Views\Dashboard\Reedemption.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\List.cshtml" />
+    <Content Include="Views\Diagnosis\Body.cshtml" />
+    <Content Include="Views\Diagnosis\Index.cshtml" />
+    <Content Include="Views\Diagnosis\Skin.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\History\Invoice.cshtml" />
+    <Content Include="Views\History\Treatment.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Shared\_Menu_old.cshtml" />
+    <Content Include="Views\ImageUpload\Index.cshtml" />
+    <Content Include="Views\ManageCustomer\AccountDetails.cshtml" />
+    <Content Include="Views\ManageCustomer\AddIemUsage.cshtml" />
+    <Content Include="Views\ManageCustomer\AppointmentHistory.cshtml" />
+    <Content Include="Views\ManageCustomer\BustMeasurement_1.cshtml" />
+    <Content Include="Views\ManageCustomer\CreditNote.cshtml" />
+    <Content Include="Views\ManageCustomer\DiagnosisMain.cshtml" />
+    <Content Include="Views\ManageCustomer\Index.cshtml" />
+    <Content Include="Views\ManageCustomer\InvoiceHistory.cshtml" />
+    <Content Include="Views\ManageCustomer\PrepaidAccount.cshtml" />
+    <Content Include="Views\ManageCustomer\ProductAccount.cshtml" />
+    <Content Include="Views\ManageCustomer\RedeemptionScreenThree1.cshtml" />
+    <Content Include="Views\ManageCustomer\RedeemtionScreenThree.cshtml" />
+    <Content Include="Views\ManageCustomer\RedeemtionScreenTwo.cshtml" />
+    <Content Include="Views\ManageCustomer\Reedemption.cshtml" />
+    <Content Include="Views\ManageCustomer\ServiceAccount.cshtml" />
+    <Content Include="Views\ManageCustomer\ServiceAccountDetail.cshtml" />
+    <Content Include="Views\ManageCustomer\ServiceRedemption.cshtml" />
+    <Content Include="Views\ManageCustomer\TreatmentFeedback.cshtml" />
+    <Content Include="Views\ManageCustomer\TreatmentHistory.cshtml" />
+    <Content Include="Views\ManageCustomer\_ExchangeTreatment.cshtml" />
+    <Content Include="Views\ManageCustomer\_Staff.cshtml" />
+    <Content Include="Views\ManageCustomer\_StockUsage.cshtml" />
+    <Content Include="Views\ManageCustomer\_TerminatePrepaid.cshtml" />
+    <Content Include="Views\Measurements\Body.cshtml" />
+    <Content Include="Views\Measurements\Bust.cshtml" />
+    <Content Include="Views\Menu\Create.cshtml" />
+    <Content Include="Views\Menu\Edit.cshtml" />
+    <Content Include="Views\Menu\List.cshtml" />
+    <Content Include="Views\Payment\AddCart.cshtml" />
+    <Content Include="Views\Payment\BillOps.cshtml" />
+    <Content Include="Views\Payment\BillOps_old.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Invoice.cshtml" />
+    <Content Include="Views\Payment\_PartialPay.cshtml" />
+    <Content Include="Views\Prepaid\Index.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
+    <Content Include="Views\Redemption\Details.cshtml" />
+    <Content Include="Views\Redemption\Index.cshtml" />
+    <Content Include="Views\Redemption\NextAppointment.cshtml" />
+    <Content Include="Views\Redemption\Reminder.cshtml" />
+    <Content Include="Views\Redemption\ReverseTreatment.cshtml" />
+    <Content Include="Views\Report\DailyReport.cshtml" />
+    <Content Include="Views\Report\DayEndReport.cshtml" />
+    <Content Include="Views\Report\DayEndReport_old.cshtml" />
+    <Content Include="Views\RoleAccess\Create.cshtml" />
+    <Content Include="Views\RoleAccess\Edit.cshtml" />
+    <Content Include="Views\RoleAccess\List.cshtml" />
+    <Content Include="Views\RoleGroup\Create.cshtml" />
+    <Content Include="Views\RoleGroup\Edit.cshtml" />
+    <Content Include="Views\RoleGroup\List.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Service\_PartialItemType.cshtml" />
+    <Content Include="Views\Service\_PartialPreTransaction.cshtml" />
+    <Content Include="Views\Service\_PartialProductType.cshtml" />
+    <Content Include="Views\Service\_PartialProductTypeItem.cshtml" />
+    <Content Include="Views\Service\_PartialServiceType.cshtml" />
+    <Content Include="Views\Service\_PartialServiceTypeItem.cshtml" />
+    <Content Include="Views\Service\_PartialType.cshtml" />
+    <Content Include="Views\Service\_SelectCourseModal.cshtml" />
+    <Content Include="Views\UserAccess\Index.cshtml" />
+    <Content Include="Views\UserGroup\Create.cshtml" />
+    <Content Include="Views\UserGroup\Edit.cshtml" />
+    <Content Include="Views\UserGroup\Index.cshtml" />
+    <Content Include="Views\UserGroup\List.cshtml" />
+    <Content Include="Views\UserRolePrivileges\Index.cshtml" />
+    <Content Include="Views\Voucher\Index.cshtml" />
+    <Content Include="Scripts\jQuery\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\others\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\View_Shared\.__Menu.cshtml" />
+    <Content Include="Views\Shared\View_Shared\_Menu.cshtml" />
+    <Content Include="Views\Accounts\Topup.cshtml" />
+    <Content Include="Views\BillOps\VoidInvoice.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="img\kpi\" />
+    <Folder Include="img\security\" />
+    <Folder Include="img\small\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64778</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64779/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+<Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+</Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

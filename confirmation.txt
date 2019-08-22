@@ -1,0 +1,91 @@
+Cart/Index  Line 47 - Confirmation Dialog Box
+@*confirmation poup model for empty cart*@
+<div class="modal fade" id="mdlemptycart" tabindex="-1" role="dialog" aria-labelledby="mdlemptycart" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                @*<div class="form-group">*@
+                <label>Confirmation for Empty Cart?</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @*</div>*@
+            </div>
+            <div class="modal-dialog-centered">
+
+                <div class="col-3 justify-content-lg-end align-items-lg-end">
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="btnemptycart">@Resources.Resources.EmptyCart</button>
+                    <button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidNo" data-dismiss="modal">No</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*confirmation popup model for empty cart*@
+@*confirmation poup model for Check Out*@
+<div class="modal fade" id="mdlcheckout" tabindex="-1" role="dialog" aria-labelledby="mdlcheckout" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                @*<div class="form-group">*@
+                <label>Confirmation for  Check Out?</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @*</div>*@
+            </div>
+            <div class="modal-dialog-centered">
+
+                <div class="col-3 justify-content-lg-end align-items-lg-end">
+
+                    <button type="submit" class="btn btn-primary fluid btn-lg" value="Pay" name="Pay">@Resources.Resources.CheckOut</button>
+                    <button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidNo" data-dismiss="modal">No</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*confirmation popup model for Check Out*@
+@*confirmation poup model for Suspend*@
+<div class="modal fade" id="mdlsuspend" tabindex="-1" role="dialog" aria-labelledby="mdlsuspend" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                @*<div class="form-group">*@
+                <label>Confirmation for  Suspend?</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @*</div>*@
+            </div>
+            <div class="modal-dialog-centered">
+
+                <div class="col-3 justify-content-lg-end align-items-lg-end">
+
+                    <button type="button" class="btn btn-primary fluid btn-lg" id="btnSuspend">@Resources.Resources.Suspend</button>
+                    <button type="button" class="btn btn-lg btn-block btn-block" id="btnvoidNo" data-dismiss="modal">No</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*confirmation popup model for Suspend*@
+
+
+
+portal.js  Line 1154  - for confirmation dialog box 
+
+        $(document).on("click", "#btnemptycart", function () {
+            $(".live-search-box").val('');
+            $("#mdlemptycart").modal({ backdrop: 'static', keyboard: false, show: true });
+        });
+        $(document).on("click", "#btncheckout", function () {
+            $(".live-search-box").val('');
+            $("#mdlcheckout").modal({ backdrop: 'static', keyboard: false, show: true });
+        });
+        $(document).on("click", "#btnsupend", function () {
+            $(".live-search-box").val('');
+            $("#mdlsuspend").modal({ backdrop: 'static', keyboard: false, show: true });
+        });
+

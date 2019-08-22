@@ -1,0 +1,296 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model app.bsms.Models.Manage.Customer.Search
+
+@{
+    ViewBag.Title = "SearchCustomer";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Customers</li>
+    </ol>
+</nav>
+<h4>@Resources.Resources.Search</h4>
+<hr />
+@using (Html.BeginForm("Search", "Customer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Raw(@TempData["Message"])
+    @Html.Hidden("siteCode", Model.siteCode)
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="hdSearch">
+                <h5 class="mb-0">
+                    <a class="btn btn-link" href="" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true" aria-controls="collapseSearch">
+                        @Resources.Resources.SearchFilter
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseSearch" class="collapse show" aria-labelledby="hdSearch" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.RefCode</label>
+                                @Html.TextBox("referenceCode", "", new { @class = "form-control form-control-lg" })
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.NRIC</label>
+                                @Html.TextBox("nric", "", new { @class = "form-control form-control-lg" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.CustName</label>
+                                @Html.TextBox("customerName", "", new { @class = "form-control form-control-lg" })
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>@Resources.Resources.PhoneNumber</label>
+                                @Html.TextBox("phoneNumber", "", new { @class = "form-control form-control-lg" })
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Advaccordion">
+                        <div class="card">
+                            <div class="card-header" id="hdAdvanceSearch">
+                                <h5 class="mb-0">
+                                    <a class="btn btn-link" href="" data-toggle="collapse" data-target="#collapseAdvanceSearch" aria-expanded="true" aria-controls="collapseAdvanceSearch">
+                                        @Resources.Resources.AdvanceSearch
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseAdvanceSearch" class="collapse" aria-labelledby="hdAdvanceSearch" data-parent="#Advaccordion">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>@Resources.Resources.CustClass</label>
+                                                @Html.DropDownList("customerClass", new SelectList(Model.lstCustomerClass, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>@Resources.Resources.CustType</label>
+                                                @Html.DropDownList("customerType", new SelectList(Model.lstCustomerType, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>@Resources.Resources.DOB</label>
+                                                <div class="input-group">
+                                                    @Html.TextBox("dateOfBirth", "", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>@Resources.Resources.JoinDate</label>
+                                                <div class="input-group">
+                                                    @Html.TextBox("joinedDate", "", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>@Resources.Resources.Consultant</label>
+                                                @Html.DropDownList("consultant", new SelectList(Model.lstConsultant, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>@Resources.Resources.Therapist</label>
+                                                @Html.DropDownList("therapist", new SelectList(Model.lstTherapist, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-25">&nbsp;</div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-lg mb-2">@Resources.Resources.Apply</button>
+                            <a role="button" class="btn btn-primary btn-lg mb-2" href="~/Customer/Search">@Resources.Resources.Clear</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="clearfix">&nbsp;</div>
+<a class="btn btn-primary btn-lg" href="~/Customer/Create">
+    @Resources.Resources.AddNewCustomer
+</a>
+<div class="clearfix">&nbsp;</div>
+
+@if (Model.lstCustomer != null)
+{
+<div class="card-columns">
+    @foreach (var item in Model.lstCustomer)
+    {
+        <div class="card">
+            <img class="card-img-top" src="~/images/no-image.png">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @item.salutation&nbsp;@item.customerName<br />
+                    <small class="form-text text-muted">@item.referenceCode</small>
+                </h5>
+                <p class="card-text"></p>
+                <p class="card-text"><b>@Resources.Resources.CustCode:&nbsp;</b>@item.customerCode</p>
+                <p class="card-text"><b>@Resources.Resources.NRIC:&nbsp;</b>@item.nric</p>
+                <p class="card-text"><b>@Resources.Resources.PhoneNumber:&nbsp;</b>@item.phoneNumber</p>
+                <p class="card-text"><b>@Resources.Resources.DOB:&nbsp;</b>@(item.dateOfBirth == DateTime.MinValue ? string.Empty : ((DateTime)item.dateOfBirth).ToString("dd/MM/yyyy"))</p>
+                <p class="card-text"><b>@Resources.Resources.CustClass:&nbsp;</b>@item.customerClass</p>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-primary btn-lg btn-block" role="button" href="#" data-url="/Customer/GetCustomer"
+                           data-value="@(item.referenceCode == string.Empty || item.referenceCode == null ? "customer": "reference")"
+                           data-code="@(item.referenceCode == string.Empty || item.referenceCode == null ? item.customerCode: item.referenceCode)"
+                           data-toggle="modal" data-target="#mdlCustomer">@Resources.Resources.View</a>
+                    </div>
+                    <div class="col">
+                        @Html.ActionLink(@Resources.Resources.Edit, "Edit", "Customer", new
+                        {
+                            referenceCode = item.referenceCode,
+                            customerCode = item.customerCode,
+                            customerName = item.customerName,
+                            nric = item.nric,
+                            siteCode = Model.siteCode
+                        }, new { role = "button", @class = "btn btn-primary btn-lg btn-block" })
+                    </div>
+                    <div class="col">
+                        <a href="/Customer/Profile/@item.customerCode" role="button" class="btn btn-primary btn-lg btn-block">@Resources.Resources.More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+}
+@*
+<div class="table-responsive-lg d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">@Resources.Resources.CustCode</th>
+                <th scope="col">@Resources.Resources.CustName</th>
+                <th scope="col">@Resources.Resources.NRIC</th>
+                <th scope="col">@Resources.Resources.PhoneNumber</th>
+                <th scope="col">@Resources.Resources.DOB</th>
+                <th scope="col">@Resources.Resources.CustClass</th>
+                <th scope="col">@Resources.Resources.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.lstCustomer)
+            {
+                <tr>
+                    <td>@item.customerCode</td>
+                    <td>
+                        @item.salutation&nbsp;@item.customerName<br />
+                        <small class="form-text text-muted">@item.referenceCode</small>
+                    </td>
+                    <td>@item.nric</td>
+                    <td>@item.phoneNumber</td>
+                    <td>@(item.dateOfBirth == DateTime.MinValue ? string.Empty : ((DateTime)item.dateOfBirth).ToString("dd/MM/yyyy"))</td>
+                    <td>@item.customerClass</td>
+                    <td>
+                        <div class="dropdown dropleft">
+                            <button class="btn btn-secondary dropdown-toggle btn-lg" type="button" 
+                                    id="ddl@item.nric" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</button>
+                            <div class="dropdown-menu" aria-labelledby="ddl@item.nric">
+                                <a class="dropdown-item dropdown-item-lg" role="button" href="#" data-url="/Customer/GetCustomer" data-value="@(item.referenceCode == string.Empty || item.referenceCode == null ? "customer": "reference")" data-code="@(item.referenceCode == string.Empty || item.referenceCode == null ? item.customerCode: item.referenceCode)" data-toggle="modal" data-target="#mdlCustomer">@Resources.Resources.View</a>                                
+                                @Html.ActionLink(@Resources.Resources.Edit, "Edit", "Customer", new
+                                {
+                                   referenceCode = item.referenceCode,
+                                   customerCode = item.customerCode,
+                                   customerName = item.customerName,
+                                   nric = item.nric,
+                                   siteCode = Model.siteCode
+                                }, new { role = "button", @class = "dropdown-item dropdown-item-lg" })
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item dropdown-item-lg" href="~/Redemption/Index/@item.customerCode">@Resources.Resources.Services</a>
+                                <a class="dropdown-item dropdown-item-lg" href="~/Products/Index/@item.customerCode">@Resources.Resources.Products</a>
+                                <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.Rewards</a>
+                                <a class="dropdown-item dropdown-item-lg" href="~/Accounts/Index/@item.customerCode">@Resources.Resources.Accounts</a>
+                                <a class="dropdown-item dropdown-item-lg" href="#">@Resources.Resources.Appointments</a>
+                                <a class="dropdown-item dropdown-item-lg" href="~/Customer/MGM/@item.customerCode">@Resources.Resources.MGM</a>
+                            </div>
+                        </div>
+                        <div class="btn-group btn-group-lg" role="group">
+                            <button type="button" class="btn btn-secondary" data-url="/Customer/GetCustomer" data-value="@(item.referenceCode == string.Empty || item.referenceCode == null ? "customer": "reference")" data-code="@(item.referenceCode == string.Empty || item.referenceCode == null ? item.customerCode: item.referenceCode)" data-toggle="modal" data-target="#mdlCustomer">@Resources.Resources.View</button>
+                            @Html.ActionLink(@Resources.Resources.Edit, "Edit", "Customer", new {
+                                referenceCode = item.referenceCode,
+                                customerCode = item.customerCode,
+                                customerName = item.customerName,
+                                nric = item.nric,
+                                siteCode = Model.siteCode
+                            }, new { role="button", @class = "btn btn-secondary" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+*@
+<div class="d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    @Html.PagedListPager(Model.lstCustomer, page => Url.Action("Search", "Customer", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
+</div>
+<div class="list-group d-sm-block d-md-none">
+    @foreach (var item in Model.lstCustomer)
+    {
+        <a role="button" href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#mdlCustomer"
+           data-url="/Customer/GetCustomer" data-value="@(item.referenceCode == string.Empty || item.referenceCode == null ? "customer": "reference")" data-code="@(item.referenceCode == string.Empty || item.referenceCode == null ? item.customerCode: item.referenceCode)">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@item.salutation @item.customerName</h5>
+                <small class="text-muted">@item.customerClass</small>
+            </div>
+            <p class="mb-1">
+                @item.referenceCode
+                @item.nric
+                @item.phoneNumber
+                @(item.dateOfBirth == DateTime.MinValue ? string.Empty : ((DateTime)item.dateOfBirth).ToString("yyyy MMM dd"))
+            </p>
+            <small class="text-muted">@(item.joinedDate == DateTime.MinValue ? string.Empty : ((DateTime)item.joinedDate).ToString("yyyy MMM dd"))</small>
+        </a>
+    }
+</div>
+<div class="modal fade" id="mdlCustomer" tabindex="-1" role="dialog" aria-labelledby="mdlCustomer" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <a role="button" class="btn btn-flat pull-right" data-toggle="print" data-target="divContent" href="#"><i class="fa fa-print fa-2x"></i></a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="divContent"></div>
+            </div>
+        </div>
+    </div>
+</div>

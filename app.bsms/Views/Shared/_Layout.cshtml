@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="@app.bsms.Helpers.CultureHelper.GetCurrentNeutralCulture()">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow, nosnippet, noarchive, noimageindex, none" />
+    <meta name="googlebot" content="noindex, nofollow, nosnippet, noarchive, noimageindex, none" />
+    <meta name="google" content="notranslate" />
+    <title>@ViewBag.Title -BeauteCloud</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <main class="main-content">
+        <div class="body body-content">
+            @RenderBody()
+        </div>
+    </main>
+                <footer class="footer">
+                    <span class="text-center">@Resources.Resources.Copyright &copy;. @Resources.Resources.Sequoia</span>
+                    <span class="text-center">@Resources.Resources.Allrights</span>
+                </footer>
+            <div class="clearfix"></div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/modernizr")
+            @RenderSection("scripts", required: false)
+</body>
+</html>

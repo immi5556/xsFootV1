@@ -1,0 +1,64 @@
+﻿@model app.bsms.Models.AccountModel.ImageInfoModel
+@{
+    ViewBag.Title = "ManagePersonalInfo";
+    // Layout = "~/Views/Shared/_Menu.cshtml";
+}
+<section>
+    <form class="cmxform" id="infoForm" action="/ImageUpload/savePersonalInfo" method="post" enctype="multipart/form-data">
+        <div class="panel">
+            <div class="panel-content page-wizard">
+                <div class="wizard-div current wizard-sea">
+                    <fieldset style="border: 1px solid #c7c6c5; padding: 10px; border-radius: 5px; box-shadow: 0 0 4px #d1cfcf inset,0 0 0 10px #e4e4e4 inset; ">
+                        <div class="fileinput fileinput-new" data-provides="fileinput" style="text-align:center">
+                            <div class="fileinput-new thumbnail" style="text-align:center">
+                                @*@if (Model.isImgAvailable == false)
+                                    {
+                                        <img data-src="" src="../assets/global/images/gallery/3.jpg" style="width:150px;height:200px" class="img-responsive" alt="gallery 3">
+                                    }
+                                    else
+                                    {*@
+                                <img data-src="" src="@Model.stringImg" style="width: 150px; height: 200px; text-align: center" class="img-responsive" alt="gallery 3">
+                                @*  *@
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="width: 150px; height: 200px; text-align: center"></div>
+                            <div style="text-align:center">
+                                <span class="btn btn-default btn-file" style="text-align:center">
+                                    <span class="fileinput-new">Select image...</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input id="UserImg" type="file" name="UserImg" accept="image/*" style="text-align:center">
+                                </span>
+                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+
+                        <div class="row" style="text-align:center;margin-top:20px">
+                            <div class="col-md-12" style="text-align:center">
+                                <div class="form-group" style="text-align:center">
+                                    <input type="submit" style="text-align:center" class="btn bg-orange btn-embossed" value="CONFIRM" id="btnInfoConfirm" onclick="return confirm('Are you sure you want to update?')" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<script type="text/javascript">
+    var file = document.getElementById('UserImg');
+
+    file.onchange = function (e) {
+        var ext = this.value.match(/\.([^\.]+)$/)[1];
+        switch (ext) {
+            case 'jpg':
+            case 'png':
+            case 'jpeg':
+
+                break;
+            default:
+                alert('Please select only png / jpg / jpeg file type.');
+                this.value = '';
+        }
+    };
+
+</script>

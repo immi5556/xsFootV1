@@ -1,0 +1,689 @@
+﻿
+@{ ViewBag.Title = ""; Layout = "~/Views/Shared/_Menu.cshtml"; }
+
+<link rel="stylesheet" href="/assets/adminlte/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/assets/adminlte/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="/assets/adminlte/dist/css/skins/_all-skins.min.css">
+
+<style>
+    .rowCard {
+        padding: 2px 16px;
+    }
+
+    .card {
+        position: relative;
+        border-radius: 3px;
+        background: #ffffff;
+        margin-bottom: 20px;
+        width: 100%;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        padding: 10px 16px;
+    }
+
+    img.responsive {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .octCenter {
+        text-align: center;
+    }
+
+    .theme-switcher {
+        width: 270px;
+        -webkit-transform: translate(270px, 0);
+        -moz-transform: translate(270px, 0);
+        -o-transform: translate(270px, 0);
+        -ms-transform: translate(270px, 0);
+        transform: translate(270px, 0);
+        -webkit-transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1);
+        transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1);
+        background-color: #ffffff;
+        height: 56%;
+        position: fixed;
+        right: 0px;
+        top: 175px;
+        z-index: 800;
+        border-left: #eee 1px solid;
+        padding-top: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+        .theme-switcher.theme-switcher-toggle {
+            -webkit-transform: translate(0, 0);
+            -moz-transform: translate(0, 0);
+            -o-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+
+        .theme-switcher .theme-switcher-icon {
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-left: #eee 1px solid;
+            border-top: #eee 1px solid;
+            border-bottom: #eee 1px solid;
+            display: inline-block;
+            background-color: #ffd700;
+            position: absolute;
+            left: -35px;
+            top: 125px;
+            z-index: 700;
+        }
+
+            .theme-switcher .theme-switcher-icon i {
+                width: 44px;
+                height: 44px;
+                display: inline-block;
+                line-height: 42px;
+                font-size: 24px;
+                text-align: center;
+            }
+
+        .theme-switcher .switch-theme-colors {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+
+            .theme-switcher .switch-theme-colors li {
+                padding: 10px;
+                border-radius: 40px;
+            }
+
+    .darkyellow {
+        background: #cfc391;
+    }
+
+    .lightyellow {
+        background: #fff8c4;
+    }
+
+    .darkyellow:hover {
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.65);
+    }
+
+    .lightyellow:hover {
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.65);
+    }
+
+    .colorone {
+        background: red;
+    }
+
+    .colortwo {
+        background: yellow;
+    }
+
+    .colorthree {
+        background: green;
+    }
+
+    .colorfour {
+        background: red;
+    }
+
+    .colorfive {
+        background: blue;
+    }
+
+    .colorsix {
+        background: red;
+    }
+
+    .theme-switcher2 {
+        width: 270px;
+        -webkit-transform: translate(270px, 0);
+        -moz-transform: translate(270px, 0);
+        -o-transform: translate(270px, 0);
+        -ms-transform: translate(270px, 0);
+        transform: translate(270px, 0);
+        -webkit-transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1);
+        transition: all 350ms cubic-bezier(0.19, 1, 0.22, 1);
+        background-color: #ffffff;
+        height: 56%;
+        position: fixed;
+        right: 0px;
+        top: 175px;
+        z-index: 800;
+        border-left: #eee 1px solid;
+        padding-top: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+        .theme-switcher2.theme-switcher-toggle2 {
+            -webkit-transform: translate(0, 0);
+            -moz-transform: translate(0, 0);
+            -o-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+
+        .theme-switcher2 .theme-switcher-icon2 {
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-left: #eee 1px solid;
+            border-top: #eee 1px solid;
+            border-bottom: #eee 1px solid;
+            display: inline-block;
+            background-color: #DAA520;
+            position: absolute;
+            left: -35px;
+            top: 170px;
+            z-index: 700;
+        }
+
+            .theme-switcher2 .theme-switcher-icon2 i {
+                width: 44px;
+                height: 44px;
+                display: inline-block;
+                line-height: 42px;
+                font-size: 24px;
+                text-align: center;
+            }
+
+        .theme-switcher2 .switch-theme-colors2 {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+
+            .theme-switcher2 .switch-theme-colors2 li {
+                padding: 10px;
+                border-radius: 40px;
+            }
+</style>
+
+<section>
+    <div class="page-content">
+        <div class="header">
+            <h2><strong>Catalogue</strong> </h2>
+            <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="~/">BSMS</a>
+                    </li>
+                    <li class="active">Catalogue</li>
+                </ol>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 octCenter">
+                <div class="panel-content page-wizard">
+                    <div class="wizard-div current yellow">
+                        <form class="form-horizontal" id="PackageList" role="form">
+                            <div class="filtering" style="border: 1px solid #E3D595;border-radius:4px;padding:10px">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Customer Name:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findCustomerName" class="form-control form-white" />
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Customer No:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findSalesIDCustomerNo" class="form-control form-white" />
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">IC/ Passport No:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findICNo" class="form-control form-white" />
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Transaction No:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findICNo" class="form-control form-white" />
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Paid Transaction:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findICNo" class="form-control form-white" />
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Suspended Bill:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findICNo" class="form-control form-white" />
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Join Date:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findICNo" class="form-control form-white" /> &nbsp;
+                                        To &nbsp;
+
+                                        <input type="text" id="findICNo" class="form-control form-white" />
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="searchID">Transaction Date:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="findICNo" class="form-control form-white" /> &nbsp;
+                                        To &nbsp;
+
+                                        <input type="text" id="findICNo" class="form-control form-white" />
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <button type="button" title="Searcg Items" onclick="getsearchresult();" style="border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnSalesSearch"><i class="fa fa-plus"></i>Search</button>
+                                </div>
+                            </div>
+                            <br />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <div class="card">
+
+                    <div class="col-md-12 octCenter" id="rowfour">
+
+                        <div class="modal-header bg-primary" style="border: 1px solid #B0A478;background-color: #E3D595;">
+                            <div class="col-md-12 octCenter">
+                                <p style="text-align:center;color:black">Transaction List</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <table class="table">
+                                <tr>
+
+                                    <th style="text-align:center">
+                                        Sno
+                                    </th>
+                                    <th> &nbsp; </th>
+                                    <th style="text-align:center">
+                                        Transaction Number
+                                    </th>
+                                    <th> &nbsp; </th>
+                                    <th style="text-align:center">
+                                        Date
+                                    </th>
+                                    <th> &nbsp; </th>
+                                    <th style="text-align:center">
+                                        Customer
+                                    </th>
+                                    <th> &nbsp; </th>
+                                    <th style="text-align:center">
+                                        Selling Price
+                                    </th>
+                                    <th> &nbsp; </th>
+                                    <th> Status</th>
+                                </tr>
+
+                                <tr>
+                                    <td style="text-align:center">
+                                        1
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Trans123456890
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        16/06/2018
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Customer zzyzz
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Selling Price
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Status
+                                    </td>
+                                    <td> &nbsp; </td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        2
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Trans123456890
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        16/06/2018
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Customer zzyzz
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Selling Price
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Status
+                                    </td>
+                                    <td> &nbsp; </td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        3
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Trans123456890
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        16/06/2018
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Customer zzyzz
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Selling Price
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Status
+                                    </td>
+                                    <td> &nbsp; </td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        4
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Trans123456890
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        16/06/2018
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Customer zzyzz
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Selling Price
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Status
+                                    </td>
+                                    <td> &nbsp; </td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        5
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Trans123456890
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        16/06/2018
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Customer zzyzz
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Selling Price
+                                    </td>
+                                    <td> &nbsp; </td>
+                                    <td style="text-align:center">
+                                        Status
+                                    </td>
+                                    <td> &nbsp; </td>
+
+
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-12 octCenter">
+
+                            <button type="button" title="Add to cart" style="border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnSales">Void</button> &nbsp; &nbsp;&nbsp;
+                            <button type="button" title="Add to cart" style="border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnSales">Print</button> &nbsp; &nbsp;&nbsp;
+                            <button type="button" title="Add to cart" style="border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnSales">Cart</button> &nbsp; &nbsp;&nbsp;
+                            <button type="button" title="Add to cart" style="border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnSales">Cancel</button> &nbsp; &nbsp;&nbsp;
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style media="screen">
+    img {
+        max-width: 8%;
+        /* transform: translate(50%, 0); */
+        /*padding: 5px 15px;*/
+    }
+
+    .first {
+        position: relative;
+        top: calc(100px/2);
+    }
+
+    .leftpad {
+        /*padding-left: 4%;*/
+    }
+
+    .hideimg {
+        visibility: hidden;
+    }
+</style>
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+<script src="~/assets/global/plugins/jquery/jquery-1.11.1.min.js"></script>
+<script src="~/assets/global/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script src="~/assets/global/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
+<script src="~/assets/global/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+@*<script src="~/assets/sessionTimeout/jquery.sessionTimeout.js"></script>*@
+<script src="~/assets/global/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
+<script src="~/assets/global/plugins/bootbox/bootbox.min.js"></script>
+<script src="~/assets/global/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
+<script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/assets/global/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
+<script src="~/assets/global/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> <!-- Animated Progress Bar -->
+<script src="~/assets/global/plugins/switchery/switchery.min.js"></script> <!-- IOS Switch -->
+<script src="~/assets/global/plugins/retina/retina.min.js"></script> <!-- Retina Display -->
+<script src="~/assets/global/plugins/jquery-cookies/jquery.cookies.js"></script> <!-- Jquery Cookies, for theme -->
+<script src="~/assets/global/plugins/bootstrap/js/jasny-bootstrap.min.js"></script> <!-- File Upload and Input Masks -->
+<script src="~/assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="~/assets/global/plugins/prettify/prettify.min.js"></script> <!-- Show html code -->
+<script src="~/assets/global/plugins/slick/slick.min.js"></script> <!-- Slider -->
+<script src="~/assets/global/plugins/countup/countUp.min.js"></script> <!-- Animated Counter Number -->
+<script src="~/assets/global/plugins/noty/jquery.noty.packaged.min.js"></script> <!-- Notifications -->
+<script src="~/assets/global/plugins/backstretch/backstretch.min.js"></script> <!-- Background Image -->
+<script src="~/assets/global/plugins/bootstrap-slider/bootstrap-slider.js"></script> <!-- Bootstrap Input Slider -->
+<script src="~/assets/global/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
+<script src="~/assets/global/js/builder.js"></script>
+<script src="~/assets/global/js/sidebar_hover.js"></script>
+<script src="~/assets/global/js/application.js"></script> <!-- Main Application Script -->
+<script src="~/assets/global/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
+<script src="~/assets/global/js/widgets/notes.js"></script>
+<script src="~/assets/global/js/quickview.js"></script> <!-- Quickview Script -->
+<script src="~/assets/global/js/pages/search.js"></script> <!-- Search Script -->
+<script src="~/assets/global/page-builder/js/builder_page.js"></script>
+<script src="~/ViewsScript/Account/UserDashboard.js"></script>
+
+<!-- BEGIN PAGE SCRIPT -->
+<script src="../assets/global/plugins/idle-timeout/jquery.idletimer.min.js"></script> <!-- Logout User After Delay -->
+<script src="../assets/global/plugins/idle-timeout/jquery.idletimeout.min.js"></script> <!-- Logout User After Delay -->
+<script src="../assets/global/js/pages/session_timeout.js"></script>
+<!-- END PAGE SCRIPT -->
+
+<script>
+    $(function () {
+        $(".theme-switcher-icon").on("click touchstart", function (e) {
+            e.preventDefault();
+            if ($(".theme-switcher").hasClass("theme-switcher-toggle")) {
+                $(".theme-switcher").removeClass("theme-switcher-toggle");
+                $('#switcher2').css('display', 'block')
+            } else {
+                $(".theme-switcher").addClass("theme-switcher-toggle");
+                $('#switcher2').css('display', 'none')
+            }
+        });
+
+        $(".theme-switcher-icon2").on("click touchstart", function (e) {
+            e.preventDefault();
+            if ($(".theme-switcher2").hasClass("theme-switcher-toggle2")) {
+                $(".theme-switcher2").removeClass("theme-switcher-toggle2");
+            } else {
+                $(".theme-switcher2").addClass("theme-switcher-toggle2");
+            }
+        });
+    })
+</script>
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+
+<script src="~/assets/global/plugins/jquery/jquery-1.11.1.min.js"></script>
+<script src="~/assets/global/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script src="~/assets/global/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
+<script src="~/assets/global/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+
+<script src="~/assets/global/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
+<script src="~/assets/global/plugins/bootbox/bootbox.min.js"></script>
+<script src="~/assets/global/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
+<script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/assets/global/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
+<script src="~/assets/global/plugins/switchery/switchery.min.js"></script> <!-- IOS Switch -->
+<script src="~/assets/global/plugins/charts-sparkline/sparkline.min.js"></script> <!-- Charts Sparkline -->
+<script src="~/assets/global/plugins/jquery-cookies/jquery.cookies.js"></script> <!-- Jquery Cookies, for theme -->
+<script src="~/assets/global/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script> <!-- Select Inputs -->
+<script src="~/assets/global/plugins/bootstrap-loading/lada.min.js"></script> <!-- Buttons Loading State -->
+<script src="~/assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="~/assets/global/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script> <!-- Inline Edition X-editable -->
+<script src="~/assets/global/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script> <!-- File Upload and Input Masks -->
+<script src="~/assets/global/plugins/prettify/prettify.min.js"></script> <!-- Show html code -->
+<script src="~/assets/global/plugins/slick/slick.min.js"></script> <!-- Slider -->
+<script src="~/assets/global/plugins/backstretch/backstretch.min.js"></script> <!-- Background Image -->
+<script src="~/assets/global/plugins/bootstrap-slider/bootstrap-slider.js"></script> <!-- Bootstrap Input Slider -->
+<script src="~/assets/global/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
+<script src="~/assets/global/js/builder.js"></script>
+<script src="~/assets/global/js/sidebar_hover.js"></script>
+<script src="~/assets/global/js/application.js"></script> <!-- Main Application Script -->
+<script src="~/assets/global/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
+<script src="~/assets/global/js/widgets/notes.js"></script>
+<script src="~/assets/global/js/quickview.js"></script> <!-- Quickview Script -->
+<script src="~/assets/global/js/pages/search.js"></script> <!-- Search Script -->
+<script src="~/assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="~/assets/global/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
+<script src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> <!-- >Bootstrap Date Picker -->
+<!-- BEGIN ADDITIONAL SCRIPTS -->
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+
+<script src="../assets/global/plugins/magnific/jquery.magnific-popup.min.js"></script> <!-- Image Popup -->
+<script src="../assets/global/plugins/isotope/isotope.pkgd.min.js"></script> <!-- Filter & sort magical Gallery -->
+
+<script>
+    $(window).load(function () {
+        var $container = $('.portfolioContainer');
+        $container.isotope();
+        $('.portfolioFilter a').click(function () {
+            $('.portfolioFilter .current').removeClass('current');
+            $(this).addClass('current');
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector
+            });
+            return false;
+        });
+    });
+</script>
+
+<!-- Validation jquery-->
+<script src="~/assets/global/js/jquery.validate.min.js"></script>
+<script src="~/assets/global/js/additional-methods.min.js"></script>
+
+<!-- BEGIN PAGE SCRIPT -->
+<script src="../assets/global/plugins/idle-timeout/jquery.idletimer.min.js"></script> <!-- Logout User After Delay -->
+<script src="../assets/global/plugins/idle-timeout/jquery.idletimeout.min.js"></script> <!-- Logout User After Delay -->
+<script src="../assets/global/js/pages/session_timeout.js"></script>
+
+
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<script src="~/Content/loader/loadingoverlay.min.js"></script>
+<script src="~/ViewsScript/Sales/AddCart.js"></script>
+<!-- JTABLE SCRIPTS-->
+<script src="~/Scripts/jtable/jquery.jtable.min.js" type="text/javascript"></script>
+

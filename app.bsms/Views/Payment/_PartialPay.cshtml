@@ -1,0 +1,194 @@
+﻿@model app.bsms.Models.Sales.Cart
+
+@Html.HiddenFor(m => m.payDetails.paymentType)
+@Html.HiddenFor(m => m.payDetails.paymentGroup)
+@Html.HiddenFor(m => m.payDetails.paymentDescription)
+@Html.HiddenFor(m => m.payDetails.isGST)
+@Html.HiddenFor(m => m.payDetails.isCreditCard)
+@Html.HiddenFor(m => m.payDetails.isOnlinePayment)
+
+@*@Model.payDetails.paymentType<br />
+@Model.payDetails.paymentGroup<br />
+@Model.payDetails.paymentDescription*@
+
+<div class="form-group">
+    @Html.LabelFor(m => m.payDetails.paymentAmount)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+    @Html.TextBoxFor(m => m.payDetails.paymentAmount, new { @class = "form-control form-control-lg" })
+</div>
+@Html.ValidationMessageFor(m => m.payDetails.paymentAmount)
+
+@if (Model.payDetails.paymentDescription == "PREPAID")
+{
+    <div class="form-group">
+        @Resources.Resources.PaidByTheSelectedPrepaid
+        @Html.LabelFor(m => m.payDetails.remark1)
+        @if (Model.lstPrepaid.Count > 0)
+        {
+            foreach (var f in Model.lstPrepaid)
+            {
+                <div class="custom-control custom-radio">
+                    @Html.RadioButton("payDetails.remark1", f.prepaidCode, new { @class = "custom-control-input", id = "rb_" + f.prepaidCode })
+                    <label class="custom-control-label" for="rb_@f.prepaidCode">@f.prepaidCategory [@f.conditionType1][@f.conditionType2][@f.availablePrepaidAmount]</label>
+                </div>
+                @*
+                <div class="custom-control custom-radio">
+                    @Html.RadioButton("payDetails.remark1", f.prepaidCode, new { @class = "custom-control-input", id = "rb_" + f.prepaidCode })
+                    <label class="custom-control-label" for="rb_@f.prepaidCode">@f.prepaidCategory - @f.availablePrepaidAmount</label>
+                </div>
+                *@
+            }
+        }
+        else
+        {
+            @Html.DropDownListFor(m => m.payDetails.remark1, new SelectList(Model.lstPrepaid, "prepaidCode", "prepaidCategory"), new { @class = "custom -select form-control-lg" })
+        }
+        @*
+    @Html.LabelFor(m => m.payDetails.remark1)
+    @if (Model.lstPrepaid.Count > 0)
+    {
+        foreach (var f in Model.lstPrepaid)
+        {
+            <div class="custom-control custom-radio">
+                @Html.RadioButton("payDetails.remark1", f.prepaidCode, new { @class = "custom-control-input", id = "rb_" + f.prepaidCode })
+                <label class="custom-control-label" for="rb_@f.prepaidCode">@f.prepaidCategory - @f.availablePrepaidAmount</label>
+            </div>
+        }
+    }
+    else
+    {
+        @Html.DropDownListFor(m => m.payDetails.remark1, new SelectList(Model.lstPrepaid, "prepaidCode", "prepaidCategory"), new { @class = "custom -select form-control-lg" })
+    }
+        *@
+    </div>
+    @Html.ValidationMessageFor(m => m.payDetails.remark1)
+    <div class="form-group">
+        @Resources.Resources.ForTheSelectedItems
+        @foreach (var item in Model.cart.transactionDetails)
+        {
+            if (item.lineType == "SERVICE" || item.lineType == "PRODUCT")
+            {
+                <div class="row">
+                    @*
+                        <div class="col-0-5 text-center">
+                            <div class="custom-control custom-checkbox">
+                                @Html.CheckBox("check-item", new { @class = "custom-control-input", id = "chk-" + item.itemCode })
+                                <label for="chk-@item.itemCode" class="custom-control-label">&nbsp;</label>
+                            </div>
+                        </div>*@
+                    <div class="col-0-5">|</div>
+                    <div class="col-2">@item.lineType</div>
+                    <div class="col-5-5">@item.itemName</div>
+                    <div class="col-2">@item.itemQty</div>
+                    <div class="col-2">@item.itemAmount</div>
+                </div>
+            }
+        }
+    </div>
+<div class="form-group">
+    @Html.LabelFor(m => m.payDetails.remark2)
+    @Html.TextBoxFor(m => m.payDetails.remark2, new { @class = "form-control form-control-lg" })
+</div>
+@Html.ValidationMessageFor(m => m.payDetails.remark2)
+}
+else if (Model.payDetails.paymentDescription.Contains("VOUCHER"))
+{
+        <div class="form-group">
+            @Html.LabelFor(m => m.payDetails.remark1)
+            @if (Model.lstVoucher.Count > 0)
+            {
+                foreach (var f in Model.lstVoucher)
+                {
+                    <div class="custom-control custom-radio">
+                        @Html.RadioButton("payDetails.remark1", f.voucherNo, new { @class = "custom-control-input", id = "rb_" + f.voucherNo })
+                        <label class="custom-control-label" for="rb_@f.voucherNo">@f.voucherName - @f.value</label>
+                    </div>
+                }
+            }
+            else
+            {
+                @Html.DropDownListFor(m => m.payDetails.remark1, new SelectList(Model.lstVoucher, "voucherNo", "voucherName"), new { @class = "custom-select form-control-lg" })
+            }
+        </div>
+        @Html.ValidationMessageFor(m => m.payDetails.remark1)
+        <div class="form-group">
+            @Html.LabelFor(m => m.payDetails.remark2)
+            @Html.TextBoxFor(m => m.payDetails.remark2, new { @class = "form-control form-control-lg" })
+        </div>
+        @Html.ValidationMessageFor(m => m.payDetails.remark2)
+        }
+        else if (Model.payDetails.paymentDescription == "Credit Note")
+        {
+        <div class="form-group">
+            @Html.LabelFor(m => m.payDetails.remark1)
+            @if (Model.lstCreditnote.Count > 0)
+            {
+                foreach (var f in Model.lstCreditnote)
+                {
+                    <div class="custom-control custom-radio">
+                        @Html.RadioButton("payDetails.remark1", f.creditNote, new { @class = "custom-control-input", id = "rb_" + f.creditNote })
+                        <label class="custom-control-label" for="rb_@f.creditNote">@f.creditNote [Balance: @f.balance]</label>
+                    </div>
+                }
+            }
+            else
+            {
+                @Html.DropDownListFor(m => m.payDetails.remark1, new SelectList(Model.lstCreditnote, "creditNote", "creditNote"), new { @class = "custom-select form-control-lg" })
+            }
+        </div>
+        @Html.ValidationMessageFor(m => m.payDetails.remark1)
+        <div class="form-group">
+            @Html.LabelFor(m => m.payDetails.remark2)
+            @Html.TextBoxFor(m => m.payDetails.remark2, new { @class = "form-control form-control-lg" })
+        </div>
+        @Html.ValidationMessageFor(m => m.payDetails.remark2)
+        }
+        else if (Model.payDetails.paymentGroup == "CARD")
+        {
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @*Html.Label("Name on Card")<span class="mandatory-text">&nbsp;(Required)</span>*@
+                    @Html.Label(Resources.Resources.NameOnCard)
+                    @Html.TextBoxFor(m => m.payDetails.remark1, new { @class = "form-control form-control-lg" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @*Html.Label("Card Number")<span class="mandatory-text">&nbsp;(Required)</span>*@
+                    @Html.Label(Resources.Resources.CardNumber)
+                    @Html.TextBoxFor(m => m.payDetails.remark2, new { @class = "form-control form-control-lg" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @*Html.Label("Expiry Date")<span class="mandatory-text">&nbsp;(Required)</span>*@
+                    @Html.Label(Resources.Resources.ExpiryDate)
+                    @Html.TextBoxFor(m => m.payDetails.remark3, new { @class = "form-control form-control-lg" })
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @*Html.Label("Security Code")<span class="mandatory-text">&nbsp;(Required)</span>*@
+                    @Html.Label(Resources.Resources.SecurityCode)
+                    @Html.TextBoxFor(m => m.payDetails.remark4, new { @class = "form-control form-control-lg" })
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+        <div class="form-group">
+            @Html.LabelFor(m => m.payDetails.remark1)
+            @Html.DropDownListFor(m => m.payDetails.remark1, new SelectList(Model.lstDiscountReason, "reasonCode", "reasonDesc"), new { @class = "custom-select form-control-lg" })
+        </div>
+        @Html.ValidationMessageFor(m => m.payDetails.remark1)
+        <div class="form-group">
+            @Html.LabelFor(m => m.payDetails.remark2)
+            @Html.TextBoxFor(m => m.payDetails.remark2, new { @class = "form-control form-control-lg" })
+        </div>
+        @Html.ValidationMessageFor(m => m.payDetails.remark2)
+        }

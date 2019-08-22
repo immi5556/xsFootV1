@@ -1,0 +1,58 @@
+﻿<div class="modal-header bg-primary" style="border: 1px solid #B0A478;background-color: #E3D595;">
+    <div class="col-md-12 octCenter">
+        <p style="text-align:center;color:black">Pre - Transaction</p>
+    </div>
+</div>
+<div>
+    <table class="table">
+        <tr>
+
+            <th style="text-align:center">
+                Sno
+            </th>
+            <th style="text-align:center">
+                Item Code
+            </th>
+            <th style="text-align:center">
+                Unit Price
+            </th>
+            <th style="text-align:center">
+                Quantity
+            </th>
+
+            <th></th>
+        </tr>
+
+        @if (ViewContext.Controller.ViewBag.lstPreCartTypeItem != null)
+        {
+            var getlist = ViewContext.Controller.ViewBag.lstPreCartTypeItem as IEnumerable<app.bsms.Models.PreCartTypeItem>;
+            foreach (var x in getlist.ToList())
+            {
+                <tr>
+                    <td style="text-align:center">
+                        @x.Sno
+                    </td>
+                    <td style="text-align:center">
+                        @x.ItemName
+                    </td>
+                    <td style="text-align:center">
+                        @x.itemPrice
+                    </td>
+                    <td style="text-align:center">
+                        @x.Quantity
+                    </td>
+                    <td style="text-align:center">
+                        <button type="button" title="Remove Selected Items" OnClientClick="return confirm('Are you sure?')" onclick="DeletePreTransaction(@x.ItemName);" style="border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnDeletePreCart"><i class="fa fa-plus"></i>Remove</button>
+                    </td>
+                    <td></td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+<div style="text-align:right;">
+    <a href="~/Addtocart/cart">
+        <P style="text-align:right; border: 1px solid #B0A478;background-color: #E3D595;color:black" class="btn btn-primary btn-embossed" id="btnSales">CheckOut</P>
+    </a>
+</div>

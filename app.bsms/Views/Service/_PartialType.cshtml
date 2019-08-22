@@ -1,0 +1,15 @@
+﻿@model app.bsms.Models.Catelogue.Catelogue
+
+@foreach (var item in Model.lstRanges)
+{
+    <div class="col-md-3 col-sm-auto col-lg-3">
+        <div class="card">
+            
+            <div class="card-body">
+                <h5 class="card-title">@item.rangeName</h5>
+                @*<p class="card-text"></p>*@
+                <button class="btn btn-primary btn-block" data-fun="itemtype" data-type="@Model.type" data-code="@item.rangeCode">Select</button>
+            </div>
+        </div>
+    </div>
+}

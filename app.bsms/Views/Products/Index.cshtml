@@ -1,0 +1,126 @@
+﻿@model IEnumerable<app.bsms.Models.Manage.Service.Products>
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Accounts/Index/@ViewBag.customerCode">@Resources.Resources.Accounts</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Products</li>
+    </ol>
+</nav>
+<div class="clearfix">&nbsp;</div>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="~/Accounts/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon-Account.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon-Account.png" width="120" height="120"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="~/Products/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Product.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Product.png" width="120" height="120"  class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/Prepaid/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Prepaid.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Prepaid.png" width="120" height="120"  class="img-fluid rotatingimg"/>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/CreditNote/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Credit Note.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Credit Note.png" width="120" height="120" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="~/Voucher/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Voucher.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Voucher.png" width="120" height="120" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        @if (Model != null)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-0-5 text-center">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBox("check-all-item", new { @class = "custom-control-input" })
+                            <label for="check-all-item" class="custom-control-label">&nbsp;</label>
+                        </div>
+                    </div>
+                    <div class="col-1-5 text-center">@Resources.Resources.TransactionDate</div>
+                    <div class="col-3">@Resources.Resources.Description</div>
+                    <div class="col-2 text-center">@Resources.Resources.TransactionNumber</div>
+                    <div class="col-2 text-center">@Resources.Resources.InvoiceNumber</div>
+                    <div class="col-2 text-center">@Resources.Resources.TreatmentCode</div>
+                    <div class="col-1 text-center">@Resources.Resources.Actions</div>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+                <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                    <div class="row">
+                        <div class="col-0-5 text-center">
+                            <div class="custom-control custom-checkbox">
+                                @Html.CheckBox("check-item", new { @class = "custom-control-input", id = "chk-" + item.treatmentCode })
+                                <label for="chk-@item.treatmentCode" class="custom-control-label">&nbsp;</label>
+                            </div>
+                        </div>
+                        <div class="col-1-5">@item.transactionDate.ToString("dd-MMM-yyyy")</div>
+                        <div class="col-3">@item.itemDescription<br />
+                            Barcode - @item.itemBarcode |  Package - @item.isPackage
+                        </div>
+                        <div class="col-2 text-center">@item.transactionNumber</div>
+                        <div class="col-2 text-center">@item.invoiceNumber</div>
+                        <div class="col-2 text-center">@item.treatmentCode</div>
+                        <div class="col-1 text-center">
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#@item.lineNumber" aria-expanded="false" aria-controls="@item.lineNumber">
+                                Hold Items
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="@item.lineNumber">
+                    <div class="card card-body">          
+                        <div class="row">
+                            <div class="col-2">Item Code</div>
+                            <div class="col-4">Item Name</div>
+                            <div class="col-1-5 text-center">Hold Item Qty</div>
+                            <div class="col-1-5 text-center">Item Price</div>
+                            <div class="col-1-5 text-center">Amount</div>
+                            <div class="col-1-5 text-center">Staff</div>
+                        </div>      
+                        @if (item.holdItems != null)
+                        {
+                            foreach (var h in item.holdItems)
+                            {
+                                <div class="row">
+                                    <div class="col-2">@h.itemCode</div>
+                                    <div class="col-4">@h.itemName</div>
+                                    <div class="col-1-5 text-center">@h.holdItemQty</div>
+                                    <div class="col-1-5 text-center">@h.itemPrice</div>
+                                    <div class="col-1-5 text-center">@h.amount</div>
+                                    <div class="col-1-5 text-center">@h.staffCode</div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="btn-group btn-group-lg" role="group">
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="product-details">@Resources.Resources.Details</button>
+    <button type="button" class="btn btn-primary" data-ref="@ViewBag.customerCode" data-mode="product-topup">@Resources.Resources.TopUp</button>
+</div>

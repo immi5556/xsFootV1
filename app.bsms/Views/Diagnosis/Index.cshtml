@@ -1,0 +1,156 @@
+﻿@model app.bsms.Models.Manage.Measurements.Diagnosis
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Diagnosis</li>
+    </ol>
+</nav>
+<div class="clearfix">&nbsp;</div>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="~/Redemption/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Service Redemption.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Service Redemption.png" width="120" height="120"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="~/History/Treatment/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Treatment History.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Treatment History.png" width="120" height="120"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item" style="display:none">
+        <a class="nav-link active" href="~/Diagnosis/Index/@ViewBag.customerCode">
+            @*<img src="~/img/MenuButton/otc2/Octagon Diagnosis.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Diagnosis.png" width="120" height="120"  class="img-fluid rotatingimg" />
+        </a>
+    </li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            @Html.LabelFor(m => m.dateCaptured)
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.dateCaptured, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </div>
+        @Html.ValidationMessageFor(m => m.dateCaptured)
+    </div>
+    <div class="col">
+        <div class="form-group">
+            @Html.LabelFor(m => m.treatmentCode)
+            @Html.DropDownListFor(m => m.treatmentCode, new SelectList(Model.treatments, "treatmentCode", "treatmentDescription"), new { @class = "custom-select form-control-lg" })
+        </div>
+        @Html.ValidationMessageFor(m => m.treatmentCode)
+    </div>
+</div>
+<div class="card-columns">
+    <div class="card text-center">
+        <div class="card-header">@Resources.Resources.Forehead</div>
+        <img src="~/images/no-image.png" alt="profile" class="card-img-top" />
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-header">@Resources.Resources.Eye</div>
+        <img src="~/images/no-image.png" alt="profile" class="card-img-top" />
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-header">@Resources.Resources.Nose</div>
+        <img src="~/images/no-image.png" alt="profile" class="card-img-top" />
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-header">@Resources.Resources.LeftCheek</div>
+        <img src="~/images/no-image.png" alt="profile" class="card-img-top" />
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-header">@Resources.Resources.RightCheek</div>
+        <img src="~/images/no-image.png" alt="profile" class="card-img-top" />
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-header">@Resources.Resources.Chin</div>
+        <img src="~/images/no-image.png" alt="profile" class="card-img-top" />
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col-3">
+        <a role="button" href="~/Measurements/Bust" class="btn btn-primary btn-block btn-lg">Bust Measurement</a>
+    </div>
+    <div class="col-3">
+        <a role="button" href="~/Measurements/Body" class="btn btn-primary btn-block btn-lg">Body Measurement</a>
+    </div>
+    <div class="col-3">
+        <a role="button" href="~/Diagnosis/Skin" class="btn btn-primary btn-block btn-lg">Skin Treatment</a>
+    </div>
+    <div class="col-3">
+        <a role="button" href="~/Diagnosis/Body" class="btn btn-primary btn-block btn-lg">Body Treatment</a>
+    </div>
+</div>

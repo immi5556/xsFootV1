@@ -1,0 +1,141 @@
+﻿@model app.bsms.Models.Account.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+@helper selected(string c, string culture)
+{
+    if (c == culture)
+    {
+        @:checked="checked"
+    }
+}
+<div class="row">
+    <div class="col d-none d-lg-block d-xl-block">
+        <div class="container">
+            <div class="media">
+                <img class="mr-3" src="~/images/landinglogo.png" style="width: 120px; height: 120px;" />
+                @*<img class="mr-3" src="~/images/landinglogo.png" style="width: 150px; height: 150px;" />*@
+                <div class="align-self-center media-body">
+                    <div class="display-4"><strong>@Resources.Resources.BeauteCloud</strong></div>
+                </div>
+            </div>
+            <h3>@Resources.Resources.ContactUs</h3>
+            <div class="row align-self-baseline">
+                <div class="col">
+                    <address>
+                        <strong>@Resources.Resources.Singapore</strong><br>
+                        @Resources.Resources.SG_Add_1<br>
+                        @Resources.Resources.SG_Add_2<br>
+                        @Resources.Resources.SG_Add_3<br>
+                        @Resources.Resources.SG_Add_4<br>
+                        <abbr title="Phone"><i class="fa fa-phone"></i></abbr> @Resources.Resources.SG_Add_5
+                    </address>
+                </div>
+                <div class="col">
+                    <address>
+                        <strong>@Resources.Resources.Malaysia</strong><br>
+                        @Resources.Resources.MY_Add_1<br>
+                        @Resources.Resources.MY_Add_2<br>
+                        @Resources.Resources.MY_Add_3<br>
+                        @Resources.Resources.MY_Add_4<br>
+                        <abbr title="Phone"><i class="fa fa-phone"></i></abbr> @Resources.Resources.MY_Add_5
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="container">
+            <div class="row grid-row">
+                <div class="text-center">
+                    <img class="mr-3" src="~/images/landinglogo.png" style="width: 120px; height: 120px;" />
+                    @*<img src="~/images/loginlogo.jpg" class="img-responsive" />*@
+                </div>
+            </div>
+    @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { id = "frmLang" }))
+    {
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" name="culture" id="en-us" value="en-us" class="custom-control-input" @selected("en-us", culture) onchange="this.form.submit();" />
+            <label class="custom-control-label" for="en-us">English</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline"  style="display:none">
+            <input type="radio" name="culture" id="zh-cn" value="zh-cn" class="custom-control-input" @selected("zh-cn", culture) onchange="this.form.submit();" />
+            <label class="custom-control-label" for="zh-cn">Chinese</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" name="culture" id="ru" value="ru" class="custom-control-input" @selected("ru", culture) onchange="this.form.submit();" />
+            <label class="custom-control-label" for="ru">Russian</label>
+        </div>
+        <div class="h-25">&nbsp;</div>
+    }
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "frmLogin" }))
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.Raw(@TempData["Message"])
+                    <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control no-left-radius", placeholder = @Resources.Resources.Username })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                    <div class="form-group">
+                                <div class="input-group input-group-lg" id="show_hide_password">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control no-right-radius no-left-radius", placeholder = @Resources.Resources.Password })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i id="pishowhide" class="fa fa-eye-slash"></i></span>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <div class="form-group">
+                                <div class="input-group input-group-lg" id="show_hide_clientcode">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-building"></i></span>
+                                    </div>
+                                    @Html.PasswordFor(m => m.ClientCode, new { @class = "form-control no-right-radius no-left-radius", placeholder = @Resources.Resources.Locale })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i id="clishowhide" class="fa fa-eye-slash"></i></span>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.ClientCode)
+                    </div>
+                    <div class="form-group">
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">@Resources.Resources.Login</button>
+                    </div>
+                    <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                                    @Html.LabelFor(m => m.RememberMe, @Resources.Resources.RememberMe, new { @class = "custom-control-label text-lg-left" })
+                                </div>
+                            <div class="col-sm-6">
+                                <a href="~/Account/ForgotPassword" class="btn btn-link btn-lg float-left">@Resources.Resources.ForgotPassword</a>
+                            </div>
+                    </div>
+                }
+                            <div class="form-group" style="display:none">
+                                <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                                    <a href="https://twitter.com/redlinsk4u" class="btn btn-link btn-lg"><i class="fa fa-twitter fa-2x"></i></a>
+                                    <a href="https://linkedin.com/rathrollapremkumar" class="btn btn-link btn-lg"><i class="fa fa-linkedin fa-2x"></i></a>
+                                    <a href="https://gmail.com/redlinsk4u" class="btn btn-link btn-lg"><i class="fa fa-google fa-2x"></i></a>
+                                    <a href="https://youtube.com/redlinsk4u" class="btn btn-link btn-lg"><i class="fa fa-youtube fa-2x"></i></a>
+                                    <a href="https://facebook.com/redlinsk4u" class="btn btn-link btn-lg"><i class="fa fa-facebook-f fa-2x"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>

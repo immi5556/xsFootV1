@@ -1,0 +1,346 @@
+﻿@model app.bsms.Models.Sales.Invoice
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/BillOps/Index">@Resources.Resources.Billing</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Invoice</li>
+    </ol>
+</nav>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="invoice-tab" data-toggle="tab" href="#invoice" role="tab" aria-controls="invoice" aria-selected="true">Transaction Void</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="receipt-tab" data-toggle="tab" href="#receipt" role="tab" aria-controls="receipt" aria-selected="false">Receipt</a>
+    </li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="invoice" role="tabpanel" aria-labelledby="invoice-tab">
+        <section class="card">
+            <div id="invoice-template" class="card-body">
+                <!-- Invoice Company Details -->
+                <div id="invoice-company-details" class="row">
+                    <div class="col-md-6 col-sm-12 text-center text-md-left">
+                        <div class="media">
+                            <img src="@Model.clientLogo" alt="company logo" class="">
+                            <div class="media-body">
+                                <ul class="ml-2 px-0 list-unstyled">
+                                    <li class="text-bold-800">@Model.siteHeader</li>
+                                    <li>@Model.siteAddress</li>
+                                    <li>@Model.companyRegNo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center text-md-right">
+                        <h2>@Model.transactionNumberTitle</h2>
+                        <p class="pb-3"># @Model.invoiceNumber</p>
+                        <ul class="px-0 list-unstyled">
+                            <li>Date:&nbsp;<span class="lead text-bold-800">@Model.salesDate.ToString("dd MMM yyyy")</span></li>
+                            <li>Time:&nbsp;<span class="lead text-bold-800">@Model.salesTime.ToString("hh:mm:ss")</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/ Invoice Company Details -->
+                <!-- Invoice Customer Details -->
+                <div id="invoice-customer-details" class="row pt-2">
+                    <div class="col-sm-12 text-center text-md-left">
+                        <p class="text-muted">Bill To</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center text-md-left">
+                        <ul class="px-0 list-unstyled">
+                            <li class="text-bold-800">@Model.customerName / @Model.customerCode</li>
+                            <li><i class="fa fa-phone">&nbsp;</i>@Model.phoneNumber</li>
+                        </ul>
+                        <ul class="px-0 list-unstyled">
+                            <li class="float-left">Available point(s):&nbsp;<span class="lead text-bold-800">@(Model.previousPts == null ? "0" : Model.previousPts)&nbsp;&nbsp;</span></li>
+                            <li class="float-left">Point(s) earned:&nbsp;<span class="lead text-bold-800">@(Model.earnPts == null ? "0" : Model.earnPts)&nbsp;&nbsp;</span></li>
+                            <li class="float-left">Point(s) used:&nbsp;<span class="lead text-bold-800">@(Model.usedPts == null ? "0" : Model.usedPts)&nbsp;&nbsp;</span></li>
+                            <li class="float-left">Remaining:&nbsp;<span class="lead text-bold-800">@(Model.totalBalance == null ? "0" : Model.totalBalance)&nbsp;&nbsp;</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center text-md-right">
+                        <p>
+                            <span class="text-muted">GST Reg. No.:</span>&nbsp;@Model.companyRegNo
+                        </p>
+                        <p>
+                            <span class="text-muted">Issued:</span>&nbsp;@Model.staffName
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div id="invoice-items-details" class="pt-2">
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Item &amp; Description</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Net Price</th>
+                                        <th class="text-right">Paid</th>
+                                        <th class="text-right">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.invoiceDetails)
+                                    {
+                                        <tr>
+                                            <th scope="row">@item.lineNumber</th>
+                                            <td>
+                                                <p>@item.itemDescription</p>
+                                                <p class="text-muted">@item.itemCode</p>
+                                            </td>
+                                            <td class="text-right">@item.qty</td>
+                                            <td class="text-right">@item.netPrice</td>
+                                            <td class="text-right">@item.paid</td>
+                                            <td class="text-right">@item.balance</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <th>Total</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.qty).DefaultIfEmpty(0).Sum()</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.netPrice).DefaultIfEmpty(0).Sum()</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.paid).DefaultIfEmpty(0).Sum()</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.balance).DefaultIfEmpty(0).Sum()</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12 text-center text-md-left">
+                            @foreach (var item in Model.GSTdetails)
+                            {
+                            <ul class="px-0 list-unstyled">
+                                <li class="float-left"><span class="lead text-bold-800">GST Summary:&nbsp;&nbsp;</span></li>
+                                <li class="float-left">Amount:&nbsp;<span class="lead text-bold-800">@item.beforeTaxAmount&nbsp;&nbsp;</span></li>
+                                <li class="float-left">Tax:&nbsp;<span class="lead text-bold-800">@item.taxAmount&nbsp;&nbsp;</span></li>
+                            </ul>
+                            }
+                        </div>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12 text-center text-md-left">
+                            <p class="lead">Payment Details:</p>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <table class="table table-borderless table-sm">
+                                        <tbody>
+                                            @foreach (var item in Model.paymentDetails)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <p>@item.payDescription</p>
+                                                        <p class="text-muted">@item.payRemarks</p>
+                                                    </td>
+                                                    <td class="text-right">@item.payActualAmount</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Remarks</h6>
+                                    <p>@Model.transactionRemarks</p>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-md-5 col-sm-12">
+                            <p class="lead">Total due</p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Sub Total</td>
+                                            <td class="text-right">$ 14,900.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TAX (12%)</td>
+                                            <td class="text-right">$ 1,788.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-bold-800">Total</td>
+                                            <td class="text-bold-800 text-right"> $ 16,688.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Made</td>
+                                            <td class="pink text-right">(-) $ 4,688.00</td>
+                                        </tr>
+                                        <tr class="bg-grey bg-lighten-4">
+                                            <td class="text-bold-800">Balance Due</td>
+                                            <td class="text-bold-800 text-right">$ 12,000.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center">
+                                <p>Authorized person</p>
+                                <img src="../../../app-assets/images/pages/signature-scan.png" alt="signature" class="height-100">
+                                <h6>Amanda Orton</h6>
+                                <p class="text-muted">Managing Director</p>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-8">&nbsp;</div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <img src="@Model.customerSignature" alt="" class="height-100">
+                            <h6>@Model.customerName</h6>
+                            <p class="text-muted">Customer Signature</p>
+                        </div>
+                    </div>
+                </div>
+                @*<!-- Invoice Footer -->
+                <div id="invoice-footer">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12">
+                            <h6>Terms &amp; Condition</h6>
+                            <p>
+                                You know, being a test pilot isn't always the healthiest business
+                                in the world. We predict too much for the next year and yet far
+                                too little for the next 10.
+                            </p>
+                        </div>
+                        <div class="col-md-5 col-sm-12 text-center">
+                            <button type="button" class="btn btn-primary btn-lg my-1"><i class="fa fa-paper-plane-o"></i> Send Invoice</button>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Invoice Footer -->*@
+            </div>
+        </section>
+    </div>
+    <div class="tab-pane fade" id="receipt" role="tabpanel" aria-labelledby="receipt-tab">
+        <section class="card">
+            <div id="receipt-template" class="card-body">
+                <!-- Invoice Company Details -->
+                <div id="invoice-company-details" class="row">
+                    <div class="col-md-6 col-sm-12 text-center text-md-left">
+                        <div class="media">
+                            <img src="@Model.clientLogo" alt="company logo" class="">
+                            <div class="media-body">
+                                <ul class="ml-2 px-0 list-unstyled">
+                                    <li class="text-bold-800">@Model.siteHeader</li>
+                                    <li>@Model.siteAddress</li>
+                                    <li>@Model.companyRegNo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Invoice Company Details -->
+                <!-- Invoice Customer Details -->
+                <div id="invoice-customer-details" class="row pt-2">
+                    <div class="col-md-6 col-sm-12 text-center text-md-left">
+                        <p>
+                            <span class="text-muted">Client:</span>&nbsp;@Model.customerName / @Model.customerCode
+                        </p>
+                        <p>
+                            <span class="text-muted">Staff:</span>&nbsp;@Model.staffName
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center text-md-right">
+                        <p>
+                            <span class="text-muted">Receipt #:</span>&nbsp;
+                        </p>
+                        <p>
+                            <span class="text-muted">Date:</span>&nbsp;@Model.salesDate.ToString("dd MMM yyyy")
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div id="invoice-items-details" class="pt-2">
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice</th>
+                                        <th class="text-right">Invoice Amount</th>
+                                        <th class="text-right">Amount</th>
+                                        <th class="text-right">Payment Mode</th>
+                                        <th class="text-right">Total Paid</th>
+                                        <th class="text-right">Outstanding</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">@Model.invoiceNumber</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.netPrice).DefaultIfEmpty(0).Sum()</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.netPrice).DefaultIfEmpty(0).Sum()</th>
+                                        <th>
+                                            @foreach (var item in Model.paymentDetails)
+                                            {
+                                                <p class="text-muted">@item.payDescription</p>
+                                            }
+                                        </th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.paid).DefaultIfEmpty(0).Sum()</th>
+                                        <th class="text-right">@Model.invoiceDetails.Select(f => f.balance).DefaultIfEmpty(0).Sum()</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-4">&nbsp;</div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="height-100">&nbsp;</div>
+                            <hr/>
+                            <h6>@Model.staffName</h6>
+                            <p class="text-muted">Authorized Signature</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <img src="@Model.customerSignature" alt="" class="height-100">
+                            <hr />
+                            <h6>@Model.customerName</h6>
+                            <p class="text-muted">Customer Signature</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col">
+        <div class="btn-group btn-group-lg btn-block">
+            <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="print" data-target="invoice">Print Invoice</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+                <a role="button" class="dropdown-item dropdown-item-lg" href="#" data-toggle="email" data-url="/Payment/SendEMail" data-content="invoice" data-target="@Model.customerEmail" data-subject="@Model.invoiceNumber">Send e-Mail</a>                
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="print" data-target="receipt">Print Receipt</button>
+    </div>
+    <div class="col">
+        <div class="btn-group btn-group-lg btn-block">
+            <a role="button" class="btn btn-primary btn-block btn-lg" href="~/Dashboard/Index">@Resources.Resources.ReturnHome</a>
+        </div>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>

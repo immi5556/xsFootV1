@@ -1,0 +1,275 @@
+﻿@model app.bsms.Models.Catelogue.Catelogue
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Catalog</li>
+    </ol>
+</nav>
+<script type="text/javascript">
+    function toggleContent() {
+        var contentid = document.getElementById("content1");
+        contentid.style.display == "block" ? contentid.style.display = "none" : contentid.style.display = "block";
+        var contentid1 = document.getElementById("content2");
+        contentid1.style.display == "block" ? contentid1.style.display = "none" : contentid1.style.display = "block";
+    }
+</script>
+@*display the product*@
+<div id="content1" class="row" style="display: none;">
+    <div class="row">
+        <div class="col-md-2 col-sm-auto col-lg-2">
+
+            <label for="txtsearchitems">Search items :</label>
+
+        </div>
+
+        <div class="col-md-2  col-lg-2">
+
+            <input type="text" value="" class="form-control live-search-box" id="txtsearchitems1">
+
+        </div>
+        <div class="form-group">
+            <div class="modal-body">
+
+                <ul class="list-group list-group-flush live-search-list">
+
+                    @foreach (var item in Model.lstBrands)
+                    {
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-6">
+                                    @item.brandName
+                                </div>
+                                <div class="col-6 justify-content-center align-items-center">
+                                    <button class="btn btn-primary btn-block" data-fun="range" data-type="product" data-code="@item.brandCode">Select</button>
+                                </div>
+
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@*display the product*@
+
+@*display the service*@
+<div id="content2" class="row" style="display: block;">
+    <div class="row">
+        <div class="col-md-2 col-sm-auto col-lg-2">
+
+            <label for="txtsearchitems">Search items :</label>
+
+        </div>
+
+        <div class="col-md-2  col-lg-2">
+
+            <input type="text" class="form-control" id="txtsearchitems" onkeyup="searchServiceTypes()">
+
+
+        </div>
+        <div class="col-md-2  col-lg-2">
+
+            <input type="button" value="Go" class="form-control" id="btnmysearchitems">
+
+
+        </div>
+        @*<div class="form-group">
+            <div class="modal-body">
+
+                <ul class="list-group list-group-flush live-search-list">
+
+                    @foreach (var item in Model.lstServices)
+                    //var item in Model.lstServices
+                    {
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-6">
+
+                                    @item.departmentName
+                                </div>
+                                <div class="col-6 justify-content-center align-items-center">
+                                    <button type="button" class="btn btn-lg btn-block btn-primary" data-name="@item.departmentCode" data-value="@item.departmentCode" id="btnitems" onclick="showServiceTypes(@item.departmentCode)">
+                                        @Resources.Resources.Apply
+                                    </button>
+                                </div>
+
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>*@
+    </div>
+</div>
+@*display the service*@
+
+@*<script type="text/javascript">
+            $(document).ready(function () {
+                $("img.image-selector").click(function () {
+                    alert($(this).attr("entity_id"));
+                });
+            });
+    </script>*@
+
+
+
+
+
+<div class="clearfix">&nbsp;</div>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services" aria-selected="true">
+            @*<img src="~/img/MenuButton/otc2/Octagon Services.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Services.png" width="120" height="120" class="img-fluid rotatingimg" id="imgserv" onclick="toggleContent()" />
+        </a>
+
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="false">
+            @*<img src="~/img/MenuButton/otc2/Octagon Product.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Product.png" width="120" height="120" class="img-fluid rotatingimg" id="imgprod" onclick="toggleContent()" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="voucher-tab" data-toggle="tab" href="#voucher" role="tab" aria-controls="voucher" aria-selected="false">
+            @*<img src="~/img/MenuButton/otc2/Octagon Voucher.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Voucher.png" width="120" height="120" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="prepaid-tab" data-toggle="tab" href="#prepaid" role="tab" aria-controls="prepaid" aria-selected="false">
+            @*<img src="~/img/MenuButton/otc2/Octagon Prepaid.png" width="200" height="200" />*@
+            <img src="~/img/MenuButton/otc2/Octagon Prepaid.png" width="120" height="120" class="img-fluid rotatingimg" />
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="h-25">&nbsp;</div>
+    <div class="tab-pane fade show active" id="services" role="tabpanel" aria-labelledby="services-tab">
+
+
+        <div class="row">
+            @foreach (var item in Model.lstServices)
+            {
+                <div class="col-md-3 col-sm-auto col-lg-3">
+                    <div class="card">
+                        <img class="card-img-top" src="@item.departmentPic" onerror="this.src = '/images/no-image.png'" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.departmentName</h5>
+                            <button class="btn btn-primary btn-block" onclick="showServiceTypes(@item.departmentCode)">Select</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.ServiceTypes</h4>
+            <hr />
+            <div class="row" id="divServiceType"></div>
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.ServiceItems</h4>
+            <hr />
+            <div class="row">
+                <div class="col-12" id="divServiceItemType"></div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+
+        <div class="row">
+            @foreach (var item in Model.lstBrands)
+            {
+                <div class="col-md-3 col-sm-auto col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.brandName</h5>
+                            @*<p class="card-text"></p>*@
+                            <button class="btn btn-primary btn-block" data-fun="range" data-type="product" data-code="@item.brandCode">Select</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.Ranges</h4>
+            <hr />
+            <div class="row" id="divproductRange"></div>
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.ProductItems</h4>
+            <hr />
+            <div class="row" id="divproductItemType"></div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="voucher" role="tabpanel" aria-labelledby="voucher-tab">
+        <div class="row">
+            @foreach (var item in Model.lstVouchers)
+            {
+                <div class="col-md-3 col-sm-auto col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.brandName</h5>
+                            @*<p class="card-text"></p>*@
+                            <button class="btn btn-primary btn-block" data-fun="range" data-type="voucher" data-code="@item.brandCode">Select</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.Ranges</h4>
+            <hr />
+            <div class="row" id="divvoucherRange"></div>
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.ProductItems</h4>
+            <hr />
+            <div class="row" id="divvoucherItemType"></div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="prepaid" role="tabpanel" aria-labelledby="prepaid-tab">
+        <div class="row">
+            @foreach (var item in Model.lstPrepaids)
+            {
+                <div class="col-md-3 col-sm-auto col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.brandName</h5>
+                            @*<p class="card-text"></p>*@
+                            <button class="btn btn-primary btn-block" data-fun="range" data-type="prepaid" data-code="@item.brandCode">Select</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.Ranges</h4>
+            <hr />
+            <div class="row" id="divprepaidRange"></div>
+        </div>
+        <div class="h-25">&nbsp;</div>
+        <div>
+            <h4>@Resources.Resources.ProductItems</h4>
+            <hr />
+            <div class="row" id="divprepaidItemType"></div>
+        </div>
+    </div>
+</div>
+<script>
+    function imgError(img) {
+        img.src = '../images/no-image.png';
+    }
+</script>

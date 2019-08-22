@@ -1,0 +1,22 @@
+﻿@model app.bsms.Models.Catelogue.Catelogue
+
+@foreach (var item in Model.lstServiceTypes)
+{
+    <div class="col-md-3 col-sm-auto col-lg-3">
+        <div class="card">
+            @if (item.serviceTypePic == null)
+            {
+                <img class="card-img-top" src="~/images/no-image.png" />
+            }
+            else
+            {
+                <img class="card-img-top" src="@item.serviceTypePic" />
+            }
+            <div class="card-body">
+                <h5 class="card-title">@item.serviceTypeName</h5>
+                @*<p class="card-text"></p>*@
+                <button class="btn btn-primary btn-block" onclick="showServiceItemTypes(@item.serviceTypeCode)">Select</button>
+            </div>
+        </div>
+    </div>
+}

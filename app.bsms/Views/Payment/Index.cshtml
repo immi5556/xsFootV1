@@ -1,0 +1,186 @@
+﻿@model app.bsms.Models.Sales.Cart
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Service/Index">@Resources.Resources.Catalog</a></li>
+        <li class="breadcrumb-item"><a href="~/Cart/Index@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? "/" + Model.cart.cartToken : string.Empty)">@Resources.Resources.Cart</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Payments</li>
+    </ol>
+</nav>
+
+@Html.Raw(@TempData["Message"])
+<div class="row">
+    <div class="col-9">
+        @if (Model.paymentTypes != null)
+        {
+            var gtGroup = Model.paymentTypes.GroupBy(f => f.GTGroup).Select(f => new app.bsms.Models.Sales.PaymentType { GTGroup = f.Key }).ToList();
+            <ul class="nav nav-pills nav-justified" id="paymentTab" role="tablist">
+                @foreach (var item in gtGroup)
+                {
+                    <li class="nav-item">
+                        @*<a class="nav-link" id="@item.GTGroup-tab" data-toggle="tab" href="#@item.GTGroup" role="tab" aria-controls="@item.GTGroup" aria-selected="true">@item.GTGroup</a>*@
+                        <a class="nav-link" id="@item.GTGroup-tab" data-toggle="tab" href="#@item.GTGroup" role="tab" aria-controls="@item.GTGroup" aria-selected="true">@item.GTGroup</a>
+                    </li>
+                }
+            </ul>
+            <div class="tab-content" id="paymentContent">
+                <div class="clearfix">&nbsp;</div>
+                @foreach (var item in gtGroup)
+                {
+                    <div class="tab-pane fade show" id="@item.GTGroup" role="tabpanel" aria-labelledby="@item.GTGroup-tab">
+                        @{
+                            var payGroup = Model.paymentTypes.Where(f => f.GTGroup == item.GTGroup).GroupBy(f => new { f.payCode, f.payGroup, f.payDescription }).Select(f => new app.bsms.Models.Sales.PaymentType { payCode = f.Key.payCode, payGroup = f.Key.payGroup, payDescription = f.Key.payDescription }).ToList();
+                        }
+                        <div class="card-columns">
+                            @foreach (var grp in payGroup)
+                            {
+                                <div class="card">
+                                    <div class="card-body">
+                                        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#mdlTrans" data-url="/Payment/GetItem" data-value="@grp.payGroup" data-code="@grp.payCode">@grp.payDescription</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="col-3">
+        <section>
+            <h4>@Resources.Resources.OrderSummary</h4>
+            <hr />
+            @if (Model.cart != null)
+            {
+                <div class="row">
+                    <div class="col-7 text-nowrap">@Resources.Resources.TotalAmount</div>
+                    <div class="col-5 text-right">@(Model.cart.transactionDetails.Sum(f => f.itemAmount) + Model.cart.transactionDetails.Sum(f => f.unitDiscount))</div>
+                </div>
+                <div class="row">
+                    <div class="col-7 text-nowrap">@Resources.Resources.Discount</div>
+                    <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.unitDiscount)</div>
+                </div>
+                <div class="row">
+                    <div class="col-7 text-nowrap">@Resources.Resources.Deposit</div>
+                    <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.depositAmount)</div>
+                </div>
+                <div class="row">
+                    <div class="col-7 text-nowrap">@Resources.Resources.TransactionAmount</div>
+                    <div class="col-5 text-right">@Model.cart.transactionAmount</div>
+                </div>
+                <div class="row">
+                    <div class="col-7 text-nowrap">@Resources.Resources.Outstanding</div>
+                    <div class="col-5 text-right">@Model.cart.outstandingAmount</div>
+                </div>
+                <div class="row">
+                    <div class="col-7 text-nowrap">@Resources.Resources.TotalGST</div>
+                    <div class="col-5 text-right">@Model.cart.transactionDetails.Sum(f => f.gstAmountCollected)</div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="mdlTrans" tabindex="-1" role="dialog" aria-labelledby="mdlTrans" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("Update", "Payment", FormMethod.Post, new { name = "frmPayMode", id = "frmPayMode", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.Raw(@TempData["PopMessage"])
+                @Html.HiddenFor(m => m.cart.cartToken)
+                <div class="modal-body">
+                    <div id="divContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-flat btn-lg" data-dismiss="modal" data-mode="cancel"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-lg" data-mode="pay"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+    <div class="col-9 table-responsive">
+        @if (Model.cart.payDetails != null)
+        {
+            foreach (var det in Model.cart.payDetails)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="card-title">
+                                    <strong>@det.paymentDescription</strong>
+                                    <button type="button" class="btn btn-primary btn-lg pull-right" data-url="/Payment/Delete" data-mode="deletePayment" data-value="@(Model.cart.cartToken != null && Model.cart.cartToken != string.Empty ? Model.cart.cartToken : string.Empty)" data-code="@det.paymentGroup">@Resources.Resources.Delete</button>
+                                </div>
+                                <h6 class="card-subtitle mb-2 text-muted">@det.paymentGroup</h6>
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row">
+                            <div class="col text-center"><b>@Resources.Resources.TenderAmount</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.Reason</b></div>
+                            <div class="col text-center"><b>@Resources.Resources.Remarks</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">@det.payCurrency @det.paymentAmount</div>
+                            <div class="col text-center">@det.remark1</div>
+                            <div class="col text-center">@det.remark2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+            }
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm("Index", "Payment", FormMethod.Post, new { name = "frmPayment", id = "frmPayment", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.cart.staffCode)
+    @Html.HiddenFor(m => m.cart.siteCode)
+    @Html.HiddenFor(m => m.cart.staffName)
+    @Html.HiddenFor(m => m.cart.customerCode)
+    @Html.HiddenFor(m => m.cart.customerName)
+    @Html.HiddenFor(m => m.cart.salesType)
+    @Html.HiddenFor(m => m.cart.salesStatus)
+    @Html.HiddenFor(m => m.cart.userID)
+    @Html.HiddenFor(m => m.cart.cartToken)
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary btn-block btn-lg" value="Proceed" name="Proceed">@Resources.Resources.Proceed</button>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary btn-block btn-lg" value="Cancel" name="Cancel">@Resources.Resources.Cancel</button>
+        </div>
+    </div>
+}
+@*<script type="text/javascript">
+       $(document).ready(function() {
+        alert('test');
+    });
+    </script>*@
+@*@<script type="text/javascript">
+    $(document).ready(function () {
+
+        alert("hi");
+    });
+    </script>*@
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(document).ready(function () {       
+        $("#GT1-tab").tab('show');
+    });
+</script>

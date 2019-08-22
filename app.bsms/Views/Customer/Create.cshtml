@@ -1,0 +1,527 @@
+﻿@model app.bsms.Models.Manage.Customer.Register
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.AddNewCustomer</li>
+    </ol>
+</nav>
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    @Html.HiddenFor(m => m.siteCode)
+    @Html.HiddenFor(m => m.customerCode)
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="hdPersonal">
+                <h5 class="mb-0 text-dark" data-toggle="collapse" data-target="#collapsePersonal" aria-expanded="true" aria-controls="collapsePersonal">
+                    @Resources.Resources.PersonalDetails
+                </h5>
+            </div>
+            <div id="collapsePersonal" class="collapse show" aria-labelledby="hdPersonal">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.joinedDate)
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.joinedDate, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.joinedDate)
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.referenceCode)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        @Html.TextBoxFor(m => m.referenceCode, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.referenceCode)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.customerName)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                @Html.DropDownListFor(m => m.salutation, new SelectList(Model.lstSalutation, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                            </div>
+                                            @Html.TextBoxFor(m => m.customerName, new { @class = "form-control form-control-lg" })
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.salutation)
+                                    @Html.ValidationMessageFor(m => m.customerName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.email)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        @Html.TextBoxFor(m => m.email, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.email)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.nric)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        @Html.TextBoxFor(m => m.nric, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.nric)
+                                </div>
+                                <div class="col">
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(m => m.nationality)
+                                        @Html.DropDownListFor(m => m.nationality, new SelectList(Model.lstNationality, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.nationality)*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.nationalityCode)
+                                        @Html.DropDownListFor(m => m.nationalityCode, new SelectList(Model.lstNationality, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.nationalityCode)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(m => m.customerClass)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        @Html.DropDownListFor(m => m.customerClass, new SelectList(Model.lstCustomerClass, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.customerClass)*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.classCode)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        @Html.DropDownListFor(m => m.classCode, new SelectList(Model.lstCustomerClass, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.classCode)
+                                </div>
+                                <div class="col">
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(m => m.gender)
+                                        @Html.DropDownListFor(m => m.gender, new SelectList(Model.lstGender, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.gender)*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.genderCode)
+                                        @Html.DropDownListFor(m => m.genderCode, new SelectList(Model.lstGender, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.genderCode)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.mobile1)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                        @Html.TextBoxFor(m => m.mobile1, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.mobile1)
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.phoneNumber)
+                                        @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.phoneNumber)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.dateOfBirth)
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.dateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.dateOfBirth)
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.source)
+                                        @Html.DropDownListFor(m => m.source, new SelectList(Model.lstSource, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.source)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="~/images/no-image.png" alt="profile" class="img-fluid" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCapture"><i class="fa fa-camera"></i>&nbsp;Capture</button>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#mdlFileUpload"><i class="fa fa-upload"></i>&nbsp;File Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="hdInformation">
+                <h5 class="mb-0 text-dark" data-toggle="collapse" data-target="#collapseInformation" aria-expanded="true" aria-controls="collapseInformation">
+                    @Resources.Resources.InformationDetails
+                </h5>
+            </div>
+            <div id="collapseInformation" class="collapse" aria-labelledby="hdInformation">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.accountCode)
+                                @Html.TextBoxFor(m => m.accountCode, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.accountCode)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.customerType)
+                                @Html.DropDownListFor(m => m.customerType, new SelectList(Model.lstCustomerType, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.customerType)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.location)
+                                @Html.DropDownListFor(m => m.location, new SelectList(Model.lstLocation, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.location)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.group1)
+                                @Html.DropDownListFor(m => m.group1, new SelectList(Model.lstcustomerGroup1, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.group1)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.group2)
+                                @Html.DropDownListFor(m => m.group2, new SelectList(Model.lstcustomerGroup2, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.group2)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.group3)
+                                @Html.DropDownListFor(m => m.group3, new SelectList(Model.lstcustomerGroup3, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.group3)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.skinType)
+                                @Html.DropDownListFor(m => m.skinType, new SelectList(Model.lstSkinType, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.skinType)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.weight)
+                                @Html.TextBoxFor(m => m.weight, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.weight)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.height)
+                                @Html.TextBoxFor(m => m.height, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.height)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.consultant)
+                                @Html.DropDownListFor(m => m.consultant, new SelectList(Model.lstConsultant, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.consultant)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.therapist)
+                                @Html.DropDownListFor(m => m.therapist, new SelectList(Model.lstTherapist, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.therapist)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="hdOthers">
+                <h5 class="mb-0 text-dark" data-toggle="collapse" data-target="#collapseOthers" aria-expanded="true" aria-controls="collapseOthers">
+                    @Resources.Resources.OtherDetails
+                </h5>
+            </div>
+            <div id="collapseOthers" class="collapse" aria-labelledby="hdOthers">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.address1)
+                                @Html.TextBoxFor(m => m.address1, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.address1)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.address2)
+                                @Html.TextBoxFor(m => m.address2, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.address2)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.address3)
+                                @Html.TextBoxFor(m => m.address3, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.address3)
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.address4)
+                                        @Html.TextBoxFor(m => m.address4, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.address4)
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.zip)
+                                        @Html.TextBoxFor(m => m.zip, new { @class = "form-control form-control-lg" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.zip)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.city)
+                                @Html.TextBoxFor(m => m.city, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.city)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.state)
+                                @Html.DropDownListFor(m => m.state, new SelectList(Model.lstState, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.state)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.country)
+                                @Html.DropDownListFor(m => m.country, new SelectList(Model.lstCountry, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.country)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.mobile2)
+                                @Html.TextBoxFor(m => m.mobile2, new { @class = "form-control form-control-lg", placeholder = @Resources.Resources.Mobile2 })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.mobile2)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ageGroup)
+                                @Html.DropDownListFor(m => m.ageGroup, new SelectList(Model.lstAgeGroup, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ageGroup)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.race)
+                                @Html.DropDownListFor(m => m.race, new SelectList(Model.lstRace, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.race)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.religion)
+                                @Html.DropDownListFor(m => m.religion, new SelectList(Model.lstReligion, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.religion)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.occupation)
+                                @Html.DropDownListFor(m => m.occupation, new SelectList(Model.lstOccupation, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.occupation)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.salaryRange)
+                                @Html.DropDownListFor(m => m.salaryRange, new SelectList(Model.lstSalaryRange, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.salaryRange)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.phoneOffice)
+                                @Html.TextBoxFor(m => m.phoneOffice, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.phoneOffice)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.maritalStatus)
+                                @Html.DropDownListFor(m => m.maritalStatus, new SelectList(Model.lstMaritalStatus, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.maritalStatus)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.anniversary)
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.anniversary, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.anniversary)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.language)
+                                @Html.DropDownListFor(m => m.language, new SelectList(Model.lstLanguage, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.language)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="hdSupplementary">
+                <h5 class="mb-0 text-dark" data-toggle="collapse" data-target="#collapseSupplementary" aria-expanded="true" aria-controls="collapseSupplementary">
+                    @Resources.Resources.SupplementaryDetails
+                </h5>
+            </div>
+            <div id="collapseSupplementary" class="collapse" aria-labelledby="hdSupplementary">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.supplementaryMemberJoinedDate)
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.supplementaryMemberJoinedDate, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.supplementaryMemberJoinedDate)
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            @Html.CheckBoxFor(m => m.prepaid, new { @class = "custom-control-input" })
+                                            @Html.LabelFor(m => m.prepaid, new { @class = "custom-control-label" })
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.prepaid)
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            @Html.CheckBoxFor(m => m.usageAll, new { @class = "custom-control-input" })
+                                            @Html.LabelFor(m => m.usageAll, new { @class = "custom-control-label" })
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.usageAll)
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.supplementaryMemberCode)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                @Html.TextBoxFor(m => m.supplementaryMemberCode, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.supplementaryMemberCode)
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.supplementaryMemberName)<span class="mandatory-text">&nbsp;(@Resources.Resources.Required)</span>
+                                @Html.TextBoxFor(m => m.supplementaryMemberName, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.supplementaryMemberName)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="hdRemarks">
+                <h5 class="mb-0 text-dark" data-toggle="collapse" data-target="#collapseRemarks" aria-expanded="true" aria-controls="collapseRemarks">
+                    @Resources.Resources.Remarks
+                </h5>
+            </div>
+            <div id="collapseRemarks" class="collapse" aria-labelledby="hdRemarks">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.remarks)
+                                @Html.TextAreaFor(m => m.remarks, new { @class = "form-control form-control-lg" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.remarks)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-25">&nbsp;</div>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary btn-lg mb-2">@Resources.Resources.Save</button>
+            <button type="button" class="btn btn-primary btn-lg mb-2">@Resources.Resources.Clear</button>
+        </div>
+    </div>
+}

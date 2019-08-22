@@ -1,0 +1,24 @@
+﻿@model app.bsms.Models.Sales.Cart
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Service/Index">@Resources.Resources.Catalog</a></li>
+        @*<li class="breadcrumb-item">Catalog</li>*@
+            <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Cart</li>
+        </ol>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">@Resources.Resources.EmptyCart</h1>
+            <p class="lead">@Resources.Resources.CartsEmpty</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="~/Service/Index" role="button">@Resources.Resources.ReturnToCatalog</a>
+            @*<a class="btn btn-primary btn-lg" role="button">Return to Catalog</a>*@
+        </p>
+    </div>
+</div>

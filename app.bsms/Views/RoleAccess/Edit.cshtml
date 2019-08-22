@@ -1,0 +1,67 @@
+﻿@model app.bsms.Models.Administration.RoleAccess
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Access</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    @Html.HiddenFor(m => m.siteCode)
+    <section>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.roleId)
+                    @Html.TextBoxFor(m => m.roleId, new { @class = "form-control form-control-lg", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.roleId)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.roleName)
+                    @Html.TextBoxFor(m => m.roleName, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.roleName)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.roleType)
+                    @Html.TextBoxFor(m => m.roleType, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.roleType)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.departmentId)
+                    @Html.DropDownListFor(m => m.departmentId, new SelectList(Model.lstDepartment, "departmentId", "departmentName"), new { @class = "custom-select form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.departmentId)
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.roleGroupId)
+                    @Html.DropDownListFor(m => m.roleGroupId, new SelectList(Model.lstRoleGroup, "roleGroupId", "roleGroupName"), new { @class = "custom-select form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.roleGroupId)
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="clearfix">&nbsp;</div>
+    <button type="submit" class="btn btn-primary btn-lg pull-right"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+    <a role="button" class="btn btn-flat btn-lg pull-right" href="~/RoleGroup/List"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</a>
+}

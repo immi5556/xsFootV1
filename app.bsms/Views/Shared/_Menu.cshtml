@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="@app.bsms.Helpers.CultureHelper.GetCurrentNeutralCulture()">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, nosnippet, noarchive, noimageindex, none" />
+    <meta name="googlebot" content="noindex, nofollow, nosnippet, noarchive, noimageindex, none" />
+    <meta name="google" content="notranslate" />
+    <title>@ViewBag.Title - BeauteSoft</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/loginlogo.jpg" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <div class="navbar-nav-scroll"></div>
+        <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
+            <li class="nav-item">
+                @using (Html.BeginForm("AddToCart", "Service", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("cart_details")
+                    <button type="submit" class="btn btn-flat" style="background:transparent!important"><i class="fa fa-shopping-cart fa-2x"></i><span class="badge badge-pill badge-light float-right icon-cart-badge">0</span></button>
+                }
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                    <a class="dropdown-item" href="#"><i class="fa fa-user">&nbsp;&nbsp;</i>Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="~/Home/LogOut"><i class="fa fa-sign-out">&nbsp;&nbsp;</i>Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="row body-row">
+        <div class="sidebar sidebar-expanded sidebar-fixed bg-light d-none d-md-block">
+            <div class="list-group">
+                <a href="#" data-toggle="sidebar-collapse" class="list-group-item list-group-item-action d-flex align-items-center bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">@Resources.Resources.Collapse</span>
+                    </div>
+                </a>
+                <!-- Menu with submenu -->
+                <a href="~/Dashboard/Index" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Home</span>
+                    </div>
+                </a>
+                <a href="~/Customer/Search" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-users fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Customers</span>
+                    </div>
+                </a>
+                <a href="~/Service/Index" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-book fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Catalog</span>
+                    </div>
+                </a>
+                <a href="~/ManageCustomer/ServiceRedemption" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-bell fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Services</span>
+                    </div>
+                </a>
+                <a href="~/Product/ProductDetails" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-cubes fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Products</span>
+                    </div>
+                </a>
+                <a href="~/ManageCustomer/Reedemption" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-gift fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Rewards</span>
+                    </div>
+                </a>
+                <a href="~/ManageCustomer/AccountDetails" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-file fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Accounts</span>
+                    </div>
+                </a>
+                <a href="~/ManageCustomer/AppointmentHistory" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-calendar fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Appointments</span>
+                    </div>
+                </a>
+                <a href="~/Payment/BillOps" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-calculator fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Billing</span>
+                    </div>
+                </a>
+                <a href="~/ManageCustomer/DiagnosisMain" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-heartbeat fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Diagnosis</span>
+                    </div>
+                </a>
+                <a href="~/Customer/MGM" class="list-group-item list-group-item-action bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-sitemap fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.MGM</span>
+                    </div>
+                </a>
+                <a href="#ddlReports" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start bg-light">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-pie-chart fa-fw mr-3"></span>
+                        <span class="menu-collapsed">@Resources.Resources.Reports</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <div id='ddlReports' class="collapse sidebar-submenu">
+                    <a href="~/Report/DailyReport" class="list-group-item list-group-item-action">
+                        <span class="menu-collapsed">@Resources.Resources.DailyReport</span>
+                    </a>
+                    <a href="~/Report/DayEndReport" class="list-group-item list-group-item-action">
+                        <span class="menu-collapsed">@Resources.Resources.DailyEndReport</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

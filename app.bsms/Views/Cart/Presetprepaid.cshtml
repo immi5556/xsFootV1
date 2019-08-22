@@ -1,0 +1,83 @@
+﻿@model app.bsms.Models.Sales.Cart
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Service/Index">Catalog</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.cartDetails.itemName</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    
+    @Html.HiddenFor(m => m.cartDetails.lineStatus)
+    @Html.HiddenFor(m => m.cartDetails.lineType)
+    @Html.HiddenFor(m => m.cartDetails.itemCode)
+    @Html.HiddenFor(m => m.cartDetails.itemName)
+    @Html.HiddenFor(m => m.cartDetails.unitPrice)
+    @Html.HiddenFor(m => m.cartDetails.itemQty)
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.prepaid.prepaidItemType)
+                @Html.DropDownListFor(m => m.prepaid.prepaidItemType, new SelectList(Model.lstPrepaidTypes, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                @Html.ValidationMessageFor(m => m.prepaid.prepaidItemType)
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.prepaid.prepaidCondition1)
+                @Html.DropDownListFor(m => m.prepaid.prepaidCondition1, new SelectList(Model.lstLineTypes, "lineType", "lineType"), new { @class = "custom-select form-control-lg" })
+                @Html.ValidationMessageFor(m => m.prepaid.prepaidCondition1)
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.prepaid.prepaidCondition2)
+                @Html.DropDownListFor(m => m.prepaid.prepaidCondition2, new SelectList(Model.lstCondition2, "itemCode", "itemDesc"), new { @class = "custom-select form-control-lg" })
+                @Html.ValidationMessageFor(m => m.prepaid.prepaidCondition2)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.prepaid.prepaidExpiryDate)
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.prepaid.prepaidExpiryDate, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg no-right-radius datepicker", @readonly = "readonly" })
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.prepaid.prepaidExpiryDate)
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.prepaid.prepaidAmount)
+                @Html.TextBoxFor(m => m.prepaid.prepaidAmount, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(m => m.prepaid.prepaidAmount)
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(m => m.prepaid.prepaidValue)
+                @Html.TextBoxFor(m => m.prepaid.prepaidValue, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(m => m.prepaid.prepaidValue)
+            </div>
+        </div>
+        @*<div class="col">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary btn-lg mb-2" id="btnAddTreatmentStaff">@Resources.Resources.Add</button>
+            </div>
+        </div>*@
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg pull-right"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+}

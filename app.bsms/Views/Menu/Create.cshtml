@@ -1,0 +1,98 @@
+﻿@model app.bsms.Models.Administration.Menu
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Menu</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    @Html.HiddenFor(m => m.siteCode)
+    <section>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuId)
+                    @Html.TextBoxFor(m => m.menuId, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.menuId)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuName)
+                    @Html.TextBoxFor(m => m.menuName, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.menuName)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuParentId)
+                    @Html.DropDownListFor(m => m.menuParentId, new SelectList(Model.lstParentMenus, "menuId", "menuName"), new { @class = "custom-select form-control-lg" })
+                </div>
+                @Html.ValidationMessageFor(m => m.menuParentId)
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuSeqNo)
+                    @Html.TextBoxFor(m => m.menuSeqNo, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.menuSeqNo)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.moduleSeqNo)
+                    @Html.TextBoxFor(m => m.moduleSeqNo, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.moduleSeqNo)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuUrl)
+                    @Html.TextBoxFor(m => m.menuUrl, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.menuUrl)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.menuIcon)
+                    @Html.TextBoxFor(m => m.menuIcon, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.menuIcon)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.submenuParentId)
+                    @Html.DropDownListFor(m => m.submenuParentId, new SelectList(Model.lstSubmenus, "menuId", "menuName"), new { @class = "custom-select form-control-lg" })
+                </div>
+                @Html.ValidationMessageFor(m => m.submenuParentId)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        @Html.CheckBoxFor(m => m.active, new { @class = "custom-control-input" })&nbsp;
+                        @Html.LabelFor(m => m.active, new { @class = "custom-control-label" })
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(m => m.active)
+            </div>
+            <div class="col-10">&nbsp;</div>
+        </div>
+    </section>
+    <div class="clearfix">&nbsp;</div>
+    <button type="submit" class="btn btn-primary btn-lg pull-right"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+    <a role="button" class="btn btn-flat btn-lg pull-right" href="~/RoleGroup/List"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</a>
+}

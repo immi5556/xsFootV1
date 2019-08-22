@@ -1,0 +1,49 @@
+﻿@model app.bsms.Models.Administration.Department
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Department</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Raw(@TempData["Message"])
+    @Html.HiddenFor(m => m.siteCode)
+    <section>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.departmentId)
+                    @Html.TextBoxFor(m => m.departmentId, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.departmentId)
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.departmentName)
+                    @Html.TextBoxFor(m => m.departmentName, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.departmentName)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.departmentDescription)
+                    @Html.TextAreaFor(m => m.departmentDescription, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(m => m.departmentDescription)
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix">&nbsp;</div>
+    <button type="submit" class="btn btn-primary btn-lg pull-right"><i class="fa fa-check"></i>&nbsp;@Resources.Resources.Save</button>
+    <a role="button" class="btn btn-flat btn-lg pull-right" href="~/Department/List"><i class="fa fa-close"></i>&nbsp;@Resources.Resources.Cancel</a>
+}

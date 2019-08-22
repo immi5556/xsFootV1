@@ -1,0 +1,510 @@
+﻿@model app.bsms.Models.Treatment.SkinTreatment
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<div class="container-fluid">
+    <h2 class="myheader1"><i class="fa fa-tags"></i>Skin Treatment</h2>
+    @using (Html.BeginForm("SkinTreatment", "Customer", FormMethod.Post, new { id = "SkinForm" }))
+    {
+
+
+        <div class="form-group VsDiv">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="myheader2"> <i class="fa fa-tag"></i>Skin Texture</h4>
+                    <table class="table table-responsive table-bordered table-condensed">
+                        <tr>
+                            <td>
+                                Normal
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Normal, new { @class = "textbox form-control" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Oily
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Oily, new { @class = "textbox form-control" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Dry
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Dry, new { @class = "textbox form-control" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Sensitive
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Sensitive, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Problem
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Problem, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mature
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Mature, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Combination
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Combination, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Scar
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Scar, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Dull
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinTextureType.Dull, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="myheader2"><i class="fa fa-tag"></i>Image</h4>
+                    <img src="~/img/SkinTreatment.png"  alt="Skin Treatment" class="img img-responsive img-bordered" />
+                </div>
+                <div class="col-md-4">
+                    <h4 class="myheader2"><i class="fa fa-tag"></i>Skin Problem</h4>
+                    <table class="table table-responsive table-bordered table-condensed">
+                        <tr>
+                            <td>
+                                Oily
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.Oily, new { @class = "textbox form-control" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Dehydrated
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.Dehydrated, new { @class = "textbox form-control" })
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Open Pores
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.OpenPores, new { @class = "textbox form-control" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Wrinkles
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.Wrinkles, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Pimple
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.Pimple, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Freclkes
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.Freclkes, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Pigmentation
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.Pigmentation, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Acne Scar
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.AcneScar, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Black Head
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.BlackHead, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Broken Capilaries
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.skinProblem.BrokenCapilaries, new { @class = "textbox form-control" })
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="form-group VsDiv">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-sm mybtn">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                    <button type="reset" class="btn btn-sm mybtn">
+                        <i class="fa fa-crosshairs"></i> Clear
+                    </button>
+                    <button type="button" class="btn btn-sm mybtn">
+                        <i class="fa fa-close"></i> Close
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="form-group VsDiv">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-responsive table-bordered table-condensed mycustomtable" >
+                        <tr>
+                            <td rowspan="2">
+                               Skin Texture
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.skinTexture.Normal) Normal  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTexture.Oily) Oily &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTexture.Dry) Dry &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTexture.Combination) Combination  
+                            </td>
+                        </tr>
+                        <tr class="myheader2">
+                            <td></td>
+                            <td>
+                                Fore Head
+                            </td>
+                            <td>
+                                Nose
+                            </td>
+                            <td>
+                                Cheek
+                            </td>
+                            <td>
+                                Chin
+                            </td>
+                            <td>
+                                Eye
+                            </td>
+                            <td>
+                                Neck
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td >
+                                Skin Mositure Content
+                            </td>
+                            <td>
+
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.ForeHeadLow) Low
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.ForeHeadAvg) Avg
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.ForeHeadHigh) High
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.NoseLow) Low
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.NoseAvg) Avg
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.NoseHigh) High
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.CheekLow) Low
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.CheekAvg) Avg
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.CheekHigh) High
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.ChinLow) Low
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.ChinAvg) Avg
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.ChinHigh) High
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.EyeLow) Low
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.EyeAvg) Avg
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.EyeHigh) High
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.NeckLow) Low
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.NeckAvg) Avg
+                                @Html.CheckBoxFor(m => m.skinMoistureContent.NeckHigh) High
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Sebum Level
+                            </td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td>
+
+                                @Html.CheckBoxFor(m => m.sebumLevel.ForeHeadLow) Low
+                                @Html.CheckBoxFor(m => m.sebumLevel.ForeHeadAvg) Avg
+                                @Html.CheckBoxFor(m => m.sebumLevel.ForeHeadGreasy) Greasy
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.sebumLevel.NoseLow) Low
+                                @Html.CheckBoxFor(m => m.sebumLevel.NoseAvg) Avg
+                                @Html.CheckBoxFor(m => m.sebumLevel.NoseGreasy) Greasy
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.sebumLevel.CheekLow) Low
+                                @Html.CheckBoxFor(m => m.sebumLevel.CheekAvg) Avg
+                                @Html.CheckBoxFor(m => m.sebumLevel.CheekGreasy) Greasy
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.sebumLevel.ChinLow) Low
+                                @Html.CheckBoxFor(m => m.sebumLevel.ChinAvg) Avg
+                                @Html.CheckBoxFor(m => m.sebumLevel.ChinGreasy) Greasy
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.sebumLevel.EyeLow) Low
+                                @Html.CheckBoxFor(m => m.sebumLevel.EyeAvg) Avg
+                                @Html.CheckBoxFor(m => m.sebumLevel.EyeGreasy) Greasy
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.sebumLevel.NeckLow) Low
+                                @Html.CheckBoxFor(m => m.sebumLevel.NeckAvg) Avg
+                                @Html.CheckBoxFor(m => m.sebumLevel.NeckGreasy) Greasy
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">
+                                Skin Pores
+                            </td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td>
+
+                                @Html.CheckBoxFor(m => m.skinPores.ForeHeadFine) Fine
+                                @Html.CheckBoxFor(m => m.skinPores.ForeHeadDilated) Dilated
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinPores.NoseFine) Fine
+                                @Html.CheckBoxFor(m => m.skinPores.NoseDilated) Dilated
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinPores.CheekFine) Fine
+                                @Html.CheckBoxFor(m => m.skinPores.CheekDilated) Dilated
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinPores.ChinFine) Fine
+                                @Html.CheckBoxFor(m => m.skinPores.ChinDilated) Dilated
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinPores.EyeFine) Fine
+                                @Html.CheckBoxFor(m => m.skinPores.EyeDilated) Dilated
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(m => m.skinPores.NeckFine) Fine
+                                @Html.CheckBoxFor(m => m.skinPores.NeckDilated) Dilated
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">
+                                SkinBlood Circulation
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.skinBloodCirculation.Poor) Poor  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinBloodCirculation.Avg) Avg &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinBloodCirculation.Good) Good
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Skin Tone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.skinTone.Fair) Fair  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTone.Tanned) Tanned &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTone.Medium) Medium &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTone.HighColor) HighColor  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTone.Olive_Dark) Olive/Dark &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinTone.Pallid) Pallid &nbsp; &nbsp;
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Skin Sensitivity
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.skinSensitivity.Normal) Normal  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinSensitivity.Sensitive) Sensitive &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.skinSensitivity.OverSensitive) OverSensitive
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Elasticity
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.elasticity.Poor) Poor  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.elasticity.Avg) Avg &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.elasticity.Good) Good
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Superficial Lines
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.superficialLine.ForeHead) ForeHead  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialLine.Nose) Nose &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialLine.Cheek) Cheek &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialLine.Chin) Chin  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialLine.Eye) Eye &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialLine.UpperLip) UpperLip &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialLine.Neck) Neck &nbsp; &nbsp;
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Wrinkels
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.wrinkles.ForeHead) ForeHead  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.wrinkles.Nose) Nose &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.wrinkles.Cheek) Cheek &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.wrinkles.Chin) Chin  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.wrinkles.Eye) Eye &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.wrinkles.UpperLip) UpperLip &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.wrinkles.Neck) Neck &nbsp; &nbsp;
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                ExpressionLines
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.expressionLines.ForeHead) ForeHead  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.expressionLines.Nose) Nose &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.expressionLines.Cheek) Cheek &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.expressionLines.Chin) Chin  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.expressionLines.Eye) Eye &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.expressionLines.UpperLip) UpperLip &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.expressionLines.Neck) Neck &nbsp; &nbsp;
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">
+                                Superficial Hair
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                @Html.CheckBoxFor(m => m.superficialHair.ForeHead) ForeHead  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialHair.Nose) Nose &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialHair.Cheek) Cheek &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialHair.Chin) Chin  &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialHair.Eye) Eye &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialHair.UpperLip) UpperLip &nbsp; &nbsp;
+                                @Html.CheckBoxFor(m => m.superficialHair.Neck) Neck &nbsp; &nbsp;
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                
+
+            </div>
+
+
+        </div>
+
+
+    }
+</div>

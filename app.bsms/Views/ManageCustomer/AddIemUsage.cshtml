@@ -1,0 +1,427 @@
+﻿ 
+@model app.bsms.Models.RegisterModel
+@{
+    ViewBag.Title = "AddIemUsage";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+}
+<link rel="stylesheet" href="/assets/adminlte/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/assets/adminlte/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="/assets/adminlte/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="/assets/css/normalize.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+    .rowCard {
+        padding: 2px 16px;
+    }
+
+    .card {
+        position: relative;
+        border-radius: 3px;
+        background: #ffffff;
+        margin-bottom: 20px;
+        width: 100%;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        padding: 10px 16px;
+    }
+
+    img.responsive {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .octCenter {
+        text-align: center;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    <style > body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+<style>
+    .btn {
+        color: #7B7A4A !important;
+        background-color: #EAE29E !important;
+        border-top-color: #7B7A4A !important;
+        border-radius: 50px !important;
+    }
+
+    select, input {
+        border-radius: 50px !important;
+    }
+</style>
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+        $("#datepickertwo").datepicker();
+    });
+</script>
+<section>
+    <div class="page-content" style="width:1400px">
+        <div class="header">
+            <h2><strong>Manage Customer - Add Item Usage</strong> </h2>
+
+        </div>
+        <table>
+            <tr>
+                <td colspan="6">
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ITEM CODE</th>
+                                    <th>LINK CODE</th>
+                                    <th>ITEM DESC ID</th>
+                                    <th>QUANTITY </th>
+                                    <th>UOM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>23000173</td>
+                                    <td>HFML-1001-01</td>
+                                    <td>201 CLEANSING MOUSSE (100ML)</td>
+                                    <td>7</td>
+                                    <td>UNIT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr class="row form-group">
+                <td>
+                    <div><label for="validationDefault01">Code</label></div>
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.RefCode, new { htmlAttributes = new { @class = "form-control", style = "height: 35px;" } })
+                    <span class="glyphicon glyphicon-search"></span>
+                </td>
+                <td>
+                    <a href="" type="button" class="btn btn-warning">SELECT<i class="fa fa-stack-overflow"></i></a>
+                </td>
+                <td>
+                    <div><span><input type="checkbox" class="form-check-input" id="checkbox104">Show Salon</span></div>
+                </td>
+                <td>
+                    <div><span><input type="checkbox" class="form-check-input" id="checkbox104">Show Retail</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="checkbox104">
+                                        </div>
+                                    </th>
+                                    <th>DESCRIPTION</th>
+                                    <th>ITEM CODE</th>
+                                    <th>LINK CODE</th>
+                                    <th>BARCODE ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="checkbox104">
+                                        </div>
+                                    </td>
+                                    <td>201 CLEANSING MOUSSE (100ML)</td>
+                                    <td>23000173</td>
+                                    <td>HFML-1001-01</td>
+                                    <td>230001730000</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="checkbox104">
+                                        </div>
+                                    </td>
+                                    <td>24K GOLD ANTI-AGEING GEL (250ML) </td>
+                                    <td>23000106</td>
+                                    <td>XFAC-1001-01</td>
+                                    <td>230001060000</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="checkbox104">
+                                        </div>
+                                    </td>
+                                    <td>ACNIS TOP (15ML)</td>
+                                    <td>23000147</td>
+                                    <td>Z**HOIL-100...</td>
+                                    <td>230001470000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ITEM CODE</th>
+                                    <th>LINK CODE</th>
+                                    <th>ITEM DESC ID</th>
+                                    <th>QUANTITY </th>
+                                    <th>UOM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>23000173</td>
+                                    <td>HFML-1001-01</td>
+                                    <td>201 CLEANSING MOUSSE (100ML)</td>
+                                    <td>-7</td>
+                                    <td>UNIT</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>23000173</td>
+                                    <td>HFML-1001-01</td>
+                                    <td>201 CLEANSING MOUSSE (100ML)</td>
+                                    <td>-7</td>
+                                    <td>UNIT</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>23000173</td>
+                                    <td>HFML-1001-01</td>
+                                    <td>201 CLEANSING MOUSSE (100ML)</td>
+                                    <td>-7</td>
+                                    <td>UNIT</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>23000173</td>
+                                    <td>HFML-1001-01</td>
+                                    <td>201 CLEANSING MOUSSE (100ML)</td>
+                                    <td>-7</td>
+                                    <td>UNIT</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" align="center" style="text-align:center">
+                    <a href="" type="button" class="btn btn-warning">CLEAR LINE<i class="fa fa-stack-overflow"></i></a>
+                    <a href="" type="button" class="btn btn-warning">CLEAR ALL <i class="fa fa-stack-overflow"></i></a>             
+                    <a href="" type="button" class="btn btn-warning">CANCEL<i class="fa fa-stack-overflow"></i></a>
+                    <a href="" type="button" class="btn btn-warning">OK <i class="fa fa-stack-overflow"></i></a>
+ 
+            </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</section>
+<script>
+
+    $(document).ready(function () {
+        $("#popup").click(function () {
+            $("#myModal").hide();
+        });
+    });
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style media="screen">
+    img {
+        max-width: 8%;
+        /*transform: translate(50%, 0);*/
+    }
+
+    .first {
+        position: relative;
+        top: calc(100px/2);
+    }
+
+    .leftpad {
+        /*padding-left: 4%;*/
+    }
+
+    .hideimg {
+        visibility: hidden;
+    }
+</style>
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+<script src="~/assets/global/plugins/jquery/jquery-1.11.1.min.js"></script>
+<script src="~/assets/global/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script src="~/assets/global/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
+<script src="~/assets/global/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+@*<script src="~/assets/sessionTimeout/jquery.sessionTimeout.js"></script>*@
+<script src="~/assets/global/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
+<script src="~/assets/global/plugins/bootbox/bootbox.min.js"></script>
+<script src="~/assets/global/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
+<script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/assets/global/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
+<script src="~/assets/global/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> <!-- Animated Progress Bar -->
+<script src="~/assets/global/plugins/switchery/switchery.min.js"></script> <!-- IOS Switch -->
+<script src="~/assets/global/plugins/retina/retina.min.js"></script>  <!-- Retina Display -->
+<script src="~/assets/global/plugins/jquery-cookies/jquery.cookies.js"></script> <!-- Jquery Cookies, for theme -->
+<script src="~/assets/global/plugins/bootstrap/js/jasny-bootstrap.min.js"></script> <!-- File Upload and Input Masks -->
+<script src="~/assets/global/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+<script src="~/assets/global/plugins/prettify/prettify.min.js"></script> <!-- Show html code -->
+<script src="~/assets/global/plugins/slick/slick.min.js"></script> <!-- Slider -->
+<script src="~/assets/global/plugins/countup/countUp.min.js"></script> <!-- Animated Counter Number -->
+<script src="~/assets/global/plugins/noty/jquery.noty.packaged.min.js"></script>  <!-- Notifications -->
+<script src="~/assets/global/plugins/backstretch/backstretch.min.js"></script> <!-- Background Image -->
+<script src="~/assets/global/plugins/bootstrap-slider/bootstrap-slider.js"></script> <!-- Bootstrap Input Slider -->
+<script src="~/assets/global/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
+<script src="~/assets/global/js/builder.js"></script>
+<script src="~/assets/global/js/sidebar_hover.js"></script>
+<script src="~/assets/global/js/application.js"></script> <!-- Main Application Script -->
+<script src="~/assets/global/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
+<script src="~/assets/global/js/widgets/notes.js"></script>
+<script src="~/assets/global/js/quickview.js"></script> <!-- Quickview Script -->
+<script src="~/assets/global/js/pages/search.js"></script> <!-- Search Script -->
+<script src="~/assets/global/page-builder/js/builder_page.js"></script>
+
+@*DataTable*@
+<link rel="stylesheet" href="/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+<script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/plugins.js"></script>
+<script src="/assets/js/main.js"></script>
+
+<script src="/assets/js/lib/data-table/datatables.min.js"></script>
+<script src="/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="/assets/js/lib/data-table/jszip.min.js"></script>
+<script src="/assets/js/lib/data-table/pdfmake.min.js"></script>
+<script src="/assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="/assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="/assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="/assets/js/lib/data-table/datatables-init.js"></script>
+
+
+<!-- BEGIN PAGE SCRIPT -->
+<script src="../assets/global/plugins/idle-timeout/jquery.idletimer.min.js"></script> <!-- Logout User After Delay -->
+<script src="../assets/global/plugins/idle-timeout/jquery.idletimeout.min.js"></script> <!-- Logout User After Delay -->
+<script src="../assets/global/js/pages/session_timeout.js"></script>
+<!-- END PAGE SCRIPT -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#bootstrap-data-table-export').DataTable();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+

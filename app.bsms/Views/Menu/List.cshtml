@@ -1,0 +1,42 @@
+﻿@model List<app.bsms.Models.Administration.Menu>
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Menu</li>
+    </ol>
+</nav>
+
+<div class="clearfix">&nbsp;</div>
+<a class="btn btn-primary btn-lg pull-right" href="~/Menu/Create">
+    @Resources.Resources.AddNewMenu
+</a>
+<div class="clearfix">&nbsp;</div>
+
+@Html.Raw(@TempData["Message"])
+
+@if (Model != null)
+{
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>@Resources.Resources.Menu</b></li>
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="row">
+                    <div class="col">@item.menuName</div>
+                    <div class="col">@item.menuUrl</div>
+                    <div class="col">@item.menuSeqNo</div>
+                    <div class="col">@item.menuParentId</div>
+                </div>                
+                <div class="badge">
+                    <a class="btn btn-primary btn-lg pull-right" href="~/Menu/Edit/@item.menuId">
+                        @Resources.Resources.Edit
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+}

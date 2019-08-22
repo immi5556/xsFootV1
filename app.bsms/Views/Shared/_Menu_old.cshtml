@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, nosnippet, noarchive, noimageindex, none" />
+    <meta name="googlebot" content="noindex, nofollow, nosnippet, noarchive, noimageindex, none" />
+    <meta name="google" content="notranslate" />
+    <title>@ViewBag.Title - BeauteSoft</title>
+
+    @*<title>@ViewBag.Title</title>*@
+    @RenderSection("meta", required: false)
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="admin-themes-lab" />
+    <meta name="author" content="themes-lab" />
+    <link rel="shortcut icon" href="images/test.png" type="image/png" />
+    <link href="~/assets/global/css/style.css" rel="stylesheet" />
+    @*<link href="~/assets/global/css/theme.css" rel="stylesheet" />*@
+    @*<link href="~/assets/global/css/ui_v1.0.css" rel="stylesheet" />*@
+
+    @*<link href="~/Content/toastr.min.css" rel="stylesheet" />
+        <link href="~/assets/global/plugins/step-form-wizard/css/step-form-wizard.min.css" rel="stylesheet" />
+        <link href="~/assets/global/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js" rel="stylesheet" />
+        <!--JQGRID TABLE CSS -->
+        <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+        <link href="~/Content/gridmaster.css" rel="stylesheet" />
+        <link href="~/Content/blue-jquery-ui/jquery-ui.css" rel="stylesheet" />
+
+        <!-- FONT AWESOME-->
+        <link href="~/Content/font-awesome.css" rel="stylesheet" />
+        <link href="~/Content/font-awesome-animation.min.css" rel="stylesheet" />
+
+        <!-- JTABLE TABLE CSS -->
+        <link href="~/Scripts/jtable/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- PAGE STYLE -->
+        <link href="~/assets/global/plugins/metrojs/metrojs.min.css" rel="stylesheet">
+        <link href="~/assets/global/plugins/maps-amcharts/ammap/ammap.min.css" rel="stylesheet">*@
+
+    <!-- CSS STYLE -->
+    <link href="~/Scripts/css/validationengine.jquery.css" rel="stylesheet">
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#accordian h3").click(function () {
+                $("#accordian ul ul").slideUp();
+                if (!$(this).next().is(":visible")) {
+                    $(this).next().slideDown();
+                }
+            });
+        });
+    </script>
+    @*<script src="~/ViewsScript/Account/Logout.js"></script>*@
+
+    @RenderSection("styles", required: false)
+
+    <style>
+        .theme-sdtl.color-default .sidebar .sidebar-inner {
+            /*background: #ffd11a;*/
+            /*background: #FEF8C2;*/
+            background-color: #D7CA93 !important;
+            color: #8b7306;
+        }
+
+        sidebar-footer .theme-sdtl.color-default .sidebar .sidebar-inner {
+            /*background: #ffd11a;
+            background: #FEF8C2;*/
+            background-color: #D7CA93 !important;
+            color: #8b7306;
+        }
+
+        .sidebar {
+            /*background: #ffd11a;
+            background: #FEF8C2;*/
+            background-color: #D7CA93 !important;
+            color: #8b7306;
+        }
+
+        .theme-sdtl.color-default .sidebar .sidebar-inner .nav-sidebar .nav-parent .children, .theme-sdtl.color-default .sidebar .sidebar-inner .sidebar-footer, .theme-sdtl.color-default .sidebar .sidebar-inner .sidebar-top .searchform input {
+            /*background: #FEF8C2;*/
+            background-color: #D7CA93 !important;
+            color: #8b7306;
+        }
+    </style>
+</head>
+<body id="theme" class="">
+    <section>
+        <!-- BEGIN SIDEBAR -->
+        <div class="sidebar">
+            <div class="logopanel" style="background-color:white;text-align:center">
+                <img src="~/img/companylogo.png" style="max-width:100%;max-height:100%" />
+            </div>
+            <div class="sidebar-inner" style="background-color: #D7CA93">
+                @* <div class="sidebar-top big-img">
+                    <div class="user-image">
+            <img src="~/img/UploadPhoto.jpg" style="width:180px; height:100px" class="img-responsive img-circle" alt="gallery 3">
+        </div>*@
+                @*<h7>VSTECHNOSCIENCE</h7><br />
+        </div>*@
+                <br />
+                <div id="accordian">
+                    @* @Html.ActionLink("Dashboard","HeaderMenu", "Dashboard")*@
+                    <ul class="nav nav-sidebar">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="~/Dashboard/Index"><i class="oi oi-home">&nbsp;&nbsp;</i>Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#D7CA93;" href="~/Customer/SearchCustomer"><i class="fa fa-users">&nbsp;&nbsp;</i>Customers</a>
+                        </li>
+                        <li class="nav-parent active">
+                            <a class="nav-link align-middle" data-toggle="collapse" href="#ddlCatalogue">
+                                <i class="fa fa-book">&nbsp;&nbsp;</i>Catalogue
+                                <i class="fa fa-angle-down float-right"></i>
+                            </a>
+                            <ul class="collapse" id="ddlCatalogue" style="padding-left:0; list-style:none">
+                                <li class="nav-item">
+                                    <a href="~/Service/Index" class="nav-link" style="color:#D7CA93;"><i class="fa fa-angle-right">&nbsp;&nbsp;</i>Category</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="~/AddToCart/Cart" class="nav-link" style="color:#D7CA93;"><i class="fa fa-angle-right">&nbsp;&nbsp;</i>Cart Status</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='~/ManageCustomer/ServiceRedemption'><i class="fa fa-bell">&nbsp;&nbsp;</i>Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='~/Product/ProductDetails'><i class="fa fa-cubes">&nbsp;&nbsp;</i>Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='~/ManageCustomer/Reedemption'><i class="fa fa-gift">&nbsp;&nbsp;</i>Rewards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='~/ManageCustomer/AccountDetails'><i class="fa fa-group">&nbsp;&nbsp;</i>Accounts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='~/ManageCustomer/AppointmentHistory'><i class="fa fa-calendar">&nbsp;&nbsp;</i>Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Payment/BillOps"><i class="fa fa-calculator">&nbsp;&nbsp;</i>Bill Ops</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='~/ManageCustomer/DiagnosisMain'><i class="fa fa-heartbeat">&nbsp;&nbsp;</i>Diagnosis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Customer/MGM"><i class="fa fa-sitemap">&nbsp;&nbsp;</i>MGM</a>
+                        </li>
+                        <li class="nav-parent active">
+                            <a class="nav-link align-middle" data-toggle="collapse" href="#ddlReports">
+                                <i class="fa fa-pie-chart">&nbsp;&nbsp;</i>Reports
+                                <i class="fa fa-angle-down float-right"></i>
+                            </a>
+                            <ul class="collapse" id="ddlReports" style="padding-left:0; list-style:none">
+                                <li class="nav-item">
+                                    <a href="~/Report/DailyReport" class="nav-link"><i class="fa fa-angle-right">&nbsp;&nbsp;</i>Daily Report</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="~/Report/DayEndReport" class="nav-link"><i class="fa fa-angle-right">&nbsp;&nbsp;</i>Day End Report</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="nav nav-sidebar"></ul>
+                <!-- SIDEBAR WIDGET FOLDERS -->
+                <div class="sidebar-widgets" style="visibility:hidden">
+                    <p style="visibility:hidden" class="menu-title widget-title">Folders <span class="pull-right"><a href="#" class="new-folder"> <i class="icon-plus"></i></a></span></p>
+                    <ul class="folders">
+                        <li>
+                            <a style="visibility:hidden" href="#"><i class="icon-doc c-primary"></i>My documents</a>
+                        </li>
+                        <li>
+                            <a style="visibility:hidden" href="#"><i class="icon-picture"></i>My images</a>
+                        </li>
+                        <li>
+                            <a style="visibility:hidden" href="#"><i class="icon-lock"></i>Secure data</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-lock"></i>Secure data</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-lock"></i>Secure data</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-footer clearfix" style="border-top: solid 1px #f5f5f5;">
+                    <a style="visibility:hidden;" class="pull-left footer-settings" href="#" data-rel="tooltip" data-placement="top" data-original-title="Settings">
+                        <i class="icon-settings"></i>
+                    </a>
+                    <a class="pull-left toggle_fullscreen" href="#" data-rel="tooltip" data-placement="top" data-original-title="Fullscreen">
+                        <i class="icon-size-fullscreen"></i>
+                    </a>
+
+
+                    <a style="visibility:hidden;" class="pull-left" href="/Home/LogOut" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
+                        <i class="icon-lock"></i>
+                    </a>
+                    <a class="pull-left btn-effect" href="/Home/LogOut" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
+                        <i class="icon-power"></i>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- END SIDEBAR --><div></div>
+        <div class="main-content">
+            <!-- BEGIN TOPBAR -->
+            <div class="topbar">
+                <div class="header-left" style="display: block;">
+                    <div class="topnav">
+                        <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="header-menu nav navbar-nav">
+                        <!-- CHAT BAR ICON -->
+                        <li id="quickview-toggle"><a href="~/Addtocart/cart"> <i style="font-size:24px;border: 1px solid #B0A478;background-color: #E3D595;color:black" class="fa">&#xf07a;</i></a></li>
+
+                        <!-- BEGIN USER DROPDOWN -->
+                        <li class="dropdown" id="user-header">
+                            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="username">Hi, </span>
+                            </a>
+                            <ul class="dropdown-menu" style="background-color: #E3D595;">
+
+                                <li>
+                                    <a href="../UpdateInfo/ChangePassword"><i class="icon-calendar"></i><span>Change Password</span></a>
+
+                                </li>
+                                <li>
+                                    <a href="../Home/LogOut"><i class="icon-logout"></i><span>Logout</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER DROPDOWN -->
+
+                    </ul>
+                </div>
+                <!-- header-right -->
+            </div>
+
+            <!-- END
+            TOPBAR -->
+            <!-- BEGIN PAGE CONTENT -->
+            @RenderBody()
+            <!-- END PAGE CONTENT -->
+            @*<div class="footer">
+                <div class="copyright">
+                    <p class="pull-left sm-pull-reset"> <span>Copyrights <span class="copyright">©</span> 2018 </span> <span>Sequoia Asia - BeauteSoft CRM</span> </p>
+
+                </div>
+            </div>*@
+        </div>
+        <!-- END MAIN CONTENT -->
+    </section>
+    <!-- BEGIN PRELOADER -->
+    <div class="loader-overlay">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- END PRELOADER -->
+
+    <script>
+        $(function () {
+
+            $(window).on('load', function () {
+
+                $('.menutoggle').click()
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model app.bsms.Models.Manage.Service.ReverseTreatment
+@{
+    ViewBag.Title = "Reminder";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Dashboard/Index">@Resources.Resources.Home</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer/Search">@Resources.Resources.Customers</a></li>
+        <li class="breadcrumb-item"><a href="~/Redemption/Index/@Model.reverse.customerCode">@Resources.Resources.ServiceRedemption</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Resources.Resources.Reminder - @Model.reverse.treatmentParentCode</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col">
+        <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+            <div class="row">
+                <div class="col-1">@Resources.Resources.Times</div>
+                <div class="col-3">@Resources.Resources.TreatmentCode</div>
+                <div class="col-4">@Resources.Resources.Description</div>
+                <div class="col-1 text-center">@Resources.Resources.Status</div>
+                <div class="col-1 text-center">@Resources.Resources.TreatmentAmount</div>
+                <div class="col-1 text-center">@Resources.Resources.Actions</div>
+            </div>
+        </div>
+        @foreach (var item in Model.treatments)
+        {
+            <div class="media-body pt-3 pb-3 mb-0 border-bottom">
+                <div class="row">
+                    <div class="col-1">@item.treatmentTimes</div>
+                    <div class="col-3">@item.treatmentCode</div>
+                    <div class="col-4">@item.treatmentDescription</div>
+                    <div class="col-1 text-center">@item.treatmentStatus</div>
+                    <div class="col-1 text-center">@item.treatmentAmount</div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-send">&nbsp;</i>Send @Resources.Resources.Reminder</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

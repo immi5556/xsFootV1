@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<h2>NotFound</h2>
+
+<div class="jumbotron">
+    <h1 class="display-4">Sorry!</h1>
+    <p class="lead">we couldn't find that page</p>
+    <hr class="my-4">
+    <p>The link is broken or the page has been moved. try these pages instead</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="@Html.RouteLink("Index", "Dashboard")" role="button">Learn more</a>
+    </p>
+</div>

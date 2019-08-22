@@ -1,0 +1,25 @@
+﻿@model app.bsms.Models.Catelogue.Catelogue
+
+<table class="table table-hover table-striped">
+    <tr>
+
+        <th scope="col">Item Code</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Item Price</th>
+        <th scope="col" class="align-center">Action</th>
+    </tr>
+    @if (Model.lstItemTypes != null)
+    {
+        foreach (var x in Model.lstItemTypes)
+        {
+            <tr>
+                <td>@x.stockCode</td>
+                <td>@x.stockName</td>
+                <td>@x.itemPrice</td>
+                <td style="text-align:center">
+                    <button type="button" data-line-type="PRODUCT" data-line-status="SA" data-code="@x.stockCode" data-name="@x.stockName" data-price="@x.itemPrice" data-quantity="1" class="btn btn-lg btn-primary btn-add-cart">@(((app.bsms.Models.Account.User)Session["Login_Details"]).currency)&nbsp;@x.itemPrice</button>
+                </td>
+            </tr>
+        }
+    }
+</table>

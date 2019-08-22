@@ -1,0 +1,1408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CustNoRequired" xml:space="preserve">
+    <value>Требуется № клиента</value>
+  </data>
+  <data name="SalRange" xml:space="preserve">
+    <value>Диапазон зарплаты</value>
+  </data>
+  <data name="TreatmentStaff" xml:space="preserve">
+    <value>Лечение сделано</value>
+  </data>
+  <data name="Suspend" xml:space="preserve">
+    <value>приостановить</value>
+  </data>
+  <data name="InformationDetails" xml:space="preserve">
+    <value>Подробности информации</value>
+  </data>
+  <data name="MariStatus" xml:space="preserve">
+    <value>Семейное положение</value>
+  </data>
+  <data name="ClientCodeRequired" xml:space="preserve">
+    <value>Требуется код клиента</value>
+  </data>
+  <data name="TotalPriceRequired" xml:space="preserve">
+    <value>Требуется общая цена</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="MemberType" xml:space="preserve">
+    <value>Тип участника</value>
+  </data>
+  <data name="ValidPeriodRange" xml:space="preserve">
+    <value>Срок действия должен быть больше, чем сегодня</value>
+  </data>
+  <data name="TotalAmountPaid" xml:space="preserve">
+    <value>Общая выплаченная сумма</value>
+  </data>
+  <data name="ReverseItems" xml:space="preserve">
+    <value>Обратные предметы</value>
+  </data>
+  <data name="StaffCodeRequired" xml:space="preserve">
+    <value>Требуется код персонала</value>
+  </data>
+  <data name="FOCQuantityRange" xml:space="preserve">
+    <value>Количество ВОК должно быть меньше или равно общему количеству. лечения</value>
+  </data>
+  <data name="PhoneOffice" xml:space="preserve">
+    <value>Телефон Офис</value>
+  </data>
+  <data name="TotalGST" xml:space="preserve">
+    <value>Общая сумма налога</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Остаток средств</value>
+  </data>
+  <data name="NoOfTreatmentsRange" xml:space="preserve">
+    <value>Количество обработок только от 1 до 999</value>
+  </data>
+  <data name="MenuSeqNo" xml:space="preserve">
+    <value>Последовательность меню №</value>
+  </data>
+  <data name="RoleTypeRequired" xml:space="preserve">
+    <value>Тип роли обязателен</value>
+  </data>
+  <data name="SG_Add_1" xml:space="preserve">
+    <value>50 Serangoon Северный проспект 4,</value>
+  </data>
+  <data name="SG_Add_2" xml:space="preserve">
+    <value>#09-12,</value>
+  </data>
+  <data name="SG_Add_3" xml:space="preserve">
+    <value>Первый Центр,</value>
+  </data>
+  <data name="SG_Add_4" xml:space="preserve">
+    <value>Сингапур 555856,</value>
+  </data>
+  <data name="SG_Add_5" xml:space="preserve">
+    <value>+65 9695 1383</value>
+  </data>
+  <data name="VoucherName" xml:space="preserve">
+    <value>Название ваучера</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Национальность</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Связаться с нами</value>
+  </data>
+  <data name="OrderSummary" xml:space="preserve">
+    <value>итог заказа</value>
+  </data>
+  <data name="CartStatus" xml:space="preserve">
+    <value>Статус корзины</value>
+  </data>
+  <data name="InvoiceHistory" xml:space="preserve">
+    <value>История счетов</value>
+  </data>
+  <data name="SubItemCodeRequired" xml:space="preserve">
+    <value>Требуется действительный сервис</value>
+  </data>
+  <data name="AgeGrp" xml:space="preserve">
+    <value>Возрастная группа</value>
+  </data>
+  <data name="InsufficientFunds" xml:space="preserve">
+    <value>Недостаточно средств</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Доступ</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="DiscountPriceRequired" xml:space="preserve">
+    <value>Требуется действительная сумма скидки или процент</value>
+  </data>
+  <data name="IDTypeRequired" xml:space="preserve">
+    <value>Тип ID требуется</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="Billing" xml:space="preserve">
+    <value>Счет-фактура</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>удалять</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>мобильный</value>
+  </data>
+  <data name="MenuID" xml:space="preserve">
+    <value>Идентификатор меню</value>
+  </data>
+  <data name="TreatmentLimitRange" xml:space="preserve">
+    <value>Предел лечения должен быть меньше или равен 999</value>
+  </data>
+  <data name="TherapistCode" xml:space="preserve">
+    <value>Код терапевта</value>
+  </data>
+  <data name="Brands" xml:space="preserve">
+    <value>Бренды</value>
+  </data>
+  <data name="SalesStatusRequired" xml:space="preserve">
+    <value>Требуется статус продаж</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>отменить</value>
+  </data>
+  <data name="CustNo" xml:space="preserve">
+    <value>№ клиента.</value>
+  </data>
+  <data name="StaffNameRequired" xml:space="preserve">
+    <value>Требуется штатное имя</value>
+  </data>
+  <data name="LineType" xml:space="preserve">
+    <value>Тип линии</value>
+  </data>
+  <data name="ConsultantCode" xml:space="preserve">
+    <value>Код консультанта</value>
+  </data>
+  <data name="LeftCheek" xml:space="preserve">
+    <value>Левая щека</value>
+  </data>
+  <data name="IDType" xml:space="preserve">
+    <value>Тип удостоверения личности</value>
+  </data>
+  <data name="TransactionAmountRange" xml:space="preserve">
+    <value>Требуется действительная сумма транзакции</value>
+  </data>
+  <data name="RoleGroupNameRequired" xml:space="preserve">
+    <value>Требуется имя группы ролей</value>
+  </data>
+  <data name="PrepaidConditionRequired" xml:space="preserve">
+    <value>Требуется действительное условие</value>
+  </data>
+  <data name="SubItemCode" xml:space="preserve">
+    <value>Сервисы</value>
+  </data>
+  <data name="Locale" xml:space="preserve">
+    <value>место действия</value>
+  </data>
+  <data name="DailyEndReport" xml:space="preserve">
+    <value>
+Ежедневный отчет</value>
+  </data>
+  <data name="UnitPriceRange" xml:space="preserve">
+    <value>Цена за единицу только от 0 до 9999999999999999,99</value>
+  </data>
+  <data name="SiteCode" xml:space="preserve">
+    <value>Код сайта</value>
+  </data>
+  <data name="AppointmentInterval" xml:space="preserve">
+    <value>Назначение Интервал</value>
+  </data>
+  <data name="FirstTreatmentDone" xml:space="preserve">
+    <value>Первая обработка завершена?</value>
+  </data>
+  <data name="TreatmentStaffRequired" xml:space="preserve">
+    <value>Требуется лечение</value>
+  </data>
+  <data name="ItemCode" xml:space="preserve">
+    <value>Код изделия</value>
+  </data>
+  <data name="DiscountDescription" xml:space="preserve">
+    <value>Описание скидки</value>
+  </data>
+  <data name="ItemName" xml:space="preserve">
+    <value>Имя элемента</value>
+  </data>
+  <data name="SupMemberCode" xml:space="preserve">
+    <value>Дополнительный код участника</value>
+  </data>
+  <data name="SupMemberName" xml:space="preserve">
+    <value>Имя дополнительного участника</value>
+  </data>
+  <data name="AddNewRole" xml:space="preserve">
+    <value>Добавить новую роль</value>
+  </data>
+  <data name="AddNewMenu" xml:space="preserve">
+    <value>Добавить новое меню</value>
+  </data>
+  <data name="ItemAmount" xml:space="preserve">
+    <value>Пункт количество</value>
+  </data>
+  <data name="ServiceRedemption" xml:space="preserve">
+    <value>Погашение услуги</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Товары</value>
+  </data>
+  <data name="ExpiryDate" xml:space="preserve">
+    <value>Срок действия</value>
+  </data>
+  <data name="NextAppointment" xml:space="preserve">
+    <value>Следующая встреча</value>
+  </data>
+  <data name="LocaleRequired" xml:space="preserve">
+    <value>Требуется локаль</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забыли пароль</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Рост</value>
+  </data>
+  <data name="TreatmentDate" xml:space="preserve">
+    <value>Дата лечения</value>
+  </data>
+  <data name="TreatmentCode" xml:space="preserve">
+    <value>Код лечения</value>
+  </data>
+  <data name="AppointmentIntervalRange" xml:space="preserve">
+    <value>Интервал назначения только от 1 до 365</value>
+  </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Персональные данные</value>
+  </data>
+  <data name="JoinDateRequired" xml:space="preserve">
+    <value>Дата вступления обязательна</value>
+  </data>
+  <data name="ValidPeriod" xml:space="preserve">
+    <value>Срок действия</value>
+  </data>
+  <data name="TotalPriceRange" xml:space="preserve">
+    <value>Общая цена только от 0 до 9999999999999999,99</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>выдающийся</value>
+  </data>
+  <data name="DepartmentName" xml:space="preserve">
+    <value>название отдела</value>
+  </data>
+  <data name="ItemNameRequired" xml:space="preserve">
+    <value>Название предмета обязательно</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Вес</value>
+  </data>
+  <data name="PrepaidAmount" xml:space="preserve">
+    <value>Сумма предоплаты</value>
+  </data>
+  <data name="ChooseYourLanguage" xml:space="preserve">
+    <value>Выберите свой язык</value>
+  </data>
+  <data name="HoldItemQty" xml:space="preserve">
+    <value>Количество удерживаемых предметов</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>На свидание</value>
+  </data>
+  <data name="StaffCode" xml:space="preserve">
+    <value>Код персонала</value>
+  </data>
+  <data name="StaffDetailsRequired" xml:space="preserve">
+    <value>По крайней мере один действительный персонал требуется для продаж</value>
+  </data>
+  <data name="StaffName" xml:space="preserve">
+    <value>Имя сотрудника</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>причина</value>
+  </data>
+  <data name="SupMemberJoinDateRequired" xml:space="preserve">
+    <value>Требуется дополнительная дата регистрации</value>
+  </data>
+  <data name="Ranges" xml:space="preserve">
+    <value>Изменяется</value>
+  </data>
+  <data name="DepositRange" xml:space="preserve">
+    <value>Депозит только от 0 до 9999999,99</value>
+  </data>
+  <data name="RoleID" xml:space="preserve">
+    <value>ID роли</value>
+  </data>
+  <data name="OtherDetails" xml:space="preserve">
+    <value>другие</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>улица</value>
+  </data>
+  <data name="PrepaidAmountRequired" xml:space="preserve">
+    <value> Требуется предоплата</value>
+  </data>
+  <data name="SalesPerson" xml:space="preserve">
+    <value>Продавец</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="FOCQuantityRequired" xml:space="preserve">
+    <value>Количество ВОК требуется</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Счета</value>
+  </data>
+  <data name="NoOfTreatments" xml:space="preserve">
+    <value>Количество обработок</value>
+  </data>
+  <data name="HoldItemType" xml:space="preserve">
+    <value>Тип удержания предмета</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>администрация</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>категория</value>
+  </data>
+  <data name="Prepaid" xml:space="preserve">
+    <value>Предоплата</value>
+  </data>
+  <data name="ProdGrp" xml:space="preserve">
+    <value>Группа товаров</value>
+  </data>
+  <data name="Proceed" xml:space="preserve">
+    <value>проследовать</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="AddNewDepartment" xml:space="preserve">
+    <value>Добавить новый отдел</value>
+  </data>
+  <data name="TreatmentLimitRequired" xml:space="preserve">
+    <value>Требуется лимит лечения</value>
+  </data>
+  <data name="SecurityImg" xml:space="preserve">
+    <value>Изображение безопасности</value>
+  </data>
+  <data name="SalesStatus" xml:space="preserve">
+    <value>Продажи Продажи</value>
+  </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>Счет-фактура#</value>
+  </data>
+  <data name="CustNameRequired" xml:space="preserve">
+    <value>Требуется имя клиента</value>
+  </data>
+  <data name="ValidReference" xml:space="preserve">
+    <value>Действительная ссылка</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>пароль</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>процент</value>
+  </data>
+  <data name="UnitPriceRequired" xml:space="preserve">
+    <value>Требуется цена за единицу</value>
+  </data>
+  <data name="CustClass" xml:space="preserve">
+    <value>Класс клиента</value>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>Имя пользователя требуется</value>
+  </data>
+  <data name="RoleNameRequired" xml:space="preserve">
+    <value>Имя роли обязательно</value>
+  </data>
+  <data name="PaymentAmountRange" xml:space="preserve">
+    <value>Сумма платежа только от 0 до 9999999,99</value>
+  </data>
+  <data name="DiscountUserRequired" xml:space="preserve">
+    <value>Требуемая скидка обязательна</value>
+  </data>
+  <data name="FOCReasonRequired" xml:space="preserve">
+    <value>Требуется действительная причина ВОК</value>
+  </data>
+  <data name="DiscountPercentRange" xml:space="preserve">
+    <value>Скидка должна составлять только от 0% до 99,99%</value>
+  </data>
+  <data name="GrandTotal" xml:space="preserve">
+    <value>Общая сумма</value>
+  </data>
+  <data name="JoinStatus" xml:space="preserve">
+    <value>Статус присоединения</value>
+  </data>
+  <data name="PromoPriceRange" xml:space="preserve">
+    <value>Цена акции только от 0 до 9999999,99</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>язык</value>
+  </data>
+  <data name="AdvanceSearch" xml:space="preserve">
+    <value>Расширенный поиск</value>
+  </data>
+  <data name="AddNewAccess" xml:space="preserve">
+    <value>Добавить новый доступ</value>
+  </data>
+  <data name="DepartmentID" xml:space="preserve">
+    <value>Идентификатор отдела</value>
+  </data>
+  <data name="HoldItemQtyRange" xml:space="preserve">
+    <value>Количество удерживаемых предметов должно быть больше 0 и меньше количества предметов</value>
+  </data>
+  <data name="HoldItem" xml:space="preserve">
+    <value>Держать предмет?</value>
+  </data>
+  <data name="AppointmentIntervalRequired" xml:space="preserve">
+    <value>Интервал назначения требуется</value>
+  </data>
+  <data name="AmountRequired" xml:space="preserve">
+    <value>Требуется сумма</value>
+  </data>
+  <data name="MenuURLRequired" xml:space="preserve">
+    <value>Требуется URL меню</value>
+  </data>
+  <data name="SupMemberCodeRequired" xml:space="preserve">
+    <value>Требуется дополнительный код участника</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>подробности</value>
+  </data>
+  <data name="QuantityRequired" xml:space="preserve">
+    <value>Требуется количество</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>депозит</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Приборная доска</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Итоговая цена</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>платежи</value>
+  </data>
+  <data name="TokenNumberText" xml:space="preserve">
+    <value>Введите номер токена, который вы запомните, или нажмите «Продолжить» для автоматической генерации номера токена.</value>
+  </data>
+  <data name="RoleGroupIDRequired" xml:space="preserve">
+    <value>Требуется идентификатор группы ролей</value>
+  </data>
+  <data name="FOCQuantity" xml:space="preserve">
+    <value>Количество ВОК</value>
+  </data>
+  <data name="DepartmentIDRequired" xml:space="preserve">
+    <value>Требуется идентификатор отдела</value>
+  </data>
+  <data name="TotalQuantity" xml:space="preserve">
+    <value>Общая численность</value>
+  </data>
+  <data name="Malaysia" xml:space="preserve">
+    <value>Малайзия</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Итого</value>
+  </data>
+  <data name="TokenNumber" xml:space="preserve">
+    <value>Номер токена</value>
+  </data>
+  <data name="AmountRange" xml:space="preserve">
+    <value>Сумма только от 0 до 9999999,99</value>
+  </data>
+  <data name="JoinDate" xml:space="preserve">
+    <value>Дате вступления</value>
+  </data>
+  <data name="PrepaidBrandRequired" xml:space="preserve">
+    <value>Требуется действительный бренд</value>
+  </data>
+  <data name="ConfirmPasswordRequired" xml:space="preserve">
+    <value>Подтвердите пароль требуется</value>
+  </data>
+  <data name="PrepaidValueRequired" xml:space="preserve">
+    <value>Предоплата Значение требуется</value>
+  </data>
+  <data name="PaymentAmountRequired" xml:space="preserve">
+    <value>Требуется сумма оплаты</value>
+  </data>
+  <data name="UsageAll" xml:space="preserve">
+    <value>Использование всех аккаунтов</value>
+  </data>
+  <data name="PaymentAmount" xml:space="preserve">
+    <value>Сумма оплаты</value>
+  </data>
+  <data name="SkinType" xml:space="preserve">
+    <value>Тип кожи</value>
+  </data>
+  <data name="Eye" xml:space="preserve">
+    <value>Глаза</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>добавлять</value>
+  </data>
+  <data name="FOC" xml:space="preserve">
+    <value>ВОК</value>
+  </data>
+  <data name="DOB" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="MGM" xml:space="preserve">
+    <value>MGM</value>
+  </data>
+  <data name="UOM" xml:space="preserve">
+    <value>UOM</value>
+  </data>
+  <data name="Zip" xml:space="preserve">
+    <value>Почтовый Индекс</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Эл. адрес</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ошибка</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>бдительный</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Применять</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>блок</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Авторизоваться</value>
+  </data>
+  <data name="PromoPrice" xml:space="preserve">
+    <value>Промо Цена</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>раз</value>
+  </data>
+  <data name="TopUp" xml:space="preserve">
+    <value>Пополнить</value>
+  </data>
+  <data name="Staff" xml:space="preserve">
+    <value>Детали персонала</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>государственный</value>
+  </data>
+  <data name="SearchFilter" xml:space="preserve">
+    <value>Фильтры поиска</value>
+  </data>
+  <data name="ItemAmountRequired" xml:space="preserve">
+    <value>Требуется количество товара</value>
+  </data>
+  <data name="PrepaidItemTypeRequired" xml:space="preserve">
+    <value>Требуется действительный тип предоплаты</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Сервисы</value>
+  </data>
+  <data name="ChangePrice" xml:space="preserve">
+    <value>Изменить цену</value>
+  </data>
+  <data name="CustCodeRequired" xml:space="preserve">
+    <value>Требуется код клиента</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>имя пользователя</value>
+  </data>
+  <data name="PrepaidValue" xml:space="preserve">
+    <value>Предоплаченная стоимость</value>
+  </data>
+  <data name="PrepaidBrand" xml:space="preserve">
+    <value>марка</value>
+  </data>
+  <data name="RoleType" xml:space="preserve">
+    <value>Тип роли</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Имя роли</value>
+  </data>
+  <data name="AccCode" xml:space="preserve">
+    <value>Код счета</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>С даты</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>действия</value>
+  </data>
+  <data name="RoleIDRequired" xml:space="preserve">
+    <value>Требуется ID роли</value>
+  </data>
+  <data name="AddNewCustomer" xml:space="preserve">
+    <value>Добавить нового клиента</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="IsCompleted" xml:space="preserve">
+    <value>Выполнен?</value>
+  </data>
+  <data name="Diagnosis" xml:space="preserve">
+    <value>диагностика</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Скидки</value>
+  </data>
+  <data name="PaymentGroupRequired" xml:space="preserve">
+    <value>Требуется группа оплаты</value>
+  </data>
+  <data name="ServiceTypes" xml:space="preserve">
+    <value>Типы услуг</value>
+  </data>
+  <data name="ServiceItems" xml:space="preserve">
+    <value>Типы пунктов обслуживания</value>
+  </data>
+  <data name="Measurements" xml:space="preserve">
+    <value>измерения</value>
+  </data>
+  <data name="MenuNameRequired" xml:space="preserve">
+    <value>Menu Name is required</value>
+  </data>
+  <data name="CustType" xml:space="preserve">
+    <value>Название меню обязательно</value>
+  </data>
+  <data name="CustCode" xml:space="preserve">
+    <value>Код клиента</value>
+  </data>
+  <data name="CustName" xml:space="preserve">
+    <value>имя покупателя</value>
+  </data>
+  <data name="TransactionDate" xml:space="preserve">
+    <value>Дата сделки</value>
+  </data>
+  <data name="ExpiryDateRequired" xml:space="preserve">
+    <value>Дата истечения обязательна</value>
+  </data>
+  <data name="Occupation" xml:space="preserve">
+    <value>оккупация</value>
+  </data>
+  <data name="UsernameRegular" xml:space="preserve">
+    <value>Имя пользователя требуется символ, а также цифры</value>
+  </data>
+  <data name="MY_Add_1" xml:space="preserve">
+    <value>Блок А-3-3 Блок А Площадь Пеланги,</value>
+  </data>
+  <data name="MY_Add_2" xml:space="preserve">
+    <value>PJU 6 Персиан Суриан, 47800,</value>
+  </data>
+  <data name="MY_Add_3" xml:space="preserve">
+    <value>Пеланги Дамансара, PJ,</value>
+  </data>
+  <data name="MY_Add_4" xml:space="preserve">
+    <value>Селангор Дарул Эхсан</value>
+  </data>
+  <data name="MY_Add_5" xml:space="preserve">
+    <value>+60 122 07 1351</value>
+  </data>
+  <data name="CourseType" xml:space="preserve">
+    <value>Тип курса</value>
+  </data>
+  <data name="StaffRatio" xml:space="preserve">
+    <value>Соотношение персонала</value>
+  </data>
+  <data name="Mobile1Range" xml:space="preserve">
+    <value>Пожалуйста, введите правильный номер</value>
+  </data>
+  <data name="MenuName" xml:space="preserve">
+    <value>Название меню</value>
+  </data>
+  <data name="RightCheek" xml:space="preserve">
+    <value>Правая щека</value>
+  </data>
+  <data name="TypeRequired" xml:space="preserve">
+    <value>Требуется действительный тип</value>
+  </data>
+  <data name="DateCaptured" xml:space="preserve">
+    <value>Дата захвата</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>обмен</value>
+  </data>
+  <data name="RoleGroupName" xml:space="preserve">
+    <value>Название группы ролей</value>
+  </data>
+  <data name="RefCodeRequired" xml:space="preserve">
+    <value>Требуется код ссылки</value>
+  </data>
+  <data name="AddNewUserGroup" xml:space="preserve">
+    <value>Добавить новую группу пользователей</value>
+  </data>
+  <data name="SalesTypeRequired" xml:space="preserve">
+    <value>Требуется тип продаж</value>
+  </data>
+  <data name="AutoProportionate" xml:space="preserve">
+    <value>Авто пропорционально</value>
+  </data>
+  <data name="DiscountUser" xml:space="preserve">
+    <value>Скидка, предлагаемая</value>
+  </data>
+  <data name="DiscountType" xml:space="preserve">
+    <value>Тип скидки</value>
+  </data>
+  <data name="SupplementaryDetails" xml:space="preserve">
+    <value>Дополнительный член</value>
+  </data>
+  <data name="ClientCode" xml:space="preserve">
+    <value>Код клиента</value>
+  </data>
+  <data name="ReverseTreatment" xml:space="preserve">
+    <value>Обратное лечение</value>
+  </data>
+  <data name="StaffRatioRequired" xml:space="preserve">
+    <value>Требуется соотношение персонала</value>
+  </data>
+  <data name="Singapore" xml:space="preserve">
+    <value>Сингапур</value>
+  </data>
+  <data name="SupMemberJoinDate" xml:space="preserve">
+    <value>Дополнительная дата регистрации</value>
+  </data>
+  <data name="CreditNote" xml:space="preserve">
+    <value>Кредитная записка</value>
+  </data>
+  <data name="Mobile2Range" xml:space="preserve">
+    <value>Пожалуйста, введите правильный номер</value>
+  </data>
+  <data name="DiscountPriceRange" xml:space="preserve">
+    <value>Цена со скидкой только от 0 до 9999999,99</value>
+  </data>
+  <data name="VoucherNo" xml:space="preserve">
+    <value>Ваучер №</value>
+  </data>
+  <data name="Reminder" xml:space="preserve">
+    <value>напоминание</value>
+  </data>
+  <data name="PrepaidItemType" xml:space="preserve">
+    <value>Тип предоплаты</value>
+  </data>
+  <data name="Mobile1" xml:space="preserve">
+    <value>Мобильный номер</value>
+  </data>
+  <data name="Mobile2" xml:space="preserve">
+    <value>Мобильный номер 2</value>
+  </data>
+  <data name="Religion" xml:space="preserve">
+    <value>религия</value>
+  </data>
+  <data name="Voucher" xml:space="preserve">
+    <value>Ваучер</value>
+  </data>
+  <data name="ItemAmountRange" xml:space="preserve">
+    <value>Сумма товара только от 1 до 9999999,99</value>
+  </data>
+  <data name="Therapist" xml:space="preserve">
+    <value>Терапевт</value>
+  </data>
+  <data name="Forehead" xml:space="preserve">
+    <value>Лоб</value>
+  </data>
+  <data name="MenuIDRequired" xml:space="preserve">
+    <value>Требуется идентификатор меню</value>
+  </data>
+  <data name="HoldItemTypeRequired" xml:space="preserve">
+    <value>Требуется тип удержания предмета</value>
+  </data>
+  <data name="FOCReason" xml:space="preserve">
+    <value>ВОК Причина</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>отдел</value>
+  </data>
+  <data name="CustClassRequired" xml:space="preserve">
+    <value>Требуется класс клиента</value>
+  </data>
+  <data name="TransactionAmount" xml:space="preserve">
+    <value>Сумма сделки</value>
+  </data>
+  <data name="TransactionAmountRequired" xml:space="preserve">
+    <value>Требуется сумма транзакции</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Награды</value>
+  </data>
+  <data name="Analysis" xml:space="preserve">
+    <value>Анализ</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Чек</value>
+  </data>
+  <data name="RefCode" xml:space="preserve">
+    <value>Код ссылки</value>
+  </data>
+  <data name="TreatmentDateRequired" xml:space="preserve">
+    <value>Дата лечения обязательна</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>замечания</value>
+  </data>
+  <data name="NRICRequired" xml:space="preserve">
+    <value>ID № требуется</value>
+  </data>
+  <data name="PrepaidCondition" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>Проверять, выписываться</value>
+  </data>
+  <data name="MenuURL" xml:space="preserve">
+    <value>URL меню</value>
+  </data>
+  <data name="ValidReferenceRequired" xml:space="preserve">
+    <value>Требуется действительная ссылка</value>
+  </data>
+  <data name="Mobile2Required" xml:space="preserve">
+    <value>Требуется мобильный номер 2</value>
+  </data>
+  <data name="TreatmentAmount" xml:space="preserve">
+    <value>Сумма лечения</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Цена за единицу</value>
+  </data>
+  <data name="PaymentCodeRequired" xml:space="preserve">
+    <value>Требуется код оплаты</value>
+  </data>
+  <data name="Anniversary" xml:space="preserve">
+    <value>Годовщина</value>
+  </data>
+  <data name="DiscountPercent" xml:space="preserve">
+    <value>Скидка%</value>
+  </data>
+  <data name="ItemCodeRequired" xml:space="preserve">
+    <value>Код изделия обязателен</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Неверный адрес электронной почты</value>
+  </data>
+  <data name="Appointments" xml:space="preserve">
+    <value>Назначения</value>
+  </data>
+  <data name="HoldItemQtyRequired" xml:space="preserve">
+    <value>Требуется количество предметов</value>
+  </data>
+  <data name="LineStatus" xml:space="preserve">
+    <value>Статус линии</value>
+  </data>
+  <data name="ReverseItemsRequired" xml:space="preserve">
+    <value>По крайней мере один действительный элемент требуется для разворота</value>
+  </data>
+  <data name="UserGroup" xml:space="preserve">
+    <value>Группа пользователей</value>
+  </data>
+  <data name="NoOfTreatmentsRequired" xml:space="preserve">
+    <value>Количество обработок требуется</value>
+  </data>
+  <data name="TotalDiscount" xml:space="preserve">
+    <value>Общая скидка</value>
+  </data>
+  <data name="TransactionNumber" xml:space="preserve">
+    <value>Сделка#</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Mobile1Required" xml:space="preserve">
+    <value>Требуется номер мобильного телефона</value>
+  </data>
+  <data name="ProductItems" xml:space="preserve">
+    <value>Товары</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Счет-фактура</value>
+  </data>
+  <data name="MenuSeqNoRequired" xml:space="preserve">
+    <value>Последовательность меню № не требуется</value>
+  </data>
+  <data name="RoleGroupID" xml:space="preserve">
+    <value>Идентификатор группы ролей</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомни меня?</value>
+  </data>
+  <data name="DepartmentNameRequired" xml:space="preserve">
+    <value>Название отдела обязательно</value>
+  </data>
+  <data name="TreatmentHistory" xml:space="preserve">
+    <value>История лечения</value>
+  </data>
+  <data name="SalesType" xml:space="preserve">
+    <value>Тип продаж</value>
+  </data>
+  <data name="CourseTypeRequired" xml:space="preserve">
+    <value>Тип курса обязателен</value>
+  </data>
+  <data name="Salutation" xml:space="preserve">
+    <value>приветствие</value>
+  </data>
+  <data name="PaymentCode" xml:space="preserve">
+    <value>Код оплаты</value>
+  </data>
+  <data name="ExpiryDateRange" xml:space="preserve">
+    <value>Дата истечения должна быть больше, чем дата лечения</value>
+  </data>
+  <data name="Address3" xml:space="preserve">
+    <value>Адресная строка 3</value>
+  </data>
+  <data name="Address2" xml:space="preserve">
+    <value>Адресная строка 2</value>
+  </data>
+  <data name="Address1" xml:space="preserve">
+    <value>Адресная строка 1</value>
+  </data>
+  <data name="Address4" xml:space="preserve">
+    <value>Адресная строка 4</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите Пароль</value>
+  </data>
+  <data name="ZipRegular" xml:space="preserve">
+    <value>Введите только цифры</value>
+  </data>
+  <data name="PaymentGroup" xml:space="preserve">
+    <value>Платежная группа</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Место нахождения</value>
+  </data>
+  <data name="DailyReport" xml:space="preserve">
+    <value>Ежедневный отчет</value>
+  </data>
+  <data name="DiscountRange" xml:space="preserve">
+    <value>Скидка должна составлять только от 0% до 99,99%</value>
+  </data>
+  <data name="DiscountPrice" xml:space="preserve">
+    <value>Цена со скидкой</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>необходим пароль</value>
+  </data>
+  <data name="SiteCodeRequired" xml:space="preserve">
+    <value>Требуется код сайта</value>
+  </data>
+  <data name="PrepaidRequired" xml:space="preserve">
+    <value>По крайней мере один действительный элемент требуется для предоплаты</value>
+  </data>
+  <data name="SecurityPhrase" xml:space="preserve">
+    <value>Фраза безопасности</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="SupMemberNameRequired" xml:space="preserve">
+    <value>Требуется дополнительное имя участника</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>редактировать</value>
+  </data>
+  <data name="Grp1" xml:space="preserve">
+    <value>Группа 1</value>
+  </data>
+  <data name="Grp2" xml:space="preserve">
+    <value>Группа 2</value>
+  </data>
+  <data name="Grp3" xml:space="preserve">
+    <value>Группа 3</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>тело</value>
+  </data>
+  <data name="Bust" xml:space="preserve">
+    <value>Бюст</value>
+  </data>
+  <data name="Cart" xml:space="preserve">
+    <value>телега</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>город</value>
+  </data>
+  <data name="Chin" xml:space="preserve">
+    <value>Подбородок</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="NRIC" xml:space="preserve">
+    <value>Идентификационный номер.</value>
+  </data>
+  <data name="Nose" xml:space="preserve">
+    <value>Нос</value>
+  </data>
+  <data name="ICNo" xml:space="preserve">
+    <value>IC №</value>
+  </data>
+  <data name="Used" xml:space="preserve">
+    <value>Используемый</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Держать</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Посмотреть</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>пустота</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Race" xml:space="preserve">
+    <value>раса</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Skin" xml:space="preserve">
+    <value>кожа</value>
+  </data>
+  <data name="ReasonRequired" xml:space="preserve">
+    <value>Требуется действительная причина</value>
+  </data>
+  <data name="Consultant" xml:space="preserve">
+    <value>консультант</value>
+  </data>
+  <data name="ValidPeriodRequired" xml:space="preserve">
+    <value>Срок действия требуется</value>
+  </data>
+  <data name="CreditBalance" xml:space="preserve">
+    <value>Остаток кредита</value>
+  </data>
+  <data name="TreatmentLimit" xml:space="preserve">
+    <value>Предел лечения</value>
+  </data>
+  <data name="BeauteCloud" xml:space="preserve">
+    <value>Красота Облака</value>
+  </data>
+  <data name="Allrights" xml:space="preserve">
+    <value>Все права защищены.</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>авторское право</value>
+  </data>
+  <data name="Sequoia" xml:space="preserve">
+    <value>Секвойя Азия.</value>
+  </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>коллапс</value>
+  </data>
+  <data name="CartsEmpty" xml:space="preserve">
+    <value>Ваша корзина пуста.</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Выберите файл</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>близко</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Пустая корзина!</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Хорошо</value>
+  </data>
+  <data name="ReturnToCatalog" xml:space="preserve">
+    <value>Вернуться в каталог</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>необходимые</value>
+  </data>
+  <data name="Capture" xml:space="preserve">
+    <value>Захватить</value>
+  </data>
+  <data name="ClassCode" xml:space="preserve">
+    <value>Учебный класс</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>Файл загружен</value>
+  </data>
+  <data name="GenderCode" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="NationalityCode" xml:space="preserve">
+    <value>Национальность</value>
+  </data>
+  <data name="AuthorizedSignature" xml:space="preserve">
+    <value>Подпись уполномоченного лица</value>
+  </data>
+  <data name="AvailablePoints" xml:space="preserve">
+    <value>Доступные очки</value>
+  </data>
+  <data name="BillTo" xml:space="preserve">
+    <value>Плательщик</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>клиент</value>
+  </data>
+  <data name="CustomerSignature" xml:space="preserve">
+    <value>Подпись покупателя</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="GSTRegNo" xml:space="preserve">
+    <value>Налоговый Рег. Нет.</value>
+  </data>
+  <data name="GSTSummary" xml:space="preserve">
+    <value>Налоговая сводка</value>
+  </data>
+  <data name="InvoiceAmount" xml:space="preserve">
+    <value>Сумма счета</value>
+  </data>
+  <data name="Issued" xml:space="preserve">
+    <value>Выпущен</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Вещь</value>
+  </data>
+  <data name="NetPrice" xml:space="preserve">
+    <value>Цена нетто</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>оплаченный</value>
+  </data>
+  <data name="PaymentDetails" xml:space="preserve">
+    <value>Детали платежа</value>
+  </data>
+  <data name="PaymentMode" xml:space="preserve">
+    <value>Режим оплаты</value>
+  </data>
+  <data name="PointsEarned" xml:space="preserve">
+    <value>Заработанные очки</value>
+  </data>
+  <data name="PointsUsed" xml:space="preserve">
+    <value>Используемые очки</value>
+  </data>
+  <data name="PrintInvoice" xml:space="preserve">
+    <value>Распечатать счет</value>
+  </data>
+  <data name="PrintReceipt" xml:space="preserve">
+    <value>Печать квитанции</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>остальной</value>
+  </data>
+  <data name="ReturnHome" xml:space="preserve">
+    <value>Вернуться домой</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Отправить письмо</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>налог</value>
+  </data>
+  <data name="TenderAmount" xml:space="preserve">
+    <value>Сумма тендера</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="ToggleDropdown" xml:space="preserve">
+    <value>тумблер Падать</value>
+  </data>
+  <data name="TotalPaid" xml:space="preserve">
+    <value>Итого</value>
+  </data>
+  <data name="TreatmentNumber" xml:space="preserve">
+    <value>Номер лечения</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>соотношение</value>
+  </data>
+  <data name="RemainingSessions" xml:space="preserve">
+    <value>Оставшиеся сессии</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Курс</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Больше</value>
+  </data>
+  <data name="NoPayment" xml:space="preserve">
+    <value>Платеж не найден</value>
+  </data>
+  <data name="PayFull" xml:space="preserve">
+    <value>Оплатить полный депозит или изменить депозит</value>
+  </data>
+  <data name="PaymentUnsuccessful" xml:space="preserve">
+    <value>Оплата не удалась</value>
+  </data>
+  <data name="ServiceNotBelong" xml:space="preserve">
+    <value>Погашенный сервис не принадлежит</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>неудачный</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Успех!</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Успешно Обновлено</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Номер карты</value>
+  </data>
+  <data name="NameOnCard" xml:space="preserve">
+    <value>Имя на карте</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Код безопасности</value>
+  </data>
+  <data name="ForTheSelectedItems" xml:space="preserve">
+    <value>Для выбранных предметов</value>
+  </data>
+  <data name="PaidByTheSelectedPrepaid" xml:space="preserve">
+    <value>Оплачивается выбранными предоплатами</value>
+  </data>
+  <data name="AmountPaid" xml:space="preserve">
+    <value>Оплаченная сумма</value>
+  </data>
+</root>
